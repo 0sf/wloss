@@ -16,8 +16,10 @@ class MealView extends StatelessWidget {
               return ListTile(
                 title: Text(meal.foodTitle.toString()),
                 subtitle: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    Text('ID: ' + meal.id.month.toString()),
+                    Text('ID: ' + meal.id.toString()),
+                    Text('MealType: ' + meal.mealType.toString()),
                     Text('Amount: ' + meal.amount.toString()),
                     Text('Calories: ' + meal.calories.toString()),
                     Text('Portion: ' + meal.portion.toString()),

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:wloss/dash_launch.dart';
-import 'package:wloss/dashboard.dart';
 import 'package:wloss/models/local_user.dart';
 import 'package:hive/hive.dart';
 

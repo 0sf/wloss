@@ -12,16 +12,19 @@ class ParaDisplay extends StatelessWidget {
         builder: (context, userInf) {
           final userDetails = userInf.getAt(0) as LocalUser;
           final calcUser = new Calc(userDetails);
-
           return Container(
-            child: Column(
-              children: <Widget>[
-                Text('BMI: ' + calcUser.bmi().toString()),
-                Text('BMR: ' + calcUser.bmr().toStringAsFixed(2)),
-                Text('DCC: ' + calcUser.dailyCalorieCount().toString())
-              ],
-            ),
-          );
+              child: (calcUser.bmi() == -1 ||
+                      calcUser.bmr() == -1 ||
+                      calcUser.dailyCalorieCount() == -1)
+                  ? Text('Give Height Weight')
+                  : Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Text('BMI: ' + calcUser.bmi().toString()),
+                        Text('BMR: ' + calcUser.bmr().toStringAsFixed(2)),
+                        Text('DCC: ' + calcUser.dailyCalorieCount().toString()),
+                      ],
+                    ));
         });
   }
 }

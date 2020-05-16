@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:wloss/dashboard.dart';
-import 'package:wloss/meal_view.dart';
 
 class DashLaunch extends StatelessWidget {
   @override

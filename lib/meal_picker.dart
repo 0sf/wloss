@@ -49,6 +49,13 @@ class _MealPickerState extends State<MealPicker> {
                     MaterialPageRoute(builder: (context) => new MealView()));
               },
             ),
+                       IconButton(
+              icon: Icon(Icons.date_range),
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => new MealView()));
+              },
+            ),
           ],
         ),
       ),

@@ -8,7 +8,10 @@ class Calc {
   Calc(this.localUser);
 
   double bmi() {
-    return (localUser.weight / pow(localUser.height/100, 2));
+    if(localUser.weight != 0.0 && localUser.height != 0.0) {
+      return (localUser.weight / pow(localUser.height/100, 2));
+    }else
+    return -1;
   }
 
   double bmr() {
@@ -17,10 +20,10 @@ class Calc {
     double weight = localUser.weight;
     int age = localUser.age;
 
-    if (gender == "M") {
+    if (gender == "M" && localUser.weight != 0.0 && localUser.height != 0) {
       var bmrF = (10 * weight) + (6.25 * height) - (5 * age) + 5;
       return bmrF;
-    } else if (gender == "F") {
+    } else if (gender == "F" && localUser.weight != 0.0 && localUser.height != 0) {
       var bmrF = (10 * weight) + (6.25 * height) - (5 * age) - 161;
       return bmrF ;
     } else {
@@ -29,6 +32,9 @@ class Calc {
   }
 
   double dailyCalorieCount() {
+    if (bmr() == -1) {
+      return -1;
+    }
     return bmr() * localUser.activityFactor;
   }
 }

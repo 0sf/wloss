@@ -21,8 +21,6 @@ class _HWASelectorState extends State<HWASelector> {
     double uafactor,
   ) {
     final user = userBox.getAt(0) as LocalUser;
-    print(
-        'Before: ${user.id}, ${user.name}, ${user.age.toString()}, ${user.gender}, ${user.height.toString()}, ${user.weight.toString()}, ${user.activityFactor.toString()}');
     userBox.putAt(
       0,
       LocalUser(
@@ -35,9 +33,6 @@ class _HWASelectorState extends State<HWASelector> {
         activityFactor: uafactor,
       ),
     );
-    final user2 = userBox.getAt(0) as LocalUser;
-    print(
-        'After: ${user2.id}, ${user2.name}, ${user2.age.toString()}, ${user2.gender}, ${user2.height.toString()}, ${user2.weight.toString()}, ${user2.activityFactor.toString()}');
     Navigator.of(context).pop();
   }
 
@@ -53,7 +48,7 @@ class _HWASelectorState extends State<HWASelector> {
                 InputBox(
                   title: "Height",
                   ctr: heightController,
-                  subtitle: "m",
+                  subtitle: "cm",
                 ),
                 InputBox(
                   title: "Weight",

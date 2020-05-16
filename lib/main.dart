@@ -1,14 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart' as path_provider;
-import 'package:wloss/dashboard.dart';
-import 'package:wloss/loginPage.dart';
-import 'package:wloss/meal_picker.dart';
 import 'package:wloss/models/local_user.dart';
 import 'package:wloss/models/meal_model.dart';
-import 'package:wloss/welcomePage.dart';
 import './sign_up.dart';
-import 'hwa_selector.dart';
+
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
