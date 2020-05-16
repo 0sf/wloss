@@ -18,11 +18,11 @@ class Calc {
     int age = localUser.age;
 
     if (gender == "M") {
-      var bmrF = (10 * weight) + (6.25 * height * 100) - (5 * age) + 5;
-      return bmrF * 10000;
+      var bmrF = (10 * weight) + (6.25 * height) - (5 * age) + 5;
+      return bmrF;
     } else if (gender == "F") {
-      var bmrF = (10 * weight) + (6.25 * height * 100) - (5 * age) - 161;
-      return bmrF * 10000;
+      var bmrF = (10 * weight) + (6.25 * height) - (5 * age) - 161;
+      return bmrF ;
     } else {
       return -1;
     }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:wloss/dash_launch.dart';
 import 'package:wloss/dashboard.dart';
 import 'package:wloss/models/local_user.dart';
 import 'package:hive/hive.dart';
@@ -99,7 +100,7 @@ class _SignUpPageState extends State<SignUpPage> {
           InkWell(
             onTap: () {
               Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => new Dashboard()));
+                  MaterialPageRoute(builder: (context) => new DashLaunch()));
             },
             child: Text(
               'Login',

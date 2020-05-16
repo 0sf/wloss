@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
+import 'package:wloss/models/meal_model.dart';
 
 class NewMealItem extends StatefulWidget {
-  final Function addMl;
-
-  NewMealItem(this.addMl);
-
   @override
   _NewMealItemState createState() => _NewMealItemState();
 }
@@ -16,7 +14,7 @@ class _NewMealItemState extends State<NewMealItem> {
   final _perGramController = TextEditingController();
 
   void _submitData() {
-    
+    final mealBox = Hive.box('mealInfo0');
     if (_amountController.text.isEmpty) {
       return;
     }
@@ -34,13 +32,16 @@ class _NewMealItemState extends State<NewMealItem> {
       return;
     }
 
-    widget.addMl(
-      enteredTitle,
-      enteredAmount,
-      perCalorie,
-      perGram,
-      consumedCalorie,
+    final foodItem = MealModel(
+      id: DateTime.now(),
+      foodTitle: enteredTitle,
+      portion: perGram,
+      calories: perCalorie,
+      amount: enteredAmount,
+      consumedCalorie: consumedCalorie,
     );
+
+    mealBox.add(foodItem);
 
     Navigator.of(context).pop();
   }
@@ -84,7 +85,9 @@ class _NewMealItemState extends State<NewMealItem> {
                 keyboardType: TextInputType.number,
                 onSubmitted: (_) => _submitData(),
               ),
-              SizedBox(height: 20,),
+              SizedBox(
+                height: 20,
+              ),
               RaisedButton(
                 color: Theme.of(context).primaryColor,
                 textColor: Theme.of(context).textTheme.button.color,

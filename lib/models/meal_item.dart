@@ -6,7 +6,7 @@ class MealItem {
   final double perCalorieCount;
   final double perGramCount;
   final double amount;
-  final double consumedCalorie;
+  double consumedCalorie;
 
   MealItem({
     @required this.id,

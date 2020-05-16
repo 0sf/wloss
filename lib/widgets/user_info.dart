@@ -8,26 +8,24 @@ class UserInfo extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        child: Container(
-          child: ListView.builder(
-              itemCount: userBox.length,
-              itemBuilder: (context, index) {
-                final user = userBox.getAt(index) as LocalUser;
-                return ListTile(
-                  title: Text(user.id.toString()),
-                  subtitle: Column(
-                    children: <Widget>[
-                      Text('Name: ' + user.name.toString()),
-                      Text('Name: ' + user.gender.toString()),
-                      Text('Age: ' + user.age.toString()),
-                      Text('AF: ' + user.activityFactor.toString()),
-                      Text('Height' + user.height.toString()),
-                      Text('Weight:' + user.weight.toString()),
-                    ],
-                  ),
-                );
-              }),
-        ),
+        child: ListView.builder(
+            itemCount: userBox.length,
+            itemBuilder: (context, index) {
+              final user = userBox.getAt(index) as LocalUser;
+              return ListTile(
+                title: Text(user.id.toString()),
+                subtitle: Column(
+                  children: <Widget>[
+                    Text('Name: ' + user.name.toString()),
+                    Text('Name: ' + user.gender.toString()),
+                    Text('Age: ' + user.age.toString()),
+                    Text('AF: ' + user.activityFactor.toString()),
+                    Text('Height' + user.height.toString()),
+                    Text('Weight:' + user.weight.toString()),
+                  ],
+                ),
+              );
+            }),
       ),
     );
   }

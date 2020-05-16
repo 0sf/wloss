@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:wloss/dashboard.dart';
+import 'package:wloss/meal_view.dart';
 import 'package:wloss/models/meal_item.dart';
-import 'package:wloss/widgets/calc_totcal.dart';
+import './calc_totcal.dart';
 import 'package:wloss/widgets/meal_list.dart';
 import 'package:wloss/widgets/new_meal_item.dart';
 import 'package:wloss/widgets/total_calorie_count.dart';
@@ -20,34 +21,13 @@ class _MealPickerState extends State<MealPicker> {
     });
   }
 
-  void _addNewMealItem(
-    String txTitle,
-    double txAmount,
-    double txPerCalAm,
-    double txPerGrmCut,
-    double txCons,
-  ) {
-    final newTx = MealItem(
-      id: DateTime.now().toString(),
-      title: txTitle,
-      amount: txAmount,
-      perCalorieCount: txPerCalAm,
-      perGramCount: txPerGrmCut,
-      consumedCalorie: txCons,
-    );
-
-    setState(() {
-      _mealIngredients.add(newTx);
-    });
-  }
-
   void _startAddNewMealItem(BuildContext ctx) {
     showModalBottomSheet(
       context: ctx,
       builder: (_) {
         return GestureDetector(
           onTap: () {},
-          child: NewMealItem(_addNewMealItem),
+          child: NewMealItem(),
           behavior: HitTestBehavior.opaque,
         );
       },
@@ -58,7 +38,19 @@ class _MealPickerState extends State<MealPicker> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Meal Data"),
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            Text('Meal Picker'),
+            IconButton(
+              icon: Icon(Icons.fastfood),
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => new MealView()));
+              },
+            ),
+          ],
+        ),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -68,7 +60,23 @@ class _MealPickerState extends State<MealPicker> {
               height: (MediaQuery.of(context).size.height -
                       MediaQuery.of(context).padding.top) *
                   0.1,
-              child: TotalCalorieCount(TotalCalorieCalc(_mealIngredients).totalCalorie()),
+              child: Column(
+                children: <Widget>[
+/*                   FutureBuilder(
+                      future: Hive.openBox('mealInfo'),
+                      builder: (BuildContext context, AsyncSnapshot snapshot) {
+                        if (snapshot.connectionState == ConnectionState.done) {
+                          if (snapshot.hasError)
+                            return Text(snapshot.error.toString());
+                          else
+                            return MealView();
+                        } else
+                          return Text('Wait...');
+                      }), */
+                   TotalCalorieCount(
+ TotalCalorieCalc(DateTime.now()).totalCalorie()),
+                ],
+              ),
             ),
             Container(
               height: (MediaQuery.of(context).size.height * 0.8),
@@ -81,15 +89,16 @@ class _MealPickerState extends State<MealPicker> {
       floatingActionButton: Container(
         padding: EdgeInsets.only(left: 10, right: 10),
         child: Container(
-          padding: EdgeInsets.only(left:10, right:10),
+          padding: EdgeInsets.only(left: 10, right: 10),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
               FloatingActionButton(
-                heroTag: "backToDash",
-                  child: Icon(Icons.navigate_before), onPressed: () {
+                  heroTag: "backToDash",
+                  child: Icon(Icons.navigate_before),
+                  onPressed: () {
                     Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => Dashboard()));
+                        MaterialPageRoute(builder: (context) => Dashboard()));
                   }),
               FloatingActionButton(
                 child: Icon(Icons.add),
