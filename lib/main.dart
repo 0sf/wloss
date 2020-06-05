@@ -1,67 +1,34 @@
 import 'package:flutter/material.dart';
-import 'package:hive/hive.dart';
-import 'package:path_provider/path_provider.dart' as path_provider;
-import 'package:wloss/dashboard.dart';
-import 'package:wloss/loginPage.dart';
-import 'package:wloss/meal_picker.dart';
-import 'package:wloss/models/local_user.dart';
-import 'package:wloss/models/meal_model.dart';
-import 'package:wloss/welcomePage.dart';
-import './sign_up.dart';
-import 'hwa_selector.dart';
+import 'package:provider/provider.dart';
 
-void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  final appDocumentDirectory =
-      await path_provider.getApplicationDocumentsDirectory();
-  Hive.init(appDocumentDirectory.path);
-  Hive.registerAdapter(LocalUserAdapter());
-  Hive.registerAdapter(MealModelAdapter());
+import './services/auth.dart';
+import './screens/wrapper.dart';
+import './model/user.dart';
+
+void main() {
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Weight Loss',
-      theme: ThemeData(
-        primarySwatch: Colors.green,
-      ),
-      home: HomeScreen(),
-    );
-  }
-}
-
-class HomeScreen extends StatefulWidget {
-  @override
-  _HomeScreenState createState() => _HomeScreenState();
-}
-
-class _HomeScreenState extends State<HomeScreen> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: FutureBuilder(
-        future: Hive.openBox('userInfo'),
-        builder: (BuildContext context, AsyncSnapshot snapshot) {
-          if (snapshot.connectionState == ConnectionState.done) {
-            if (snapshot.hasError)
-              return Text(snapshot.error.toString());
-            else
-              return SignUpPage();
-          } else
-            return Scaffold();
-        },
+    return StreamProvider<User>.value(
+      value: AuthService().user,
+      child: MaterialApp(
+        title: "WLoss",
+        theme: ThemeData(
+            primarySwatch: Colors.purple,
+            accentColor: Colors.deepOrange,
+            fontFamily: 'Lato',
+            textTheme: TextTheme(
+                headline1: TextStyle(
+              fontSize: 26,
+              fontWeight: FontWeight.bold,
+            ))),
+        debugShowCheckedModeBanner: false,
+        home: Wrapper(),
+        routes: {},
       ),
     );
-  }
-
-  @override
-  void dispose() {
-    Hive.close();
-    super.dispose();
   }
 }

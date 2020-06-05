@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "887371453305",
+    "firebase_url": "https://wloss-app.firebaseio.com",
+    "project_id": "wloss-app",
+    "storage_bucket": "wloss-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:887371453305:android:a95b499e6c3288618095a8",
+        "android_client_info": {
+          "package_name": "com.fs0.wloss"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "887371453305-45djs1oqcfjc2f6h3dkod7o9412hekai.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBkngHjwOUoZLzPutjVQiFgVGV3YgcZLQE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "887371453305-45djs1oqcfjc2f6h3dkod7o9412hekai.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
