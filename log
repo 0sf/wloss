@@ -1,0 +1,532 @@
+[  +15 ms] executing: [/opt/flutter/] git -c log.showSignature=false log -n 1 --pretty=format:%H
+[  +24 ms] Exit code 0 from: git -c log.showSignature=false log -n 1 --pretty=format:%H
+[        ] b041144f833e05cf463b8887fa12efdec9493488
+[        ] executing: [/opt/flutter/] git tag --contains HEAD
+[ +155 ms] Exit code 0 from: git tag --contains HEAD
+[        ] 1.17.3
+[   +6 ms] executing: [/opt/flutter/] git rev-parse --abbrev-ref --symbolic @{u}
+[   +4 ms] Exit code 0 from: git rev-parse --abbrev-ref --symbolic @{u}
+[        ] origin/stable
+[        ] executing: [/opt/flutter/] git ls-remote --get-url origin
+[   +3 ms] Exit code 0 from: git ls-remote --get-url origin
+[        ] https://github.com/flutter/flutter.git
+[  +62 ms] executing: [/opt/flutter/] git rev-parse --abbrev-ref HEAD
+[   +5 ms] Exit code 0 from: git rev-parse --abbrev-ref HEAD
+[        ] stable
+[  +23 ms] Artifact Instance of 'AndroidMavenArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'AndroidGenSnapshotArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'AndroidInternalBuildArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'IOSEngineArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'FlutterWebSdk' is not required, skipping update.
+[   +2 ms] Artifact Instance of 'WindowsEngineArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'MacOSEngineArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'LinuxEngineArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'LinuxFuchsiaSDKArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'MacOSFuchsiaSDKArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'FlutterRunnerSDKArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'FlutterRunnerDebugSymbols' is not required, skipping update.
+[   +7 ms] Artifact Instance of 'MaterialFonts' is not required, skipping update.
+[        ] Artifact Instance of 'GradleWrapper' is not required, skipping update.
+[        ] Artifact Instance of 'AndroidMavenArtifacts' is not required, skipping update.
+[   +3 ms] Artifact Instance of 'AndroidInternalBuildArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'IOSEngineArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'FlutterWebSdk' is not required, skipping update.
+[        ] Artifact Instance of 'FlutterSdk' is not required, skipping update.
+[        ] Artifact Instance of 'WindowsEngineArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'MacOSEngineArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'LinuxEngineArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'LinuxFuchsiaSDKArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'MacOSFuchsiaSDKArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'FlutterRunnerSDKArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'FlutterRunnerDebugSymbols' is not required, skipping update.
+[        ] Artifact Instance of 'IosUsbArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'IosUsbArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'IosUsbArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'IosUsbArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'IosUsbArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'FontSubsetArtifacts' is not required, skipping update.
+[   +6 ms] Running "flutter pub get" in wloss...
+[   +5 ms] Using /opt/flutter/.pub-cache for the pub cache.
+[   +1 ms] executing: [/home/redwheelbarrow/Desktop/flutter_/wloss/] /opt/flutter/bin/cache/dart-sdk/bin/pub --verbose get --no-precompile
+[  +53 ms] MSG : Resolving dependencies...
+[   +1 ms] MSG : Got dependencies!
+[  +32 ms] Running "flutter pub get" in wloss... (completed in 1.0s)
+[  +79 ms] Found plugin cloud_firestore at /opt/flutter/.pub-cache/hosted/pub.dartlang.org/cloud_firestore-0.13.6/
+[   +9 ms] Found plugin cloud_firestore_web at /opt/flutter/.pub-cache/hosted/pub.dartlang.org/cloud_firestore_web-0.1.1+2/
+[  +22 ms] Found plugin firebase_auth at /opt/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_auth-0.16.1/
+[   +4 ms] Found plugin firebase_auth_web at /opt/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_auth_web-0.1.3+1/
+[   +5 ms] Found plugin firebase_core at /opt/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_core-0.4.5/
+[   +8 ms] Found plugin firebase_core_web at /opt/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_core_web-0.1.1+2/
+[  +49 ms] Found plugin path_provider at /opt/flutter/.pub-cache/hosted/pub.dartlang.org/path_provider-1.6.10/
+[   +2 ms] Found plugin path_provider_linux at /opt/flutter/.pub-cache/hosted/pub.dartlang.org/path_provider_linux-0.0.1+1/
+[   +2 ms] Found plugin path_provider_macos at /opt/flutter/.pub-cache/hosted/pub.dartlang.org/path_provider_macos-0.0.4+3/
+[  +31 ms] Found plugin sqflite at /opt/flutter/.pub-cache/hosted/pub.dartlang.org/sqflite-1.3.0+2/
+[ +183 ms] Found plugin cloud_firestore at /opt/flutter/.pub-cache/hosted/pub.dartlang.org/cloud_firestore-0.13.6/
+[   +7 ms] Found plugin cloud_firestore_web at /opt/flutter/.pub-cache/hosted/pub.dartlang.org/cloud_firestore_web-0.1.1+2/
+[  +13 ms] Found plugin firebase_auth at /opt/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_auth-0.16.1/
+[   +7 ms] Found plugin firebase_auth_web at /opt/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_auth_web-0.1.3+1/
+[   +2 ms] Found plugin firebase_core at /opt/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_core-0.4.5/
+[   +4 ms] Found plugin firebase_core_web at /opt/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_core_web-0.1.1+2/
+[  +35 ms] Found plugin path_provider at /opt/flutter/.pub-cache/hosted/pub.dartlang.org/path_provider-1.6.10/
+[   +5 ms] Found plugin path_provider_linux at /opt/flutter/.pub-cache/hosted/pub.dartlang.org/path_provider_linux-0.0.1+1/
+[   +2 ms] Found plugin path_provider_macos at /opt/flutter/.pub-cache/hosted/pub.dartlang.org/path_provider_macos-0.0.4+3/
+[  +15 ms] Found plugin sqflite at /opt/flutter/.pub-cache/hosted/pub.dartlang.org/sqflite-1.3.0+2/
+[  +77 ms] Generating /home/redwheelbarrow/Desktop/flutter_/wloss/android/app/src/main/java/io/flutter/plugins/GeneratedPluginRegistrant.java
+[  +35 ms] You are building a fat APK that includes binaries for android-arm, android-arm64, android-x64.
+[        ] If you are deploying the app to the Play Store, it's recommended to use app bundles or split the APK to reduce the APK size.
+[        ]     To generate an app bundle, run:
+[        ]         flutter build appbundle --target-platform android-arm,android-arm64,android-x64
+[        ]         Learn more on: https://developer.android.com/guide/app-bundle
+[        ]     To split the APKs per ABI, run:
+[        ]         flutter build apk --target-platform android-arm,android-arm64,android-x64 --split-per-abi
+[        ]         Learn more on:  https://developer.android.com/studio/build/configure-apk-splits#configure-abi-split
+[  +16 ms] Running Gradle task 'assembleRelease'...
+[   +2 ms] gradle.properties already sets `android.enableR8`
+[   +2 ms] Using gradle from /home/redwheelbarrow/Desktop/flutter_/wloss/android/gradlew.
+[   +1 ms] /home/redwheelbarrow/Desktop/flutter_/wloss/android/gradlew mode: 33261 rwxr-xr-x.
+[  +11 ms] executing: /snap/android-studio/88/android-studio/jre/bin/java -version
+[  +70 ms] Exit code 0 from: /snap/android-studio/88/android-studio/jre/bin/java -version
+[        ] openjdk version "1.8.0_212-release"
+           OpenJDK Runtime Environment (build 1.8.0_212-release-1586-b4-5784211)
+           OpenJDK 64-Bit Server VM (build 25.212-b4-5784211, mixed mode)
+[   +2 ms] executing: /opt/android-studio/jre/bin/java -version
+[  +69 ms] Exit code 0 from: /opt/android-studio/jre/bin/java -version
+[        ] openjdk version "1.8.0_202-release"
+           OpenJDK Runtime Environment (build 1.8.0_202-release-1483-b49-5587405)
+           OpenJDK 64-Bit Server VM (build 25.202-b49-5587405, mixed mode)
+[   +2 ms] executing: [/home/redwheelbarrow/Desktop/flutter_/wloss/android/] /home/redwheelbarrow/Desktop/flutter_/wloss/android/gradlew -Pverbose=true -Ptarget-platform=android-arm,android-arm64,android-x64 -Ptarget=lib/main.dart -Ptrack-widget-creation=true -Pshrink=true assembleRelease
+[+8579 ms] > Task :app:compileFlutterBuildRelease
+[        ] [  +27 ms] executing: [/opt/flutter/] git -c log.showSignature=false log -n 1 --pretty=format:%H
+[        ] [  +41 ms] Exit code 0 from: git -c log.showSignature=false log -n 1 --pretty=format:%H
+[        ] [        ] b041144f833e05cf463b8887fa12efdec9493488
+[        ] [        ] executing: [/opt/flutter/] git tag --contains HEAD
+[        ] [ +180 ms] Exit code 0 from: git tag --contains HEAD
+[        ] [        ] 1.17.3
+[        ] [   +7 ms] executing: [/opt/flutter/] git rev-parse --abbrev-ref --symbolic @{u}
+[        ] [   +4 ms] Exit code 0 from: git rev-parse --abbrev-ref --symbolic @{u}
+[        ] [        ] origin/stable
+[        ] [        ] executing: [/opt/flutter/] git ls-remote --get-url origin
+[        ] [   +3 ms] Exit code 0 from: git ls-remote --get-url origin
+[        ] [        ] https://github.com/flutter/flutter.git
+[        ] [  +62 ms] executing: [/opt/flutter/] git rev-parse --abbrev-ref HEAD
+[        ] [   +5 ms] Exit code 0 from: git rev-parse --abbrev-ref HEAD
+[        ] [        ] stable
+[        ] [  +15 ms] Artifact Instance of 'AndroidMavenArtifacts' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'AndroidGenSnapshotArtifacts' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'AndroidInternalBuildArtifacts' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'IOSEngineArtifacts' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'FlutterWebSdk' is not required, skipping update.
+[        ] [   +2 ms] Artifact Instance of 'WindowsEngineArtifacts' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'MacOSEngineArtifacts' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'LinuxEngineArtifacts' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'LinuxFuchsiaSDKArtifacts' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'MacOSFuchsiaSDKArtifacts' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'FlutterRunnerSDKArtifacts' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'FlutterRunnerDebugSymbols' is not required, skipping update.
+[        ] [   +6 ms] Artifact Instance of 'MaterialFonts' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'GradleWrapper' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'AndroidMavenArtifacts' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'AndroidGenSnapshotArtifacts' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'AndroidInternalBuildArtifacts' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'IOSEngineArtifacts' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'FlutterWebSdk' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'FlutterSdk' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'WindowsEngineArtifacts' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'MacOSEngineArtifacts' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'LinuxEngineArtifacts' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'LinuxFuchsiaSDKArtifacts' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'MacOSFuchsiaSDKArtifacts' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'FlutterRunnerSDKArtifacts' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'FlutterRunnerDebugSymbols' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'IosUsbArtifacts' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'IosUsbArtifacts' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'IosUsbArtifacts' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'IosUsbArtifacts' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'IosUsbArtifacts' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'FontSubsetArtifacts' is not required, skipping update.
+[        ] [  +79 ms] Initializing file store
+[        ] [  +29 ms] kernel_snapshot: Starting due to {}
+[        ] [  +13 ms] /opt/flutter/bin/cache/dart-sdk/bin/dart /opt/flutter/bin/cache/artifacts/engine/linux-x64/frontend_server.dart.snapshot --sdk-root /opt/flutter/bin/cache/artifacts/engine/common/flutter_patched_sdk_product/ --target=flutter -Ddart.developer.causal_async_stacks=false -Ddart.vm.profile=false -Ddart.vm.product=true --bytecode-options=source-positions --aot --tfa --packages /home/redwheelbarrow/Desktop/flutter_/wloss/.packages --output-dill /home/redwheelbarrow/Desktop/flutter_/wloss/.dart_tool/flutter_build/759685303058aedda67bc62950f64a36/app.dill --depfile /home/redwheelbarrow/Desktop/flutter_/wloss/.dart_tool/flutter_build/759685303058aedda67bc62950f64a36/kernel_snapshot.d package:wloss/main.dart
+[+22942 ms] [+24197 ms] kernel_snapshot: Complete
+[+1800 ms] [+1712 ms] aot_android_asset_bundle: Starting due to {}
+[ +299 ms] [ +310 ms] aot_android_asset_bundle: Complete
+[ +500 ms] [ +555 ms] android_aot_release_android-arm64: Starting due to {InvalidatedReason.inputChanged}
+[        ] [   +4 ms] executing: /opt/flutter/bin/cache/artifacts/engine/android-arm64-release/linux-x64/gen_snapshot --deterministic --snapshot_kind=app-aot-elf --elf=/home/redwheelbarrow/Desktop/flutter_/wloss/.dart_tool/flutter_build/759685303058aedda67bc62950f64a36/arm64-v8a/app.so --strip --no-causal-async-stacks --lazy-async-stacks /home/redwheelbarrow/Desktop/flutter_/wloss/.dart_tool/flutter_build/759685303058aedda67bc62950f64a36/app.dill
+[ +100 ms] [  +57 ms] android_aot_release_android-x64: Starting due to {InvalidatedReason.inputChanged}
+[        ] [        ] executing: /opt/flutter/bin/cache/artifacts/engine/android-x64-release/linux-x64/gen_snapshot --deterministic --snapshot_kind=app-aot-elf --elf=/home/redwheelbarrow/Desktop/flutter_/wloss/.dart_tool/flutter_build/759685303058aedda67bc62950f64a36/x86_64/app.so --strip --no-causal-async-stacks --lazy-async-stacks /home/redwheelbarrow/Desktop/flutter_/wloss/.dart_tool/flutter_build/759685303058aedda67bc62950f64a36/app.dill
+[        ] [  +57 ms] android_aot_release_android-arm: Starting due to {InvalidatedReason.inputChanged}
+[        ] [        ] executing: /opt/flutter/bin/cache/artifacts/engine/android-arm-release/linux-x64/gen_snapshot --deterministic --snapshot_kind=app-aot-elf --elf=/home/redwheelbarrow/Desktop/flutter_/wloss/.dart_tool/flutter_build/759685303058aedda67bc62950f64a36/armeabi-v7a/app.so --strip --no-sim-use-hardfp --no-use-integer-division --no-causal-async-stacks --lazy-async-stacks /home/redwheelbarrow/Desktop/flutter_/wloss/.dart_tool/flutter_build/759685303058aedda67bc62950f64a36/app.dill
+[+11798 ms] [+11713 ms] android_aot_release_android-x64: Complete
+[ +100 ms] [ +130 ms] android_aot_bundle_release_android-x64: Starting due to {InvalidatedReason.inputChanged}
+[        ] [   +8 ms] android_aot_bundle_release_android-x64: Complete
+[        ] [   +2 ms] android_aot_release_android-arm64: Complete
+[ +198 ms] [ +205 ms] android_aot_bundle_release_android-arm64: Starting due to {InvalidatedReason.inputChanged}
+[        ] [  +10 ms] android_aot_bundle_release_android-arm64: Complete
+[ +299 ms] [ +259 ms] android_aot_release_android-arm: Complete
+[ +100 ms] [  +96 ms] android_aot_bundle_release_android-arm: Starting due to {InvalidatedReason.inputChanged}
+[        ] [   +5 ms] android_aot_bundle_release_android-arm: Complete
+[  +99 ms] [  +85 ms] _composite: Starting due to {}
+[        ] [        ] _composite: Complete
+[        ] [        ] Persisting file store
+[        ] [   +8 ms] Done persisting file store
+[        ] [   +5 ms] build succeeded.
+[        ] [  +12 ms] "flutter assemble" took 39,595ms.
+[+2700 ms] > Task :app:packLibsflutterBuildRelease
+[ +999 ms] > Task :app:preBuild UP-TO-DATE
+[ +100 ms] > Task :app:extractProguardFiles
+[        ] > Task :cloud_firestore:preBuild UP-TO-DATE
+[        ] > Task :cloud_firestore:preReleaseBuild UP-TO-DATE
+[ +102 ms] > Task :cloud_firestore:checkReleaseManifest
+[        ] > Task :cloud_firestore:processReleaseManifest
+[        ] > Task :cloud_firestore_web:preBuild UP-TO-DATE
+[        ] > Task :cloud_firestore_web:preReleaseBuild UP-TO-DATE
+[        ] > Task :cloud_firestore_web:checkReleaseManifest
+[        ] > Task :cloud_firestore_web:processReleaseManifest
+[        ] > Task :firebase_auth:preBuild UP-TO-DATE
+[        ] > Task :firebase_auth:preReleaseBuild UP-TO-DATE
+[  +94 ms] > Task :firebase_auth:checkReleaseManifest
+[        ] > Task :firebase_auth:processReleaseManifest
+[        ] > Task :firebase_auth_web:preBuild UP-TO-DATE
+[        ] > Task :firebase_auth_web:preReleaseBuild UP-TO-DATE
+[  +97 ms] > Task :firebase_auth_web:checkReleaseManifest
+[        ] > Task :firebase_auth_web:processReleaseManifest
+[        ] > Task :firebase_core:preBuild UP-TO-DATE
+[        ] > Task :firebase_core:preReleaseBuild UP-TO-DATE
+[        ] > Task :firebase_core:checkReleaseManifest
+[  +97 ms] > Task :firebase_core:processReleaseManifest
+[ +100 ms] > Task :firebase_core_web:preBuild UP-TO-DATE
+[        ] > Task :firebase_core_web:preReleaseBuild UP-TO-DATE
+[        ] > Task :firebase_core_web:checkReleaseManifest
+[        ] > Task :firebase_core_web:processReleaseManifest
+[        ] > Task :path_provider:preBuild UP-TO-DATE
+[        ] > Task :path_provider:preReleaseBuild UP-TO-DATE
+[        ] > Task :path_provider:checkReleaseManifest
+[        ] > Task :path_provider:processReleaseManifest
+[        ] > Task :sqflite:preBuild UP-TO-DATE
+[        ] > Task :sqflite:preReleaseBuild UP-TO-DATE
+[        ] > Task :sqflite:checkReleaseManifest
+[        ] > Task :sqflite:processReleaseManifest
+[ +594 ms] > Task :app:preReleaseBuild
+[ +500 ms] > Task :firebase_core_web:compileReleaseAidl NO-SOURCE
+[        ] > Task :firebase_auth_web:compileReleaseAidl NO-SOURCE
+[        ] > Task :path_provider:compileReleaseAidl NO-SOURCE
+[        ] > Task :sqflite:compileReleaseAidl NO-SOURCE
+[  +98 ms] > Task :cloud_firestore:packageReleaseRenderscript NO-SOURCE
+[   +1 ms] > Task :cloud_firestore_web:packageReleaseRenderscript NO-SOURCE
+[        ] > Task :firebase_auth:packageReleaseRenderscript NO-SOURCE
+[        ] > Task :firebase_auth_web:packageReleaseRenderscript NO-SOURCE
+[        ] > Task :firebase_core:packageReleaseRenderscript NO-SOURCE
+[        ] > Task :firebase_core_web:packageReleaseRenderscript NO-SOURCE
+[        ] > Task :path_provider:packageReleaseRenderscript NO-SOURCE
+[        ] > Task :sqflite:packageReleaseRenderscript NO-SOURCE
+[  +95 ms] > Task :app:checkReleaseManifest
+[ +199 ms] > Task :app:compileReleaseRenderscript NO-SOURCE
+[        ] > Task :app:generateReleaseBuildConfig
+[        ] > Task :firebase_core:compileReleaseAidl NO-SOURCE
+[        ] > Task :cloud_firestore_web:compileReleaseAidl NO-SOURCE
+[        ] > Task :cloud_firestore:compileReleaseAidl NO-SOURCE
+[        ] > Task :firebase_auth:compileReleaseAidl NO-SOURCE
+[        ] > Task :app:compileReleaseAidl NO-SOURCE
+[        ] > Task :app:cleanMergeReleaseAssets UP-TO-DATE
+[        ] > Task :app:mergeReleaseShaders
+[        ] > Task :app:compileReleaseShaders
+[        ] > Task :app:generateReleaseAssets
+[        ] > Task :cloud_firestore:mergeReleaseShaders
+[        ] > Task :cloud_firestore:compileReleaseShaders
+[        ] > Task :cloud_firestore:generateReleaseAssets
+[        ] > Task :cloud_firestore:packageReleaseAssets
+[        ] > Task :cloud_firestore_web:mergeReleaseShaders
+[        ] > Task :cloud_firestore_web:compileReleaseShaders
+[        ] > Task :cloud_firestore_web:generateReleaseAssets
+[        ] > Task :cloud_firestore_web:packageReleaseAssets
+[        ] > Task :firebase_auth:mergeReleaseShaders
+[  +97 ms] > Task :firebase_auth:compileReleaseShaders
+[   +1 ms] > Task :firebase_auth:generateReleaseAssets
+[   +1 ms] > Task :firebase_auth:packageReleaseAssets
+[   +1 ms] > Task :firebase_auth_web:mergeReleaseShaders
+[   +1 ms] > Task :firebase_auth_web:compileReleaseShaders
+[        ] > Task :firebase_auth_web:generateReleaseAssets
+[        ] > Task :firebase_auth_web:packageReleaseAssets
+[        ] > Task :firebase_core:mergeReleaseShaders
+[        ] > Task :firebase_core:compileReleaseShaders
+[        ] > Task :firebase_core:generateReleaseAssets
+[        ] > Task :firebase_core:packageReleaseAssets
+[        ] > Task :firebase_core_web:mergeReleaseShaders
+[        ] > Task :firebase_core_web:compileReleaseShaders
+[        ] > Task :firebase_core_web:generateReleaseAssets
+[        ] > Task :firebase_core_web:packageReleaseAssets
+[        ] > Task :path_provider:mergeReleaseShaders
+[        ] > Task :path_provider:compileReleaseShaders
+[        ] > Task :path_provider:generateReleaseAssets
+[        ] > Task :path_provider:packageReleaseAssets
+[        ] > Task :sqflite:mergeReleaseShaders
+[        ] > Task :sqflite:compileReleaseShaders
+[        ] > Task :sqflite:generateReleaseAssets
+[        ] > Task :sqflite:packageReleaseAssets
+[   +1 ms] > Task :app:mergeReleaseAssets
+[        ] > Task :app:copyFlutterAssetsRelease
+[        ] > Task :app:mainApkListPersistenceRelease
+[        ] > Task :app:generateReleaseResValues
+[        ] > Task :app:generateReleaseResources
+[ +281 ms] > Task :app:processReleaseGoogleServices
+[   +1 ms] Parsing json file: /home/redwheelbarrow/Desktop/flutter_/wloss/android/app/google-services.json
+[   +1 ms] > Task :cloud_firestore:generateReleaseResValues
+[        ] > Task :cloud_firestore:compileReleaseRenderscript NO-SOURCE
+[        ] > Task :cloud_firestore:generateReleaseResources
+[        ] > Task :cloud_firestore:packageReleaseResources
+[        ] > Task :cloud_firestore_web:generateReleaseResValues
+[        ] > Task :cloud_firestore_web:compileReleaseRenderscript NO-SOURCE
+[        ] > Task :cloud_firestore_web:generateReleaseResources
+[        ] > Task :cloud_firestore_web:packageReleaseResources
+[        ] > Task :firebase_auth:generateReleaseResValues
+[        ] > Task :firebase_auth:compileReleaseRenderscript NO-SOURCE
+[        ] > Task :firebase_auth:generateReleaseResources
+[        ] > Task :firebase_auth:packageReleaseResources
+[        ] > Task :firebase_auth_web:generateReleaseResValues
+[        ] > Task :firebase_auth_web:compileReleaseRenderscript NO-SOURCE
+[        ] > Task :firebase_auth_web:generateReleaseResources
+[        ] > Task :firebase_auth_web:packageReleaseResources
+[        ] > Task :firebase_core:generateReleaseResValues
+[        ] > Task :firebase_core:compileReleaseRenderscript NO-SOURCE
+[        ] > Task :firebase_core:generateReleaseResources
+[        ] > Task :firebase_core:packageReleaseResources
+[        ] > Task :firebase_core_web:generateReleaseResValues
+[        ] > Task :firebase_core_web:compileReleaseRenderscript NO-SOURCE
+[        ] > Task :firebase_core_web:generateReleaseResources
+[        ] > Task :firebase_core_web:packageReleaseResources
+[        ] > Task :path_provider:generateReleaseResValues
+[        ] > Task :path_provider:compileReleaseRenderscript NO-SOURCE
+[        ] > Task :path_provider:generateReleaseResources
+[        ] > Task :path_provider:packageReleaseResources
+[        ] > Task :sqflite:generateReleaseResValues
+[        ] > Task :sqflite:compileReleaseRenderscript NO-SOURCE
+[        ] > Task :sqflite:generateReleaseResources
+[        ] > Task :sqflite:packageReleaseResources
+[+1381 ms] > Task :app:mergeReleaseResources
+[   +1 ms] > Task :app:createReleaseCompatibleScreenManifests
+[ +298 ms] > Task :app:processReleaseManifest
+[        ] /home/redwheelbarrow/Desktop/flutter_/wloss/android/app/src/main/AndroidManifest.xml:24:9-31:50 Warning:
+[        ] 	activity#com.google.firebase.auth.internal.FederatedSignInActivity@android:launchMode was tagged at AndroidManifest.xml:24 to replace other declarations but no other declaration present
+[ +297 ms] > Task :firebase_core_web:generateReleaseRFile
+[        ] > Task :firebase_core:generateReleaseRFile
+[  +99 ms] > Task :cloud_firestore_web:generateReleaseRFile
+[        ] > Task :cloud_firestore:generateReleaseRFile
+[ +100 ms] > Task :path_provider:generateReleaseRFile
+[        ] > Task :firebase_auth_web:generateReleaseRFile
+[        ] > Task :firebase_auth:generateReleaseRFile
+[        ] > Task :sqflite:generateReleaseRFile
+[+1997 ms] > Task :app:processReleaseResources
+[        ] > Task :cloud_firestore:generateReleaseBuildConfig
+[        ] > Task :cloud_firestore:prepareLintJar UP-TO-DATE
+[        ] > Task :cloud_firestore:generateReleaseSources
+[        ] > Task :cloud_firestore_web:generateReleaseBuildConfig
+[        ] > Task :cloud_firestore_web:prepareLintJar UP-TO-DATE
+[        ] > Task :cloud_firestore_web:generateReleaseSources
+[  +96 ms] > Task :firebase_core:generateReleaseBuildConfig
+[        ] > Task :firebase_core:prepareLintJar UP-TO-DATE
+[        ] > Task :firebase_core:generateReleaseSources
+[        ] > Task :firebase_core_web:generateReleaseBuildConfig
+[        ] > Task :firebase_core_web:prepareLintJar UP-TO-DATE
+[        ] > Task :firebase_core_web:generateReleaseSources
+[ +698 ms] > Task :firebase_core_web:javaPreCompileRelease
+[ +498 ms] > Task :firebase_core_web:compileReleaseJavaWithJavac
+[  +99 ms] > Task :firebase_core_web:bundleLibCompileRelease
+[ +200 ms] > Task :firebase_core:javaPreCompileRelease
+[        ] > Task :firebase_core:compileReleaseJavaWithJavac
+[  +99 ms] > Task :firebase_core:bundleLibCompileRelease
+[        ] > Task :cloud_firestore_web:javaPreCompileRelease
+[ +199 ms] > Task :cloud_firestore_web:compileReleaseJavaWithJavac
+[        ] > Task :cloud_firestore_web:bundleLibCompileRelease
+[ +799 ms] > Task :cloud_firestore:javaPreCompileRelease
+[ +299 ms] > Task :cloud_firestore:compileReleaseJavaWithJavac
+[  +98 ms] > Task :cloud_firestore:bundleLibCompileRelease
+[        ] > Task :firebase_auth:generateReleaseBuildConfig
+[        ] > Task :firebase_auth:prepareLintJar UP-TO-DATE
+[   +1 ms] > Task :firebase_auth:generateReleaseSources
+[        ] > Task :firebase_auth_web:generateReleaseBuildConfig
+[        ] > Task :firebase_auth_web:prepareLintJar UP-TO-DATE
+[        ] > Task :firebase_auth_web:generateReleaseSources
+[        ] > Task :firebase_auth_web:javaPreCompileRelease
+[  +95 ms] > Task :firebase_auth_web:compileReleaseJavaWithJavac
+[        ] > Task :firebase_auth_web:bundleLibCompileRelease
+[        ] > Task :firebase_auth:javaPreCompileRelease
+[  +99 ms] > Task :firebase_auth:compileReleaseJavaWithJavac
+[        ] > Task :firebase_auth:bundleLibCompileRelease
+[        ] > Task :path_provider:generateReleaseBuildConfig
+[        ] > Task :path_provider:prepareLintJar UP-TO-DATE
+[        ] > Task :path_provider:generateReleaseSources
+[        ] > Task :path_provider:javaPreCompileRelease
+[  +98 ms] > Task :path_provider:compileReleaseJavaWithJavac
+[        ] > Task :path_provider:bundleLibCompileRelease
+[        ] > Task :sqflite:generateReleaseBuildConfig
+[        ] > Task :sqflite:prepareLintJar UP-TO-DATE
+[        ] > Task :sqflite:generateReleaseSources
+[        ] > Task :sqflite:javaPreCompileRelease
+[  +98 ms] > Task :sqflite:compileReleaseJavaWithJavac
+[        ] > Task :sqflite:bundleLibCompileRelease
+[+1999 ms] > Task :app:compileReleaseKotlin
+[        ] > Task :app:prepareLintJar UP-TO-DATE
+[        ] > Task :app:generateReleaseSources
+[  +99 ms] > Task :app:javaPreCompileRelease
+[ +300 ms] > Task :app:compileReleaseJavaWithJavac
+[        ] > Task :app:compileReleaseSources
+[  +99 ms] > Task :cloud_firestore:prepareLintJarForPublish UP-TO-DATE
+[        ] > Task :cloud_firestore_web:prepareLintJarForPublish UP-TO-DATE
+[        ] > Task :firebase_auth:prepareLintJarForPublish UP-TO-DATE
+[        ] > Task :firebase_auth_web:prepareLintJarForPublish UP-TO-DATE
+[        ] > Task :firebase_core:prepareLintJarForPublish UP-TO-DATE
+[        ] > Task :firebase_core_web:prepareLintJarForPublish UP-TO-DATE
+[        ] > Task :path_provider:prepareLintJarForPublish UP-TO-DATE
+[        ] > Task :sqflite:prepareLintJarForPublish UP-TO-DATE
+[  +99 ms] > Task :app:validateSigningRelease
+[+2999 ms] > Task :app:lintVitalRelease
+[        ] > Task :app:signingConfigWriterRelease
+[ +199 ms] > Task :app:processReleaseJavaRes NO-SOURCE
+[        ] > Task :cloud_firestore:processReleaseJavaRes NO-SOURCE
+[        ] > Task :cloud_firestore:bundleLibResRelease
+[        ] > Task :cloud_firestore_web:processReleaseJavaRes NO-SOURCE
+[        ] > Task :cloud_firestore_web:bundleLibResRelease
+[        ] > Task :firebase_auth:processReleaseJavaRes NO-SOURCE
+[        ] > Task :firebase_auth:bundleLibResRelease
+[        ] > Task :firebase_auth_web:processReleaseJavaRes NO-SOURCE
+[        ] > Task :firebase_auth_web:bundleLibResRelease
+[        ] > Task :firebase_core:processReleaseJavaRes NO-SOURCE
+[        ] > Task :firebase_core:bundleLibResRelease
+[        ] > Task :firebase_core_web:processReleaseJavaRes NO-SOURCE
+[        ] > Task :firebase_core_web:bundleLibResRelease
+[        ] > Task :path_provider:processReleaseJavaRes NO-SOURCE
+[        ] > Task :path_provider:bundleLibResRelease
+[        ] > Task :sqflite:processReleaseJavaRes NO-SOURCE
+[        ] > Task :sqflite:bundleLibResRelease
+[+1197 ms] > Task :app:transformResourcesWithMergeJavaResForRelease
+[        ] > Task :cloud_firestore:bundleLibRuntimeRelease
+[        ] > Task :cloud_firestore:mergeReleaseConsumerProguardFiles UP-TO-DATE
+[        ] > Task :cloud_firestore_web:bundleLibRuntimeRelease
+[        ] > Task :cloud_firestore_web:mergeReleaseConsumerProguardFiles UP-TO-DATE
+[        ] > Task :firebase_auth:bundleLibRuntimeRelease
+[        ] > Task :firebase_auth:mergeReleaseConsumerProguardFiles UP-TO-DATE
+[        ] > Task :firebase_auth_web:bundleLibRuntimeRelease
+[        ] > Task :firebase_auth_web:mergeReleaseConsumerProguardFiles UP-TO-DATE
+[        ] > Task :firebase_core:bundleLibRuntimeRelease
+[        ] > Task :firebase_core:mergeReleaseConsumerProguardFiles UP-TO-DATE
+[        ] > Task :firebase_core_web:bundleLibRuntimeRelease
+[        ] > Task :firebase_core_web:mergeReleaseConsumerProguardFiles UP-TO-DATE
+[        ] > Task :path_provider:bundleLibRuntimeRelease
+[        ] > Task :path_provider:mergeReleaseConsumerProguardFiles UP-TO-DATE
+[  +97 ms] > Task :sqflite:bundleLibRuntimeRelease
+[        ] > Task :sqflite:mergeReleaseConsumerProguardFiles UP-TO-DATE
+[+1899 ms] > Task :app:transformClassesAndResourcesWithR8ForRelease
+[        ] R8 is the new Android code shrinker. If you experience any issues, please file a bug at
+[        ] https://issuetracker.google.com, using 'Shrinker (R8)' as component name. You can
+[        ] disable R8 by updating gradle.properties with 'android.enableR8=false'.
+[        ] Current version is: 1.4.94 (build 390954928f0db9c3b888a367f7f128ce3bbfb160 from go/r8bot (luci-r8-ci-archive-0-5g74)).
+[+4499 ms] Removed unused resources: Binary resource data reduced from 211KB to 188KB: Removed 10%
+[        ] > Task :app:transformClassesAndDexWithShrinkResForRelease
+[        ] > Task :app:mergeReleaseJniLibFolders
+[        ] > Task :cloud_firestore:mergeReleaseJniLibFolders
+[        ] > Task :cloud_firestore:transformNativeLibsWithMergeJniLibsForRelease
+[        ] > Task :cloud_firestore:transformNativeLibsWithIntermediateJniLibsForRelease
+[        ] > Task :cloud_firestore_web:mergeReleaseJniLibFolders
+[        ] > Task :cloud_firestore_web:transformNativeLibsWithMergeJniLibsForRelease
+[        ] > Task :cloud_firestore_web:transformNativeLibsWithIntermediateJniLibsForRelease
+[        ] > Task :firebase_auth:mergeReleaseJniLibFolders
+[        ] > Task :firebase_auth:transformNativeLibsWithMergeJniLibsForRelease
+[        ] > Task :firebase_auth:transformNativeLibsWithIntermediateJniLibsForRelease
+[  +95 ms] > Task :firebase_auth_web:mergeReleaseJniLibFolders
+[        ] > Task :firebase_auth_web:transformNativeLibsWithMergeJniLibsForRelease
+[        ] > Task :firebase_auth_web:transformNativeLibsWithIntermediateJniLibsForRelease
+[        ] > Task :firebase_core:mergeReleaseJniLibFolders
+[        ] > Task :firebase_core:transformNativeLibsWithMergeJniLibsForRelease
+[        ] > Task :firebase_core:transformNativeLibsWithIntermediateJniLibsForRelease
+[        ] > Task :firebase_core_web:mergeReleaseJniLibFolders
+[  +97 ms] > Task :firebase_core_web:transformNativeLibsWithMergeJniLibsForRelease
+[        ] > Task :firebase_core_web:transformNativeLibsWithIntermediateJniLibsForRelease
+[        ] > Task :path_provider:mergeReleaseJniLibFolders
+[        ] > Task :path_provider:transformNativeLibsWithMergeJniLibsForRelease
+[        ] > Task :path_provider:transformNativeLibsWithIntermediateJniLibsForRelease
+[        ] > Task :sqflite:mergeReleaseJniLibFolders
+[        ] > Task :sqflite:transformNativeLibsWithMergeJniLibsForRelease
+[        ] > Task :sqflite:transformNativeLibsWithIntermediateJniLibsForRelease
+[ +798 ms] > Task :app:transformNativeLibsWithMergeJniLibsForRelease
+[+11900 ms] > Task :app:packageRelease
+[ +100 ms] > Task :app:assembleRelease
+[        ] > Task :cloud_firestore:extractReleaseAnnotations
+[        ] > Task :cloud_firestore:transformResourcesWithMergeJavaResForRelease
+[        ] > Task :cloud_firestore:transformClassesAndResourcesWithSyncLibJarsForRelease
+[        ] > Task :cloud_firestore:transformNativeLibsWithSyncJniLibsForRelease
+[        ] > Task :cloud_firestore:bundleReleaseAar
+[        ] > Task :cloud_firestore:compileReleaseSources
+[  +96 ms] > Task :cloud_firestore_web:extractReleaseAnnotations
+[ +699 ms] > Task :cloud_firestore:mergeReleaseResources
+[ +100 ms] > Task :cloud_firestore:verifyReleaseResources
+[        ] > Task :cloud_firestore:assembleRelease
+[        ] > Task :cloud_firestore_web:transformResourcesWithMergeJavaResForRelease
+[        ] > Task :cloud_firestore_web:transformClassesAndResourcesWithSyncLibJarsForRelease
+[        ] > Task :cloud_firestore_web:transformNativeLibsWithSyncJniLibsForRelease
+[        ] > Task :cloud_firestore_web:bundleReleaseAar
+[        ] > Task :cloud_firestore_web:compileReleaseSources
+[ +196 ms] > Task :firebase_auth:extractReleaseAnnotations
+[ +499 ms] > Task :cloud_firestore_web:mergeReleaseResources
+[ +100 ms] > Task :cloud_firestore_web:verifyReleaseResources
+[        ] > Task :cloud_firestore_web:assembleRelease
+[        ] > Task :firebase_auth:transformResourcesWithMergeJavaResForRelease
+[        ] > Task :firebase_auth:transformClassesAndResourcesWithSyncLibJarsForRelease
+[        ] > Task :firebase_auth:transformNativeLibsWithSyncJniLibsForRelease
+[        ] > Task :firebase_auth:bundleReleaseAar
+[        ] > Task :firebase_auth:compileReleaseSources
+[        ] > Task :firebase_auth_web:extractReleaseAnnotations
+[  +98 ms] > Task :firebase_auth:mergeReleaseResources
+[ +100 ms] > Task :firebase_auth:verifyReleaseResources
+[        ] > Task :firebase_auth:assembleRelease
+[        ] > Task :firebase_auth_web:transformResourcesWithMergeJavaResForRelease
+[        ] > Task :firebase_auth_web:transformClassesAndResourcesWithSyncLibJarsForRelease
+[        ] > Task :firebase_auth_web:transformNativeLibsWithSyncJniLibsForRelease
+[        ] > Task :firebase_auth_web:bundleReleaseAar
+[        ] > Task :firebase_auth_web:compileReleaseSources
+[        ] > Task :firebase_core:extractReleaseAnnotations
+[ +199 ms] > Task :firebase_auth_web:mergeReleaseResources
+[  +99 ms] > Task :firebase_auth_web:verifyReleaseResources
+[        ] > Task :firebase_auth_web:assembleRelease
+[        ] > Task :firebase_core:transformResourcesWithMergeJavaResForRelease
+[        ] > Task :firebase_core:transformClassesAndResourcesWithSyncLibJarsForRelease
+[        ] > Task :firebase_core:transformNativeLibsWithSyncJniLibsForRelease
+[        ] > Task :firebase_core:bundleReleaseAar
+[        ] > Task :firebase_core:compileReleaseSources
+[        ] > Task :firebase_core_web:extractReleaseAnnotations
+[  +98 ms] > Task :firebase_core:mergeReleaseResources
+[ +100 ms] > Task :firebase_core:verifyReleaseResources
+[        ] > Task :firebase_core:assembleRelease
+[        ] > Task :firebase_core_web:transformResourcesWithMergeJavaResForRelease
+[        ] > Task :firebase_core_web:transformClassesAndResourcesWithSyncLibJarsForRelease
+[        ] > Task :firebase_core_web:transformNativeLibsWithSyncJniLibsForRelease
+[        ] > Task :firebase_core_web:bundleReleaseAar
+[        ] > Task :firebase_core_web:compileReleaseSources
+[        ] > Task :path_provider:extractReleaseAnnotations
+[        ] > Task :firebase_core_web:mergeReleaseResources
+[ +498 ms] > Task :firebase_core_web:verifyReleaseResources
+[        ] > Task :firebase_core_web:assembleRelease
+[        ] > Task :path_provider:transformResourcesWithMergeJavaResForRelease
+[        ] > Task :path_provider:transformClassesAndResourcesWithSyncLibJarsForRelease
+[        ] > Task :path_provider:transformNativeLibsWithSyncJniLibsForRelease
+[        ] > Task :path_provider:bundleReleaseAar
+[        ] > Task :path_provider:compileReleaseSources
+[        ] > Task :sqflite:extractReleaseAnnotations
+[ +196 ms] > Task :path_provider:mergeReleaseResources
+[  +99 ms] > Task :path_provider:verifyReleaseResources
+[        ] > Task :path_provider:assembleRelease
+[        ] > Task :sqflite:transformResourcesWithMergeJavaResForRelease
+[        ] > Task :sqflite:transformClassesAndResourcesWithSyncLibJarsForRelease
+[  +99 ms] > Task :sqflite:transformNativeLibsWithSyncJniLibsForRelease
+[        ] > Task :sqflite:bundleReleaseAar
+[        ] > Task :sqflite:compileReleaseSources
+[        ] > Task :sqflite:mergeReleaseResources
+[  +99 ms] > Task :sqflite:verifyReleaseResources
+[        ] > Task :sqflite:assembleRelease
+[        ] BUILD SUCCESSFUL in 1m 30s
+[        ] 248 actionable tasks: 222 executed, 26 up-to-date
+[+1337 ms] Running Gradle task 'assembleRelease'... (completed in 92.1s)
+[  +18 ms] calculateSha: LocalDirectory: '/home/redwheelbarrow/Desktop/flutter_/wloss/build/app/outputs/apk'/app.apk
+[  +28 ms] calculateSha: reading file took 27us
+[ +280 ms] calculateSha: computing sha took 279us
+[   +3 ms] ✓ Built build/app/outputs/apk/release/app-release.apk (19.2MB).
+[   +2 ms] "flutter apk" took 94,191ms.

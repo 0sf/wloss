@@ -71,7 +71,7 @@ class _MainDrawerState extends State<MainDrawer> {
           ),
           Text(
             fname,
-            style: TextStyle(fontSize: 22),
+            style: TextStyle(fontSize: 26),
           ),
           SizedBox(
             height: 20,

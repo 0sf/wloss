@@ -39,9 +39,16 @@ class _MealTileState extends State<MealTile> {
             onPressed: () => widget.deleteFn(widget.meal.documentID),
           ),
           title: Text(widget.meal.foodName),
-          subtitle: Text("Calories: " +
-              formatter.format(widget.meal.calorieConsumed).toString() +
-              " KCal"),
+          subtitle: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Text("Calories: " +
+                  formatter.format(widget.meal.calorieConsumed).toString() +
+                  " KCal"),
+              Text("Amount: " +
+                  formatter.format(widget.meal.portion).toString()),
+            ],
+          ),
         ),
       ),
     );
