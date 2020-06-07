@@ -12,8 +12,8 @@ class DatabaseService {
   final CollectionReference userCollection =
       Firestore.instance.collection('user');
 
-  final CollectionReference mealCollection =
-      Firestore.instance.collection('meals');
+  // final CollectionReference mealCollection =
+  //     Firestore.instance.collection('user').document().collection('meal');
 
   Future updateUserData({
     String firstName,
@@ -23,7 +23,7 @@ class DatabaseService {
     double height,
     double weight,
     double activityFactor,
-    double favoriteExcercise,
+    List<String> favoriteExcercise,
     int age,
   }) async {
     return await userCollection.document(uid).setData({
@@ -47,7 +47,11 @@ class DatabaseService {
     double caloriePortion,
     double calorieConsumed,
   ) async {
-    return await mealCollection.document(uid).setData({
+    return await userCollection
+        .document(uid)
+        .collection('meal')
+        .document()
+        .setData({
       "foodID": foodID,
       "foodTitle": foodTitle,
       "portion": portion,
@@ -58,7 +62,12 @@ class DatabaseService {
 
   // Delete Meal Item.
   Future deleteMeal(String docId) async {
-    await mealCollection.document(docId).delete().catchError((e) {
+    await userCollection
+        .document(uid)
+        .collection('meal')
+        .document(docId)
+        .delete()
+        .catchError((e) {
       print(e);
     });
   }
@@ -67,6 +76,7 @@ class DatabaseService {
   UserData _userDataFromSnapshot(DocumentSnapshot snapshot) {
     return UserData(
         uid: uid,
+        documentID: snapshot.documentID,
         firstName: snapshot.data['firstName'],
         lastName: snapshot.data['lastName'],
         gender: snapshot.data['gender'],
@@ -75,7 +85,7 @@ class DatabaseService {
         height: snapshot.data['height'],
         weight: snapshot.data['weight'],
         activityFactor: snapshot.data['activityFactor'],
-        favoriteExcercise: snapshot.data['favoriteExercise']);
+        favoriteExcercise: List.from(snapshot.data['favoriteExcercise']) ?? []);
   }
 
   // brew list from snapshot
@@ -87,7 +97,7 @@ class DatabaseService {
         portion: doc.data['portion'] ?? 0,
         caloriePortion: doc.data['caloriePerPortion'] ?? 0,
         calorieConsumed: doc.data['calorieConsumed'] ?? 0,
-        documentID: doc.documentID ?? '',
+        documentID: doc.documentID,
       );
     }).toList();
   }
@@ -99,6 +109,10 @@ class DatabaseService {
 
   // Get Meal data Stream
   Stream<List<Meal>> get meals {
-    return mealCollection.snapshots().map(_mealListFromSnapshot);
+    return userCollection
+        .document(uid)
+        .collection('meal')
+        .snapshots()
+        .map(_mealListFromSnapshot);
   }
 }

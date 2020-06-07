@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../widgets/error/loading.dart';
 import '../../services/auth.dart';
 
 class SignIn extends StatefulWidget {
@@ -25,7 +26,7 @@ class _SignInState extends State<SignIn> {
   @override
   Widget build(BuildContext context) {
     return loading
-        ? CircularProgressIndicator()
+        ? Loading()
         : Scaffold(
             appBar: AppBar(
               actions: <Widget>[

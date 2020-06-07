@@ -1,54 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:wloss/screens/meal_mng/meal_mng.dart';
 
-import '../../screens/home/settings_form.dart';
+import '../../model/user.dart';
+import '../../screens/meal_mng/meal_mng.dart';
+import '../../widgets/dash/main_drawer.dart';
 import '../../screens/home/temp.dart';
 import '../../model/meal.dart';
 import '../../services/database.dart';
-import '../../services/auth.dart';
 
 class Home extends StatelessWidget {
   static const routeName = '/home';
-  final AuthService _auth = AuthService();
   @override
   Widget build(BuildContext context) {
-    void _showSettingsPanel() {
-      showModalBottomSheet(
-          context: context,
-          builder: (context) {
-            return Container(
-              padding: EdgeInsets.symmetric(
-                vertical: 20.0,
-                horizontal: 60.0,
-              ),
-              child: SettingsForm(),
-            );
-          });
-    }
-
+    final user = Provider.of<User>(context, listen: false);
+    print("home user uid:" + user.uid);
     return StreamProvider<List<Meal>>.value(
-      value: DatabaseService().meals,
+      value: DatabaseService(uid: user.uid).meals,
       child: Scaffold(
+        drawer: MainDrawer(),
         backgroundColor: Colors.brown.shade50,
         appBar: AppBar(
           title: Text('WLoss'),
           backgroundColor: Theme.of(context).primaryColor,
           elevation: 0.0,
-          actions: <Widget>[
-            FlatButton.icon(
-              icon: Icon(Icons.person),
-              label: Text('Logout'),
-              onPressed: () async {
-                await _auth.signOut();
-              },
-            ),
-            FlatButton.icon(
-              onPressed: () => _showSettingsPanel(),
-              icon: Icon(Icons.settings),
-              label: Text('Settings'),
-            )
-          ],
         ),
         body: Temp(),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,

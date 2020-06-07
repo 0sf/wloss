@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:wloss/widgets/meal/new_meal.dart';
+
+import '../../model/user.dart';
+import '../../widgets/meal/new_meal.dart';
 import '../../services/database.dart';
 import '../../model/meal.dart';
 import '../../widgets/meal/meal_list.dart';
@@ -26,8 +28,9 @@ class _MealDashboardState extends State<MealDashboard> {
 
   @override
   Widget build(BuildContext context) {
+    final user = Provider.of<User>(context);
     return StreamProvider<List<Meal>>.value(
-      value: DatabaseService().meals,
+      value: DatabaseService(uid: user.uid).meals,
       child: Scaffold(
           appBar: AppBar(
             title: Text('Pick your meal'),

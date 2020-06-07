@@ -31,7 +31,7 @@ class _NewMealItemState extends State<NewMealItem> {
         perCalorie <= 0) {
       return;
     }
-    //TODO: Update List Firebase
+
     await DatabaseService(uid: uid).updateMealData(
       DateTime.now(),
       enteredTitle,

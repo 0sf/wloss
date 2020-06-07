@@ -32,10 +32,29 @@ class _SettingsFormState extends State<SettingsForm> {
                   ),
                   TextFormField(
                     initialValue: userData.height.toString(),
+                    decoration: InputDecoration(
+                        labelText: 'Height',
+                        enabledBorder: new UnderlineInputBorder(
+                          borderSide: BorderSide(color: Colors.grey, width: 1),
+                        )),
                     validator: (val) =>
                         val.isEmpty ? 'Please enter height' : null,
                     onChanged: (val) =>
                         setState(() => _currentHeight = double.parse(val)),
+                  ),
+                  TextFormField(
+                    initialValue: userData.weight.toString(),
+                    validator: (val) =>
+                        val.isEmpty ? 'Please enter weight' : null,
+                    onChanged: (val) =>
+                        setState(() => _currentWeight = double.parse(val)),
+                  ),
+                  TextFormField(
+                    initialValue: userData.activityFactor.toString(),
+                    validator: (val) =>
+                        val.isEmpty ? 'Please enter activityfactor' : null,
+                    onChanged: (val) => setState(
+                        () => _currentActivityFactor = double.parse(val)),
                   ),
                   RaisedButton(
                     color: Colors.red.shade600,
@@ -51,6 +70,7 @@ class _SettingsFormState extends State<SettingsForm> {
                           activityFactor:
                               _currentActivityFactor ?? userData.activityFactor,
                         );
+
                         Navigator.pop(context);
                       }
                     },

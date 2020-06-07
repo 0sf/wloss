@@ -5,7 +5,6 @@ import '../model/user.dart';
 
 class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
-
   //create a user object based on FirebaseUser
   User _userFromFirebaseUser(FirebaseUser user) {
     return user != null ? User(uid: user.uid) : null;
@@ -47,7 +46,7 @@ class AuthService {
     double weight,
     DateTime dob,
     double activityFactor,
-    double favoriteExcercise,
+    List<String> favoriteExcercise,
     int age,
   }) async {
     try {
@@ -59,7 +58,8 @@ class AuthService {
       FirebaseUser user = result.user;
 
       // create a new document for the user with the uid
-      await DatabaseService(uid: user.uid).updateUserData(
+      await DatabaseService(uid: user.uid)
+          .updateUserData(
         firstName: firstName,
         lastName: lastName,
         height: height,
@@ -69,8 +69,16 @@ class AuthService {
         dob: dob,
         gender: gender,
         age: age,
-      );
-
+      )
+          .then((value) async {
+        await DatabaseService(uid: user.uid).updateMealData(
+          null,
+          null,
+          null,
+          null,
+          null,
+        );
+      });
       return _userFromFirebaseUser(user);
     } catch (e) {
       print(e.toString());

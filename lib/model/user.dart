@@ -1,3 +1,12 @@
+// enum Exercise {
+//   Running,
+//   Jogging,
+//   Walking,
+//   Swimming,
+//   Yoga,
+//   Aerobics,
+// }
+
 class User {
   final String uid;
   User({this.uid});
@@ -5,6 +14,7 @@ class User {
 
 class UserData {
   final String uid;
+  final String documentID;
   final String firstName;
   final String lastName;
   final DateTime dob;
@@ -13,10 +23,11 @@ class UserData {
   final double height;
   final double weight;
   final double activityFactor;
-  final double favoriteExcercise;
+  final List<String> favoriteExcercise;
 
   UserData({
     this.uid,
+    this.documentID,
     this.firstName,
     this.lastName,
     this.dob,
@@ -25,6 +36,6 @@ class UserData {
     this.height = 0,
     this.weight = 0,
     this.activityFactor = 0,
-    this.favoriteExcercise = 0,
+    this.favoriteExcercise,
   });
 }

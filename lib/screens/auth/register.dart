@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:wloss/shared/constants.dart';
 import 'package:intl/intl.dart';
 
+import '../../widgets/error/loading.dart';
+import '../../widgets/multi_chip.dart';
+import '../../model/key_value.dart';
+import '../../shared/constants.dart';
 import '../../services/auth.dart';
 
 class Register extends StatefulWidget {
@@ -18,7 +21,22 @@ class _RegisterState extends State<Register> {
   final AuthService _authService = AuthService();
   final _formKey = GlobalKey<FormState>();
 
+  // Activity Factor
+  List<KeyValueModel> datas = [
+    KeyValueModel(key: "Sedentary", value: 1.200),
+    KeyValueModel(key: "Lightly Active", value: 1.375),
+    KeyValueModel(key: "Moderately Active", value: 1.550),
+    KeyValueModel(key: "Very Active", value: 1.725),
+    KeyValueModel(key: "Extra Active", value: 1.900),
+  ];
+
+  List<String> excercisesList = ["Jumping", "Running", "Yoga", "Areo"];
+
+  // Controller values
   bool loading = false;
+  String selectedValue = "Activity Factor";
+  String iniGender = "Male";
+  String error = "";
 
   // Form values
   String email = "";
@@ -30,9 +48,32 @@ class _RegisterState extends State<Register> {
   double height;
   double weight;
   double activityFactor;
-  double favoriteExcercise;
-  String error = "";
-  String _iniGender = "Male";
+  List<String> favoriteExcercise = List();
+
+  _showExcerciseDialog() {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          //Here we will build the content of the dialog
+          return AlertDialog(
+            title: Text("Select Excercies"),
+            content: MultiSelectChip(
+              excercisesList,
+              onSelectionChanged: (selectedList) {
+                setState(() {
+                  favoriteExcercise = selectedList;
+                });
+              },
+            ),
+            actions: <Widget>[
+              FlatButton(
+                child: Text("Select"),
+                onPressed: () => Navigator.of(context).pop(),
+              )
+            ],
+          );
+        });
+  }
 
   void _presentDatePicker() {
     showDatePicker(
@@ -72,7 +113,7 @@ class _RegisterState extends State<Register> {
   @override
   Widget build(BuildContext context) {
     return loading
-        ? CircularProgressIndicator()
+        ? Loading()
         : Scaffold(
             backgroundColor: Colors.green.shade100,
             appBar: AppBar(
@@ -179,19 +220,28 @@ class _RegisterState extends State<Register> {
                             ],
                           ),
                         ),
-                        DropdownButton<String>(
-                          value: _iniGender,
-                          hint: Text('Gender'),
-                          items: <String>['Male', 'Female'].map((String value) {
-                            return new DropdownMenuItem<String>(
-                              value: value,
-                              child: new Text(value),
-                            );
-                          }).toList(),
-                          onChanged: (value) {
-                            gender = value;
-                            _iniGender = value;
-                          },
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: <Widget>[
+                            Text('Gender'),
+                            DropdownButton<String>(
+                              value: iniGender,
+                              hint: Text('Gender'),
+                              items: <String>['Male', 'Female']
+                                  .map((String value) {
+                                return DropdownMenuItem<String>(
+                                  value: value,
+                                  child: Text(value),
+                                );
+                              }).toList(),
+                              onChanged: (value) {
+                                setState(() {
+                                  gender = value;
+                                  iniGender = value;
+                                });
+                              },
+                            ),
+                          ],
                         ),
                         TextFormField(
                           keyboardType: TextInputType.number,
@@ -221,20 +271,59 @@ class _RegisterState extends State<Register> {
                         SizedBox(
                           height: 20,
                         ),
-                        TextFormField(
-                          keyboardType: TextInputType.number,
-                          decoration:
-                              InputDecoration(hintText: "Activity Factor"),
-                          validator: (value) =>
-                              value.length == 0 ? 'Enter a valid value' : null,
-                          onChanged: (value) {
-                            setState(() {
-                              activityFactor = double.parse(value);
-                            });
-                          },
+                        // TextFormField(
+                        //   keyboardType: TextInputType.number,
+                        //   decoration:
+                        //       InputDecoration(hintText: "Activity Factor"),
+                        //   validator: (value) =>
+                        //       value.length == 0 ? 'Enter a valid value' : null,
+                        //   onChanged: (value) {
+                        //     setState(() {
+                        //       activityFactor = double.parse(value);
+                        //     });
+                        //   },
+                        // ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: <Widget>[
+                            FlatButton(
+                              textColor: Theme.of(context).primaryColor,
+                              child: Text(
+                                "Excercises",
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold, fontSize: 16),
+                              ),
+                              onPressed: () => _showExcerciseDialog()(),
+                            ),
+                            Text(favoriteExcercise.join(" , ")),
+                          ],
                         ),
                         SizedBox(
                           height: 20,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: <Widget>[
+                            Text('Activity Factor: '),
+                            DropdownButton<String>(
+                              items: datas
+                                  .map((data) => DropdownMenuItem<String>(
+                                        child: new Text(data.key),
+                                        value: data.value.toString(),
+                                      ))
+                                  .toList(),
+                              onChanged: (val) {
+                                setState(() {
+                                  activityFactor = double.parse(val);
+                                  selectedValue = val;
+                                  print('afactor: ' + selectedValue);
+                                });
+                              },
+                              //value: selectedValue,
+                              hint: Text('Activity Factor'),
+                            ),
+                          ],
                         ),
                         SizedBox(
                           height: 20,

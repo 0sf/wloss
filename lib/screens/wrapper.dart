@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:wloss/model/user.dart';
 
+import '../model/user.dart';
 import '../screens/auth/authenticate.dart';
 import '../screens/home/home.dart';
 

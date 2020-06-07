@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:wloss/services/calc/calc_tot.dart';
 
+import '../../widgets/dash/exercise.dart';
+import '../../services/calc/calc_tot.dart';
 import '../../model/meal.dart';
 import '../../widgets/dash/cgraph.dart';
 import '../../widgets/dash/bmir.dart';
@@ -42,9 +43,9 @@ class _TempState extends State<Temp> {
                         BMRI(
                           bmi: c.bmi(),
                           bmr: c.bmr(),
-                          dailyCalorieCount: c.dailyCalorieCount(),
                         ),
                         CGraph(pct: pct, dif: dif),
+                        ShowExcercise(dif, userData.favoriteExcercise),
                       ],
                     ),
                   );
