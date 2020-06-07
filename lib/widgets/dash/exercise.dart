@@ -10,7 +10,8 @@ class ShowExcercise extends StatelessWidget {
       return Container(
         padding: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
         child: Text(
-          excr.join(' , '),
+          excr.join(' , ') +
+              " You can do ${excr[0]} for 40 min to loose the extra ${((-1) * dif).toStringAsFixed(1)} calorie amount",
           style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
         ),
       );

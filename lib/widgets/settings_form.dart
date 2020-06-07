@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:wloss/services/database.dart';
-import '../../model/user.dart';
+import '../model/user.dart';
 
 class SettingsForm extends StatefulWidget {
   @override
@@ -33,28 +33,50 @@ class _SettingsFormState extends State<SettingsForm> {
                   TextFormField(
                     initialValue: userData.height.toString(),
                     decoration: InputDecoration(
-                        labelText: 'Height',
-                        enabledBorder: new UnderlineInputBorder(
-                          borderSide: BorderSide(color: Colors.grey, width: 1),
-                        )),
+                      labelText: 'Height (cm)',
+                      enabledBorder: new UnderlineInputBorder(
+                        borderSide: BorderSide(color: Colors.grey, width: 1),
+                      ),
+                    ),
                     validator: (val) =>
                         val.isEmpty ? 'Please enter height' : null,
                     onChanged: (val) =>
                         setState(() => _currentHeight = double.parse(val)),
                   ),
+                  SizedBox(
+                    height: 20,
+                  ),
                   TextFormField(
+                    decoration: InputDecoration(
+                      labelText: 'Weight (kg)',
+                      enabledBorder: new UnderlineInputBorder(
+                        borderSide: BorderSide(color: Colors.grey, width: 1),
+                      ),
+                    ),
                     initialValue: userData.weight.toString(),
                     validator: (val) =>
                         val.isEmpty ? 'Please enter weight' : null,
                     onChanged: (val) =>
                         setState(() => _currentWeight = double.parse(val)),
                   ),
+                  SizedBox(
+                    height: 20,
+                  ),
                   TextFormField(
+                    decoration: InputDecoration(
+                      labelText: 'Activity Factor',
+                      enabledBorder: new UnderlineInputBorder(
+                        borderSide: BorderSide(color: Colors.grey, width: 1),
+                      ),
+                    ),
                     initialValue: userData.activityFactor.toString(),
                     validator: (val) =>
                         val.isEmpty ? 'Please enter activityfactor' : null,
                     onChanged: (val) => setState(
                         () => _currentActivityFactor = double.parse(val)),
+                  ),
+                  SizedBox(
+                    height: 20,
                   ),
                   RaisedButton(
                     color: Colors.red.shade600,

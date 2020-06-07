@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 
 import '../../model/user.dart';
 import '../../screens/meal_mng/meal_mng.dart';
-import '../../widgets/dash/main_drawer.dart';
+import './main_drawer.dart';
 import '../../screens/home/temp.dart';
 import '../../model/meal.dart';
 import '../../services/database.dart';
@@ -13,7 +13,6 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final user = Provider.of<User>(context, listen: false);
-    print("home user uid:" + user.uid);
     return StreamProvider<List<Meal>>.value(
       value: DatabaseService(uid: user.uid).meals,
       child: Scaffold(

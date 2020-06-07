@@ -92,7 +92,9 @@ class DatabaseService {
   List<Meal> _mealListFromSnapshot(QuerySnapshot snapshot) {
     return snapshot.documents.map((doc) {
       return Meal(
-        foodId: DateTime.parse(doc.data['foodID'].toDate().toString()) ?? '',
+        foodId: (doc.data['foodID'] == null)
+            ? deleteMeal(doc.documentID)
+            : DateTime.parse(doc.data['foodID'].toDate().toString()),
         foodName: doc.data['foodTitle'] ?? '',
         portion: doc.data['portion'] ?? 0,
         caloriePortion: doc.data['caloriePerPortion'] ?? 0,

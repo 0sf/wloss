@@ -4,7 +4,7 @@ import 'package:provider/provider.dart';
 import '../../services/database.dart';
 import '../../model/user.dart';
 import '../../services/auth.dart';
-import '../../screens/home/settings_form.dart';
+import '../../widgets/settings_form.dart';
 
 class MainDrawer extends StatefulWidget {
   @override
@@ -13,6 +13,8 @@ class MainDrawer extends StatefulWidget {
 
 class _MainDrawerState extends State<MainDrawer> {
   final AuthService _auth = AuthService();
+  bool loading = false;
+
   Widget buildListTile(String title, IconData icon, Function tapHandler) {
     return ListTile(
       leading: Icon(
@@ -21,7 +23,10 @@ class _MainDrawerState extends State<MainDrawer> {
       ),
       title: Text(
         title,
-        style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+        style: TextStyle(
+          fontSize: 24,
+          fontWeight: FontWeight.w600,
+        ),
       ),
       onTap: tapHandler,
     );
@@ -60,6 +65,9 @@ class _MainDrawerState extends State<MainDrawer> {
               Icons.person,
               size: 30,
             ),
+          ),
+          SizedBox(
+            height: 10,
           ),
           Text(
             fname,

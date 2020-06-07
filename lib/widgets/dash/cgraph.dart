@@ -51,7 +51,8 @@ class _CGraphState extends State<CGraph> {
                     )
                   : Text(
                       "+" + (-1 * widget.dif).toStringAsFixed(1) + " KCal",
-                      style: TextStyle(color: Colors.red, fontSize: 32),
+                      style: TextStyle(color: Colors.red, fontSize: 30),
+                      softWrap: true,
                     ),
             ),
           ),

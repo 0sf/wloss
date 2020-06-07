@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 import '../../model/meal.dart';
 
@@ -13,6 +14,7 @@ class MealTile extends StatefulWidget {
 }
 
 class _MealTileState extends State<MealTile> {
+  final formatter = new NumberFormat("##.#");
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -29,7 +31,7 @@ class _MealTileState extends State<MealTile> {
         child: ListTile(
           leading: CircleAvatar(
             radius: 25,
-            backgroundColor: Colors.brown,
+            child: Icon(Icons.restaurant_menu),
           ),
           trailing: IconButton(
             icon: Icon(Icons.delete),
@@ -37,7 +39,9 @@ class _MealTileState extends State<MealTile> {
             onPressed: () => widget.deleteFn(widget.meal.documentID),
           ),
           title: Text(widget.meal.foodName),
-          subtitle: Text(widget.meal.calorieConsumed.toString()),
+          subtitle: Text("Calories: " +
+              formatter.format(widget.meal.calorieConsumed).toString() +
+              " KCal"),
         ),
       ),
     );

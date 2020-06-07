@@ -14,6 +14,7 @@ class MealDashboard extends StatefulWidget {
 }
 
 class _MealDashboardState extends State<MealDashboard> {
+  bool loading = true;
   void _startAddNewMealItem(BuildContext ctx) {
     showModalBottomSheet(
       context: ctx,

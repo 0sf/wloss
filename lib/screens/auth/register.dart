@@ -6,6 +6,7 @@ import '../../widgets/multi_chip.dart';
 import '../../model/key_value.dart';
 import '../../shared/constants.dart';
 import '../../services/auth.dart';
+import '../../services/calc/age_cal.dart';
 
 class Register extends StatefulWidget {
   static const routeName = '/sign-up';
@@ -30,11 +31,18 @@ class _RegisterState extends State<Register> {
     KeyValueModel(key: "Extra Active", value: 1.900),
   ];
 
-  List<String> excercisesList = ["Jumping", "Running", "Yoga", "Areo"];
+  List<String> excercisesList = [
+    "Jogging",
+    "Running",
+    "Yoga",
+    "Swimming",
+    "Walking",
+    "Aerobics"
+  ];
 
   // Controller values
   bool loading = false;
-  String selectedValue = "Activity Factor";
+  String selectedValue = "Activity factor";
   String iniGender = "Male";
   String error = "";
 
@@ -49,6 +57,14 @@ class _RegisterState extends State<Register> {
   double weight;
   double activityFactor;
   List<String> favoriteExcercise = List();
+
+  String labVal(double val) {
+    for (int i = 0; i < datas.length; i++) {
+      if (datas[i].value == val) {
+        return datas[i].key;
+      }
+    }
+  }
 
   _showExcerciseDialog() {
     showDialog(
@@ -87,27 +103,8 @@ class _RegisterState extends State<Register> {
       }
       setState(() {
         _dob = pickedDate;
-        print(_ageCalculator(_dob));
       });
     });
-  }
-
-  int _ageCalculator(DateTime birthDate) {
-    var currentDate = DateTime.parse(DateTime.now().toString());
-    var birthDatep = DateTime.parse(birthDate.toString());
-    int age = currentDate.year - birthDatep.year;
-    int month1 = currentDate.month;
-    int month2 = birthDate.month;
-    if (month2 > month1) {
-      age--;
-    } else if (month1 == month2) {
-      int day1 = currentDate.day;
-      int day2 = birthDate.day;
-      if (day2 > day1) {
-        age--;
-      }
-    }
-    return age;
   }
 
   @override
@@ -224,7 +221,7 @@ class _RegisterState extends State<Register> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
                             Text('Gender'),
-                            DropdownButton<String>(
+                            new DropdownButton<String>(
                               value: iniGender,
                               hint: Text('Gender'),
                               items: <String>['Male', 'Female']
@@ -245,7 +242,7 @@ class _RegisterState extends State<Register> {
                         ),
                         TextFormField(
                           keyboardType: TextInputType.number,
-                          decoration: InputDecoration(hintText: "Height"),
+                          decoration: InputDecoration(labelText: 'Height (cm)'),
                           validator: (value) =>
                               value.length == 0 ? 'Enter a valid value' : null,
                           onChanged: (value) {
@@ -259,7 +256,7 @@ class _RegisterState extends State<Register> {
                         ),
                         TextFormField(
                           keyboardType: TextInputType.number,
-                          decoration: InputDecoration(hintText: "Weight"),
+                          decoration: InputDecoration(labelText: "Weight (kg)"),
                           validator: (value) =>
                               value.length == 0 ? 'Enter a valid value' : null,
                           onChanged: (value) {
@@ -306,7 +303,8 @@ class _RegisterState extends State<Register> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
                             Text('Activity Factor: '),
-                            DropdownButton<String>(
+                            new DropdownButton<String>(
+                              hint: Text(selectedValue),
                               items: datas
                                   .map((data) => DropdownMenuItem<String>(
                                         child: new Text(data.key),
@@ -316,12 +314,11 @@ class _RegisterState extends State<Register> {
                               onChanged: (val) {
                                 setState(() {
                                   activityFactor = double.parse(val);
-                                  selectedValue = val;
-                                  print('afactor: ' + selectedValue);
+                                  selectedValue = labVal(double.parse(val));
                                 });
                               },
                               //value: selectedValue,
-                              hint: Text('Activity Factor'),
+                              // hint: Text('Activity Factor'),
                             ),
                           ],
                         ),
@@ -343,13 +340,13 @@ class _RegisterState extends State<Register> {
                                 });
                                 dynamic result = await _authService
                                     .registerWithEmailAndPassword(
-                                  email: email,
+                                  email: email.trim(),
                                   password: password,
                                   firstName: firstName,
                                   lastName: lastName,
                                   dob: _dob,
                                   gender: gender,
-                                  age: _ageCalculator(_dob),
+                                  age: AgeCalc.ageCalculator(_dob),
                                   height: height,
                                   weight: weight,
                                   activityFactor: activityFactor,

@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -44,7 +45,13 @@ class _BMRIState extends State<BMRI> {
           child: Container(
             padding: EdgeInsets.all(5),
             child: Container(
-              child: Center(child: Image.network(url)),
+              child: Center(
+                child: CachedNetworkImage(
+                  imageUrl: url,
+                  placeholder: (context, url) =>
+                      new Center(child: CircularProgressIndicator()),
+                ),
+              ), //Center(child: Image.network(url)),
             ),
           ),
           behavior: HitTestBehavior.opaque,
@@ -57,9 +64,25 @@ class _BMRIState extends State<BMRI> {
   Widget build(BuildContext context) {
     bmiColor(widget.bmi);
     return Container(
-      width: double.infinity,
-      height: 100,
-      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 35),
+      width: 300,
+      height: 90,
+      padding: EdgeInsets.symmetric(horizontal: 10, vertical: 20),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(50),
+            topRight: Radius.circular(50),
+            bottomLeft: Radius.circular(50),
+            bottomRight: Radius.circular(50)),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.5),
+            spreadRadius: 5,
+            blurRadius: 7,
+            offset: Offset(0, 3), // changes position of shadow
+          ),
+        ],
+      ),
       child: InkWell(
         onTap: () => _showBMIInfo(context),
         child: Center(

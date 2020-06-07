@@ -9,3 +9,7 @@ const TitleTextStyle = TextStyle(
   fontSize: LargeTextSize,
   color: Colors.black,
 );
+
+const HeadLine2 = TextStyle(
+  fontSize: LargeTextSize,
+);

@@ -94,8 +94,9 @@ class _SignInState extends State<SignIn> {
                               setState(() {
                                 loading = true;
                               });
-                              dynamic result = await _authService
-                                  .signInWithEmailAndPassword(email, password);
+                              dynamic result =
+                                  await _authService.signInWithEmailAndPassword(
+                                      email.trim(), password);
                               if (result == null) {
                                 setState(() {
                                   error = 'Credential Error';

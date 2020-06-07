@@ -18,7 +18,7 @@ class Temp extends StatefulWidget {
 class _TempState extends State<Temp> {
   @override
   Widget build(BuildContext context) {
-    final user = Provider.of<User>(context);
+    final user = Provider.of<User>(context, listen: false);
     return StreamBuilder<UserData>(
         stream: DatabaseService(uid: user.uid).userData,
         builder: (context, snapshot) {
@@ -40,6 +40,9 @@ class _TempState extends State<Temp> {
                 : Container(
                     child: Column(
                       children: <Widget>[
+                        SizedBox(
+                          height: 20,
+                        ),
                         BMRI(
                           bmi: c.bmi(),
                           bmr: c.bmr(),
