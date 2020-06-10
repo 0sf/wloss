@@ -175,6 +175,7 @@ class _RegisterState extends State<Register> {
                           decoration: InputDecoration(hintText: "First Name"),
                           validator: (value) =>
                               value.length == 0 ? 'Enter a valid name' : null,
+                          onSaved: (value) => firstName = value,
                           onChanged: (value) {
                             setState(() {
                               firstName = value;
@@ -188,6 +189,7 @@ class _RegisterState extends State<Register> {
                           decoration: InputDecoration(hintText: "Last Name"),
                           validator: (value) =>
                               value.length == 0 ? 'Enter a valid name' : null,
+                          onSaved: (value) => lastName = value,
                           onChanged: (value) {
                             setState(() {
                               lastName = value;
@@ -203,7 +205,7 @@ class _RegisterState extends State<Register> {
                             children: <Widget>[
                               Expanded(
                                 child: Text(_dob == null
-                                    ? 'Date of Birth'
+                                    ? 'Select Your Date of Birth'
                                     : 'Date of Birth: ${DateFormat.yMd().format(_dob)}'),
                               ),
                               FlatButton(
@@ -243,8 +245,9 @@ class _RegisterState extends State<Register> {
                         TextFormField(
                           keyboardType: TextInputType.number,
                           decoration: InputDecoration(labelText: 'Height (cm)'),
-                          validator: (value) =>
-                              value.length == 0 ? 'Enter a valid value' : null,
+                          validator: (value) => (value.length == 0)
+                              ? 'Enter a valid value'
+                              : null,
                           onChanged: (value) {
                             setState(() {
                               height = double.parse(value);
@@ -257,8 +260,9 @@ class _RegisterState extends State<Register> {
                         TextFormField(
                           keyboardType: TextInputType.number,
                           decoration: InputDecoration(labelText: "Weight (kg)"),
-                          validator: (value) =>
-                              value.length == 0 ? 'Enter a valid value' : null,
+                          validator: (value) => (value.length == 0)
+                              ? 'Enter a valid value'
+                              : null,
                           onChanged: (value) {
                             setState(() {
                               weight = double.parse(value);
@@ -335,9 +339,11 @@ class _RegisterState extends State<Register> {
                             ),
                             onPressed: () async {
                               if (_formKey.currentState.validate()) {
+                                _formKey.currentState.save();
                                 setState(() {
                                   loading = true;
                                 });
+
                                 dynamic result = await _authService
                                     .registerWithEmailAndPassword(
                                   email: email.trim(),
@@ -350,12 +356,17 @@ class _RegisterState extends State<Register> {
                                   height: height,
                                   weight: weight,
                                   activityFactor: activityFactor,
-                                  favoriteExcercise: favoriteExcercise,
+                                  favoriteExcercise: favoriteExcercise.isEmpty
+                                      ? [
+                                          "You don't have any favorite excercies"
+                                        ]
+                                      : favoriteExcercise,
                                 );
 
                                 if (result == null) {
                                   setState(() {
-                                    error = 'Please supply a valid email';
+                                    error = 'Please supply a valid email' +
+                                        result.toString();
                                     loading = false;
                                   });
                                 }

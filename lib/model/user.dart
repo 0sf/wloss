@@ -14,7 +14,6 @@ class User {
 
 class UserData {
   final String uid;
-  final String documentID;
   final String firstName;
   final String lastName;
   final DateTime dob;
@@ -27,7 +26,6 @@ class UserData {
 
   UserData({
     this.uid,
-    this.documentID,
     this.firstName,
     this.lastName,
     this.dob,

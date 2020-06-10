@@ -64,7 +64,9 @@ class _SignInState extends State<SignIn> {
                           });
                         },
                       ),
-                      SizedBox(),
+                      SizedBox(
+                        height: 30,
+                      ),
                       TextFormField(
                         decoration: InputDecoration(
                           hintText: 'Password',

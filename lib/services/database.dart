@@ -76,7 +76,6 @@ class DatabaseService {
   UserData _userDataFromSnapshot(DocumentSnapshot snapshot) {
     return UserData(
         uid: uid,
-        documentID: snapshot.documentID,
         firstName: snapshot.data['firstName'],
         lastName: snapshot.data['lastName'],
         gender: snapshot.data['gender'],

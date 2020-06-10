@@ -36,7 +36,13 @@ class _TempState extends State<Temp> {
             return (c.bmi() == -1 ||
                     c.bmr() == -1 ||
                     c.dailyCalorieCount() == -1)
-                ? Text('Enter valid height, weight')
+                ? Center(
+                    child: Text(
+                    'Please enter a valid height, weight and a gender',
+                    softWrap: true,
+                    style:
+                        TextStyle(fontSize: 18, color: Colors.purple.shade600),
+                  ))
                 : Container(
                     child: Column(
                       children: <Widget>[

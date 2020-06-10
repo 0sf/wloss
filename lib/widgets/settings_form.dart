@@ -87,6 +87,12 @@ class _SettingsFormState extends State<SettingsForm> {
                     onPressed: () async {
                       if (_formKey.currentState.validate()) {
                         await DatabaseService(uid: user.uid).updateUserData(
+                          lastName: userData.lastName,
+                          firstName: userData.firstName,
+                          dob: userData.dob,
+                          gender: userData.gender,
+                          favoriteExcercise: userData.favoriteExcercise,
+                          age: userData.age,
                           height: _currentHeight ?? userData.height,
                           weight: _currentWeight ?? userData.weight,
                           activityFactor:

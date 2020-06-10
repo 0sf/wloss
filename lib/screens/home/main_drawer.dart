@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../screens/home/settings_page.dart';
 import '../../services/database.dart';
 import '../../model/user.dart';
 import '../../services/auth.dart';
@@ -33,17 +34,20 @@ class _MainDrawerState extends State<MainDrawer> {
   }
 
   void _showSettingsPanel() {
-    showModalBottomSheet(
-        context: context,
-        builder: (context) {
-          return Container(
-            padding: EdgeInsets.symmetric(
-              vertical: 20.0,
-              horizontal: 60.0,
-            ),
-            child: SettingsForm(),
-          );
-        });
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => SettingsPage()));
+    ;
+    // showModalBottomSheet(
+    //     context: context,
+    //     builder: (context) {
+    //       return Container(
+    //         padding: EdgeInsets.symmetric(
+    //           vertical: 20.0,
+    //           horizontal: 60.0,
+    //         ),
+    //         child: SettingsForm(),
+    //       );
+    //     });
   }
 
   Widget userDetails({
