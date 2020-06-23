@@ -7,11 +7,24 @@ import '../../model/meal.dart';
 import './meal_tile.dart';
 
 class MealList extends StatefulWidget {
+  final DateTime date;
+  MealList(this.date);
+
   @override
   _MealListState createState() => _MealListState();
 }
 
 class _MealListState extends State<MealList> {
+  bool isDate(DateTime date, Meal meals) {
+    if (date.day == meals.foodId.day &&
+        date.month == meals.foodId.month &&
+        date.year == meals.foodId.year) {
+      return true;
+    }
+
+    return false;
+  }
+
   @override
   Widget build(BuildContext context) {
     final user = Provider.of<User>(context, listen: false);
@@ -38,11 +51,14 @@ class _MealListState extends State<MealList> {
             //final meals = Provider.of<List<Meal>>(context) ?? [];
             return ListView.builder(
                 itemCount: meals.length,
+                shrinkWrap: true,
                 itemBuilder: (context, index) {
-                  return MealTile(
-                    meal: meals[index],
-                    deleteFn: _deleteMeal,
-                  );
+                  return isDate(widget.date, meals[index])
+                      ? MealTile(
+                          meal: meals[index],
+                          deleteFn: _deleteMeal,
+                        )
+                      : Text('');
                 });
           } else if (snapshot.hasError) {
             return Center(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:wloss/screens/meal_mng/search.dart';
 
 import '../../model/user.dart';
 import '../../widgets/meal/new_meal.dart';
@@ -15,16 +16,25 @@ class MealDashboard extends StatefulWidget {
 
 class _MealDashboardState extends State<MealDashboard> {
   bool loading = true;
-  void _startAddNewMealItem(BuildContext ctx) {
-    showModalBottomSheet(
-      context: ctx,
-      builder: (_) {
-        return GestureDetector(
-          child: NewMealItem(),
-          behavior: HitTestBehavior.opaque,
-        );
-      },
-    );
+  DateTime cDate = DateTime.now();
+
+
+
+  void _presentDatePicker() {
+    showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(1920),
+      lastDate: DateTime.now(),
+    ).then((pickedDate) {
+      if (pickedDate == null) {
+        return;
+      }
+      setState(() {
+        cDate = pickedDate;
+        print(cDate.toString());
+      });
+    });
   }
 
   @override
@@ -35,15 +45,34 @@ class _MealDashboardState extends State<MealDashboard> {
       child: Scaffold(
           appBar: AppBar(
             title: Text('Pick your meal'),
+            actions: <Widget>[
+              IconButton(
+                  icon: Icon(Icons.calendar_today),
+                  onPressed: () => _presentDatePicker())
+            ],
             elevation: 0.0,
           ),
-          body: MealList(),
+          body: Column(
+            children: <Widget>[
+              Container(
+                child: Row(
+                  children: <Widget>[
+                    Text(cDate.toString()),
+                  ],
+                ),
+              ),
+              MealList(cDate),
+            ],
+          ),
           floatingActionButtonLocation:
               FloatingActionButtonLocation.centerFloat,
           floatingActionButton: FloatingActionButton(
-            child: Icon(Icons.add),
-            onPressed: () => _startAddNewMealItem(context),
-          )),
+              child: Icon(Icons.add),
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => SearchAdd()));
+              } //_startAddNewMealItem(context),
+              )),
     );
   }
 }
