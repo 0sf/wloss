@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:wloss/screens/meal_mng/search.dart';
+import 'package:intl/intl.dart';
 
+import '../../screens/meal_mng/search.dart';
 import '../../model/user.dart';
-import '../../widgets/meal/new_meal.dart';
 import '../../services/database.dart';
 import '../../model/meal.dart';
 import '../../widgets/meal/meal_list.dart';
@@ -17,8 +17,6 @@ class MealDashboard extends StatefulWidget {
 class _MealDashboardState extends State<MealDashboard> {
   bool loading = true;
   DateTime cDate = DateTime.now();
-
-
 
   void _presentDatePicker() {
     showDatePicker(
@@ -57,7 +55,16 @@ class _MealDashboardState extends State<MealDashboard> {
               Container(
                 child: Row(
                   children: <Widget>[
-                    Text(cDate.toString()),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        "Date: " + DateFormat('yyyy-MM-dd').format(cDate),
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
                   ],
                 ),
               ),

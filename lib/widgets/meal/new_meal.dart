@@ -1,29 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:wloss/model/meal_detail.dart';
 import '../../model/user.dart';
 import '../../services/database.dart';
 
 class NewMealItem extends StatefulWidget {
+  final MealDetail meal;
+  NewMealItem(this.meal);
   @override
   _NewMealItemState createState() => _NewMealItemState();
 }
 
 class _NewMealItemState extends State<NewMealItem> {
   bool loading = false;
-  final _titleController = TextEditingController();
+
   final _amountController = TextEditingController();
-  final _perCalorieController = TextEditingController();
-  final _perGramController = TextEditingController();
 
   void _submitData(String uid) async {
     if (_amountController.text.isEmpty) {
       return;
     }
 
-    final enteredTitle = _titleController.text;
+    final enteredTitle = widget.meal.name;
     final enteredAmount = double.parse(_amountController.text);
-    final perGram = double.parse(_perGramController.text);
-    final perCalorie = double.parse(_perCalorieController.text);
+    final perGram = widget.meal.portion;
+    final perCalorie = widget.meal.calories;
     double consumedCalorie = (perCalorie / perGram) * enteredAmount;
 
     if (enteredTitle.isEmpty ||
@@ -37,7 +38,7 @@ class _NewMealItemState extends State<NewMealItem> {
     await DatabaseService(uid: uid).updateMealData(
       DateTime.now(),
       enteredTitle,
-      perGram,
+      enteredAmount,
       perCalorie,
       consumedCalorie,
     );
@@ -64,27 +65,8 @@ class _NewMealItemState extends State<NewMealItem> {
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: <Widget>[
                     TextField(
-                      decoration: InputDecoration(labelText: 'Food Item'),
-                      controller: _titleController,
-                      onSubmitted: (_) => _submitData(user.uid),
-                    ),
-                    TextField(
                       decoration: InputDecoration(labelText: 'Amount / g'),
                       controller: _amountController,
-                      keyboardType: TextInputType.number,
-                      onSubmitted: (_) => _submitData(user.uid),
-                    ),
-                    TextField(
-                      decoration:
-                          InputDecoration(labelText: 'Serving Size / g'),
-                      controller: _perGramController,
-                      keyboardType: TextInputType.number,
-                      onSubmitted: (_) => _submitData(user.uid),
-                    ),
-                    TextField(
-                      decoration: InputDecoration(
-                          labelText: 'Calories in Serving Size / Kcal'),
-                      controller: _perCalorieController,
                       keyboardType: TextInputType.number,
                       onSubmitted: (_) => _submitData(user.uid),
                     ),

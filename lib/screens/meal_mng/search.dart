@@ -3,6 +3,7 @@ import 'dart:collection';
 import 'package:flutter/material.dart';
 import 'package:wloss/bloc/meal_bloc.dart';
 import 'package:wloss/model/meal_detail.dart';
+import 'package:wloss/widgets/meal/meal_list.dart';
 import 'package:wloss/widgets/meal/new_meal.dart';
 
 class SearchAdd extends StatefulWidget {
@@ -11,19 +12,6 @@ class SearchAdd extends StatefulWidget {
 }
 
 class _SearchAddState extends State<SearchAdd> {
-
-    void _startAddNewMealItem(BuildContext ctx) {
-    showModalBottomSheet(
-      context: ctx,
-      builder: (_) {
-        return GestureDetector(
-          child: NewMealItem(),
-          behavior: HitTestBehavior.opaque,
-        );
-      },
-    );
-  }
-  
   @override
   Widget build(BuildContext context) {
     final shbloc = SearchBloc();
@@ -42,6 +30,7 @@ class _SearchAddState extends State<SearchAdd> {
               })
         ],
       ),
+      body: MealList(DateTime.now()),
     );
   }
 }
@@ -50,6 +39,18 @@ class FoodSearch extends SearchDelegate<MealDetail> {
   final Stream<UnmodifiableListView<MealDetail>> meals;
 
   FoodSearch(this.meals);
+
+  void _startAddNewMealItem(BuildContext ctx, MealDetail a) {
+    showModalBottomSheet(
+      context: ctx,
+      builder: (_) {
+        return GestureDetector(
+          child: NewMealItem(a),
+          behavior: HitTestBehavior.opaque,
+        );
+      },
+    );
+  }
 
   @override
   List<Widget> buildActions(BuildContext context) {
@@ -81,7 +82,7 @@ class FoodSearch extends SearchDelegate<MealDetail> {
           AsyncSnapshot<UnmodifiableListView<MealDetail>> snapshot) {
         if (!snapshot.hasData) {
           return Center(
-            child: Text('No Data'),
+            child: CircularProgressIndicator(),
           );
         }
         final results = snapshot.data
@@ -96,8 +97,8 @@ class FoodSearch extends SearchDelegate<MealDetail> {
                   leading: Icon(Icons.fastfood),
                   subtitle: Text(a.calories.toString()),
                   onTap: () {
-                    
-                    close(context, a);
+                    _startAddNewMealItem(context, a);
+                    //close(context, a);
                   }))
               .toList(),
         );
@@ -128,7 +129,8 @@ class FoodSearch extends SearchDelegate<MealDetail> {
                   leading: Icon(Icons.fastfood),
                   subtitle: Text(a.calories.toString()),
                   onTap: () {
-                    close(context, a);
+                    _startAddNewMealItem(context, a);
+                    //close(context, a);
                   }))
               .toList(),
         );
