@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:wloss/model/user.dart';
-import 'package:wloss/services/database.dart';
 
+import '../../model/user.dart';
+import '../../services/database.dart';
 import '../../model/meal.dart';
 import './meal_tile.dart';
 
@@ -15,6 +15,8 @@ class MealList extends StatefulWidget {
 }
 
 class _MealListState extends State<MealList> {
+  List<Meal> mealList = [];
+
   bool isDate(DateTime date, Meal meals) {
     if (date.day == meals.foodId.day &&
         date.month == meals.foodId.month &&

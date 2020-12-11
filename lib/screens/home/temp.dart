@@ -24,6 +24,7 @@ class _TempState extends State<Temp> {
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             UserData userData = snapshot.data;
+
             final meals = Provider.of<List<Meal>>(context) ?? [];
 
             Calc c = Calc(userData);

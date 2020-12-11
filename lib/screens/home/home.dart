@@ -10,9 +10,11 @@ import '../../services/database.dart';
 
 class Home extends StatelessWidget {
   static const routeName = '/home';
+
   @override
   Widget build(BuildContext context) {
     final user = Provider.of<User>(context, listen: false);
+
     return StreamProvider<List<Meal>>.value(
       value: DatabaseService(uid: user.uid).meals,
       child: Scaffold(

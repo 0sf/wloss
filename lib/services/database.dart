@@ -43,6 +43,7 @@ class DatabaseService {
   Future updateMealData(
     DateTime foodID,
     String foodTitle,
+    String foodURL,
     double portion,
     double caloriePortion,
     double calorieConsumed,
@@ -57,6 +58,7 @@ class DatabaseService {
       "portion": portion,
       "caloriePortion": caloriePortion,
       "calorieConsumed": calorieConsumed,
+      "foodURL": foodURL
     });
   }
 
@@ -87,7 +89,7 @@ class DatabaseService {
         favoriteExcercise: List.from(snapshot.data['favoriteExcercise']) ?? []);
   }
 
-  // brew list from snapshot
+  // meal list from snapshot
   List<Meal> _mealListFromSnapshot(QuerySnapshot snapshot) {
     return snapshot.documents.map((doc) {
       return Meal(
@@ -95,6 +97,7 @@ class DatabaseService {
             ? deleteMeal(doc.documentID)
             : DateTime.parse(doc.data['foodID'].toDate().toString()),
         foodName: doc.data['foodTitle'] ?? '',
+        foodURL: doc.data['foodURL'] ?? '',
         portion: doc.data['portion'] ?? 0,
         caloriePortion: doc.data['caloriePerPortion'] ?? 0,
         calorieConsumed: doc.data['calorieConsumed'] ?? 0,

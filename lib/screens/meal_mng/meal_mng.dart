@@ -53,12 +53,12 @@ class _MealDashboardState extends State<MealDashboard> {
           body: Column(
             children: <Widget>[
               Container(
-                child: Row(
+                child: Column(
                   children: <Widget>[
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Text(
-                        "Date: " + DateFormat('yyyy-MM-dd').format(cDate),
+                        "Date: " + DateFormat('dd-MM-yyyy').format(cDate),
                         style: TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.bold,

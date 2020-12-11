@@ -11,6 +11,11 @@ class SettingsForm extends StatefulWidget {
 class _SettingsFormState extends State<SettingsForm> {
   final _formKey = GlobalKey<FormState>();
 
+  // Data fields
+  String firstName;
+  String lastName;
+  String gender;
+  DateTime dob;
   double _currentHeight;
   double _currentWeight;
   double _currentActivityFactor;
@@ -18,6 +23,7 @@ class _SettingsFormState extends State<SettingsForm> {
   @override
   Widget build(BuildContext context) {
     final user = Provider.of<User>(context);
+
     return StreamBuilder<UserData>(
         stream: DatabaseService(uid: user.uid).userData,
         builder: (context, snapshot) {
@@ -25,85 +31,100 @@ class _SettingsFormState extends State<SettingsForm> {
             UserData userData = snapshot.data;
             return Form(
               key: _formKey,
-              child: Column(
-                children: <Widget>[
-                  SizedBox(
-                    height: 20,
-                  ),
-                  TextFormField(
-                    initialValue: userData.height.toString(),
-                    decoration: InputDecoration(
-                      labelText: 'Height (cm)',
-                      enabledBorder: new UnderlineInputBorder(
-                        borderSide: BorderSide(color: Colors.grey, width: 1),
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  children: <Widget>[
+                    TextFormField(
+                      initialValue: userData.firstName.toString(),
+                      decoration: InputDecoration(
+                        labelText: 'First Name',
+                        enabledBorder: new UnderlineInputBorder(
+                          borderSide: BorderSide(color: Colors.grey, width: 1),
+                        ),
                       ),
+                      validator: (val) =>
+                          val.isEmpty ? 'Please enter your first name' : null,
+                      onChanged: (val) => setState(() => firstName = val),
                     ),
-                    validator: (val) =>
-                        val.isEmpty ? 'Please enter height' : null,
-                    onChanged: (val) =>
-                        setState(() => _currentHeight = double.parse(val)),
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  TextFormField(
-                    decoration: InputDecoration(
-                      labelText: 'Weight (kg)',
-                      enabledBorder: new UnderlineInputBorder(
-                        borderSide: BorderSide(color: Colors.grey, width: 1),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    TextFormField(
+                      initialValue: userData.height.toString(),
+                      decoration: InputDecoration(
+                        labelText: 'Height (cm)',
+                        enabledBorder: new UnderlineInputBorder(
+                          borderSide: BorderSide(color: Colors.grey, width: 1),
+                        ),
                       ),
+                      validator: (val) =>
+                          val.isEmpty ? 'Please enter height' : null,
+                      onChanged: (val) =>
+                          setState(() => _currentHeight = double.parse(val)),
                     ),
-                    initialValue: userData.weight.toString(),
-                    validator: (val) =>
-                        val.isEmpty ? 'Please enter weight' : null,
-                    onChanged: (val) =>
-                        setState(() => _currentWeight = double.parse(val)),
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  TextFormField(
-                    decoration: InputDecoration(
-                      labelText: 'Activity Factor',
-                      enabledBorder: new UnderlineInputBorder(
-                        borderSide: BorderSide(color: Colors.grey, width: 1),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    TextFormField(
+                      decoration: InputDecoration(
+                        labelText: 'Weight (kg)',
+                        enabledBorder: new UnderlineInputBorder(
+                          borderSide: BorderSide(color: Colors.grey, width: 1),
+                        ),
                       ),
+                      initialValue: userData.weight.toString(),
+                      validator: (val) =>
+                          val.isEmpty ? 'Please enter weight' : null,
+                      onChanged: (val) =>
+                          setState(() => _currentWeight = double.parse(val)),
                     ),
-                    initialValue: userData.activityFactor.toString(),
-                    validator: (val) =>
-                        val.isEmpty ? 'Please enter activityfactor' : null,
-                    onChanged: (val) => setState(
-                        () => _currentActivityFactor = double.parse(val)),
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  RaisedButton(
-                    color: Colors.red.shade600,
-                    child: Text(
-                      'Update',
-                      style: TextStyle(color: Colors.white),
+                    SizedBox(
+                      height: 20,
                     ),
-                    onPressed: () async {
-                      if (_formKey.currentState.validate()) {
-                        await DatabaseService(uid: user.uid).updateUserData(
-                          lastName: userData.lastName,
-                          firstName: userData.firstName,
-                          dob: userData.dob,
-                          gender: userData.gender,
-                          favoriteExcercise: userData.favoriteExcercise,
-                          age: userData.age,
-                          height: _currentHeight ?? userData.height,
-                          weight: _currentWeight ?? userData.weight,
-                          activityFactor:
-                              _currentActivityFactor ?? userData.activityFactor,
-                        );
+                    TextFormField(
+                      decoration: InputDecoration(
+                        labelText: 'Activity Factor',
+                        enabledBorder: new UnderlineInputBorder(
+                          borderSide: BorderSide(color: Colors.grey, width: 1),
+                        ),
+                      ),
+                      initialValue: userData.activityFactor.toString(),
+                      validator: (val) =>
+                          val.isEmpty ? 'Please enter activityfactor' : null,
+                      onChanged: (val) => setState(
+                          () => _currentActivityFactor = double.parse(val)),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    RaisedButton(
+                      color: Colors.red.shade600,
+                      child: Text(
+                        'Update',
+                        style: TextStyle(color: Colors.white),
+                      ),
+                      onPressed: () async {
+                        if (_formKey.currentState.validate()) {
+                          await DatabaseService(uid: user.uid).updateUserData(
+                            lastName: userData.lastName,
+                            firstName: userData.firstName,
+                            dob: userData.dob,
+                            gender: userData.gender,
+                            favoriteExcercise: userData.favoriteExcercise,
+                            age: userData.age,
+                            height: _currentHeight ?? userData.height,
+                            weight: _currentWeight ?? userData.weight,
+                            activityFactor: _currentActivityFactor ??
+                                userData.activityFactor,
+                          );
 
-                        Navigator.pop(context);
-                      }
-                    },
-                  ),
-                ],
+                          Navigator.pop(context);
+                        }
+                      },
+                    ),
+                  ],
+                ),
               ),
             );
           } else {

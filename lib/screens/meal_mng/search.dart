@@ -1,6 +1,6 @@
 import 'dart:collection';
-
 import 'package:flutter/material.dart';
+
 import 'package:wloss/bloc/meal_bloc.dart';
 import 'package:wloss/model/meal_detail.dart';
 import 'package:wloss/widgets/meal/meal_list.dart';
@@ -92,13 +92,11 @@ class FoodSearch extends SearchDelegate<MealDetail> {
               .map<ListTile>((a) => ListTile(
                   title: Text(
                     a.name,
-                    style: TextStyle(color: Colors.red),
+                    style: TextStyle(color: Colors.black),
                   ),
                   leading: Icon(Icons.fastfood),
-                  subtitle: Text(a.calories.toString()),
                   onTap: () {
                     _startAddNewMealItem(context, a);
-                    //close(context, a);
                   }))
               .toList(),
         );
@@ -113,9 +111,7 @@ class FoodSearch extends SearchDelegate<MealDetail> {
       builder: (BuildContext context,
           AsyncSnapshot<UnmodifiableListView<MealDetail>> snapshot) {
         if (!snapshot.hasData) {
-          return Center(
-            child: Text('No Data'),
-          );
+          return Center(child: CircularProgressIndicator());
         }
         final results = snapshot.data
             .where((element) => element.name.toLowerCase().contains(query));
@@ -124,13 +120,20 @@ class FoodSearch extends SearchDelegate<MealDetail> {
               .map<ListTile>((a) => ListTile(
                   title: Text(
                     a.name,
-                    style: TextStyle(color: Colors.red),
+                    style: TextStyle(color: Colors.blue),
                   ),
-                  leading: Icon(Icons.fastfood),
-                  subtitle: Text(a.calories.toString()),
+                  leading: Container(
+                      padding: EdgeInsets.all(2),
+                      height: 100,
+                      width: 100,
+                      child: (a.foodURL == null)
+                          ? Icon(Icons.fastfood)
+                          : Image.network(
+                              a.foodURL,
+                              fit: BoxFit.cover,
+                            )), //Icon(Icons.fastfood),
                   onTap: () {
                     _startAddNewMealItem(context, a);
-                    //close(context, a);
                   }))
               .toList(),
         );

@@ -5,7 +5,6 @@ import '../../screens/home/settings_page.dart';
 import '../../services/database.dart';
 import '../../model/user.dart';
 import '../../services/auth.dart';
-import '../../widgets/settings_form.dart';
 
 class MainDrawer extends StatefulWidget {
   @override
@@ -36,7 +35,7 @@ class _MainDrawerState extends State<MainDrawer> {
   void _showSettingsPanel() {
     Navigator.push(
         context, MaterialPageRoute(builder: (context) => SettingsPage()));
-    ;
+
     // showModalBottomSheet(
     //     context: context,
     //     builder: (context) {
@@ -75,7 +74,7 @@ class _MainDrawerState extends State<MainDrawer> {
           ),
           Text(
             fname,
-            style: TextStyle(fontSize: 26),
+            style: TextStyle(fontSize: 28),
           ),
           SizedBox(
             height: 20,

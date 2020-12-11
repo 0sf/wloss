@@ -70,7 +70,6 @@ class _RegisterState extends State<Register> {
     showDialog(
         context: context,
         builder: (BuildContext context) {
-          //Here we will build the content of the dialog
           return AlertDialog(
             title: Text("Select Excercies"),
             content: MultiSelectChip(
@@ -112,7 +111,7 @@ class _RegisterState extends State<Register> {
     return loading
         ? Loading()
         : Scaffold(
-            backgroundColor: Colors.green.shade100,
+            // backgroundColor: Colors.green.shade100,
             appBar: AppBar(
               title: Text("SignUp | WLoss"),
               elevation: 0.0,

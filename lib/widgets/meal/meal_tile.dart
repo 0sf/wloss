@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:intl/intl.dart';
 
 import '../../model/meal.dart';
@@ -29,10 +30,16 @@ class _MealTileState extends State<MealTile> {
           0.0,
         ),
         child: ListTile(
-          leading: CircleAvatar(
-            radius: 25,
-            child: Icon(Icons.restaurant_menu),
+          leading: CachedNetworkImage(
+            imageUrl: widget.meal.foodURL,
+            placeholder: (context, url) => new Icon(Icons.fastfood),
           ),
+          // CircleAvatar(
+          //   radius: 25,
+          //   child: (widget.meal.foodURL == null)
+          //       ? Icon(Icons.restaurant_menu)
+          //       : Image.network(widget.meal.foodURL),
+          // ),
           trailing: IconButton(
             icon: Icon(Icons.delete),
             color: Theme.of(context).errorColor,

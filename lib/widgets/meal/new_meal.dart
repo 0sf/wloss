@@ -25,6 +25,7 @@ class _NewMealItemState extends State<NewMealItem> {
     final enteredAmount = double.parse(_amountController.text);
     final perGram = widget.meal.portion;
     final perCalorie = widget.meal.calories;
+    final foodURL = widget.meal.foodURL;
     double consumedCalorie = (perCalorie / perGram) * enteredAmount;
 
     if (enteredTitle.isEmpty ||
@@ -38,6 +39,7 @@ class _NewMealItemState extends State<NewMealItem> {
     await DatabaseService(uid: uid).updateMealData(
       DateTime.now(),
       enteredTitle,
+      foodURL,
       enteredAmount,
       perCalorie,
       consumedCalorie,
@@ -62,8 +64,18 @@ class _NewMealItemState extends State<NewMealItem> {
                   bottom: MediaQuery.of(context).viewInsets.bottom + 10,
                 ),
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.end,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
+                    Text(
+                      widget.meal.name,
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
                     TextField(
                       decoration: InputDecoration(labelText: 'Amount / g'),
                       controller: _amountController,

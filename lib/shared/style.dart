@@ -13,3 +13,5 @@ const TitleTextStyle = TextStyle(
 const HeadLine2 = TextStyle(
   fontSize: LargeTextSize,
 );
+
+const drawerStyle = TextStyle(fontSize: 21, color: Colors.red);

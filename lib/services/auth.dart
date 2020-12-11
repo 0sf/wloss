@@ -5,6 +5,7 @@ import '../model/user.dart';
 
 class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
+
   //create a user object based on FirebaseUser
   User _userFromFirebaseUser(FirebaseUser user) {
     return user != null ? User(uid: user.uid) : null;
@@ -72,6 +73,7 @@ class AuthService {
       )
           .then((value) async {
         await DatabaseService(uid: user.uid).updateMealData(
+          null,
           null,
           null,
           null,

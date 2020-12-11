@@ -7,7 +7,7 @@ class Prov {
       Firestore.instance.collection('user');
 
   List<Meal> _mealListFromSnapshot(QuerySnapshot snapshot) {
-    print(snapshot.documents.toList().toString());
+    // print(snapshot.documents.toList().toString());
     return snapshot.documents.map((doc) {
       return Meal(
         foodId: DateTime.parse(doc.data['foodID'].toDate().toString()) ?? '',

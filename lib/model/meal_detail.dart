@@ -3,12 +3,16 @@ class MealDetail {
   final String name;
   final int portion;
   final double calories;
+  final String foodURL;
+  final String state;
 
   MealDetail({
     this.id,
     this.name,
     this.portion,
     this.calories,
+    this.foodURL,
+    this.state,
   });
 
   factory MealDetail.fromJson(Map<String, dynamic> json) {
@@ -17,6 +21,8 @@ class MealDetail {
       name: json['name'],
       portion: json['portion'],
       calories: json['calories'],
+      foodURL: json['foodURL'],
+      state: json['state'],
     );
   }
 }
