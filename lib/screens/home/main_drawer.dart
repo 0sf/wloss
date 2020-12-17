@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:provider/provider.dart';
 
 import '../../screens/home/settings_page.dart';
+import '../../screens/home/notification_settings.dart';
 import '../../services/database.dart';
 import '../../model/user.dart';
 import '../../services/auth.dart';
 
 class MainDrawer extends StatefulWidget {
+  final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin;
+  MainDrawer({this.flutterLocalNotificationsPlugin});
   @override
   _MainDrawerState createState() => _MainDrawerState();
 }
@@ -47,6 +51,16 @@ class _MainDrawerState extends State<MainDrawer> {
     //         child: SettingsForm(),
     //       );
     //     });
+  }
+
+  void _showNotificationSettings() {
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) => NotificationSettings(
+                  flutterLocalNotificationsPlugin:
+                      widget.flutterLocalNotificationsPlugin,
+                ))); //NotificationSettings()
   }
 
   Widget userDetails({
@@ -140,6 +154,11 @@ class _MainDrawerState extends State<MainDrawer> {
                     'Edit',
                     Icons.settings,
                     _showSettingsPanel,
+                  ),
+                  buildListTile(
+                    'Notifications',
+                    Icons.notifications,
+                    _showNotificationSettings,
                   ),
                   buildListTile(
                     'Logout',

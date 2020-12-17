@@ -20,8 +20,9 @@ class SearchBloc {
   Stream<UnmodifiableListView<MealDetail>> get meals => _mealSubject.stream;
 
   Future<Null> _fetchMeal() async {
-    final response = await http.get("https://meals.free.beeceptor.com/meals");
-    //"https://meals.free.beeceptor.com/meals"); //(new Uri.http("10.0.2.2:3001", "/meals"));
+    final url1 = "https://wloss-app.firebaseio.com/meals.json";
+    final url2 = "https://meals.free.beeceptor.com/meals";
+    final response = await http.get(url1);
     if (response.statusCode == 200) {
       _meals = parseMeal(response.body);
     } else {

@@ -56,6 +56,7 @@ class _TempState extends State<Temp> {
                         ),
                         CGraph(pct: pct, dif: dif),
                         ShowExcercise(dif, userData.favoriteExcercise),
+                        
                       ],
                     ),
                   );

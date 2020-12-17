@@ -1,4 +1,5 @@
 import 'dart:collection';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 import 'package:wloss/bloc/meal_bloc.dart';
@@ -123,15 +124,22 @@ class FoodSearch extends SearchDelegate<MealDetail> {
                     style: TextStyle(color: Colors.blue),
                   ),
                   leading: Container(
-                      padding: EdgeInsets.all(2),
-                      height: 100,
-                      width: 100,
-                      child: (a.foodURL == null)
-                          ? Icon(Icons.fastfood)
-                          : Image.network(
-                              a.foodURL,
-                              fit: BoxFit.cover,
-                            )), //Icon(Icons.fastfood),
+                    padding: EdgeInsets.all(2),
+                    height: 100,
+                    width: 100,
+                    child: CachedNetworkImage(
+                      imageUrl: a.foodURL,
+                      placeholder: (_, __) => Icon(Icons.fastfood),
+                      fadeInDuration: Duration(microseconds: 0),
+                      fadeOutDuration: Duration(milliseconds: 0),
+                    ),
+                  ),
+                  // child: (a.foodURL == null)
+                  //     ? Icon(Icons.fastfood)
+                  //     : Image.network(
+                  //         a.foodURL,
+                  //         fit: BoxFit.cover,
+                  //       )), //Icon(Icons.fastfood),
                   onTap: () {
                     _startAddNewMealItem(context, a);
                   }))
