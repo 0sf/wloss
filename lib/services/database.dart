@@ -45,7 +45,7 @@ class DatabaseService {
     String foodTitle,
     String foodURL,
     double portion,
-    double caloriePortion,
+    int caloriePortion,
     double calorieConsumed,
   ) async {
     return await userCollection

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:wloss/enum/enums.dart';
+import 'package:wloss/widgets/dash/weightTrack.dart';
 
 import '../../widgets/dash/exercise.dart';
 import '../../services/calc/calc_tot.dart';
@@ -34,6 +36,8 @@ class _TempState extends State<Temp> {
 
             final double dif = (c.dailyCalorieCount() - tot.totalCalorie());
 
+            BMIWeightClass bmiWeightClass = c.bmiWeightClass(c.bmi());
+
             return (c.bmi() == -1 ||
                     c.bmr() == -1 ||
                     c.dailyCalorieCount() == -1)
@@ -56,7 +60,9 @@ class _TempState extends State<Temp> {
                         ),
                         CGraph(pct: pct, dif: dif),
                         ShowExcercise(dif, userData.favoriteExcercise),
-                        
+                        WeightTracker(
+                          bmiWeightClass: bmiWeightClass,
+                        )
                       ],
                     ),
                   );

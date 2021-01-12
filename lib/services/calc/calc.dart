@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import '../../model/user.dart';
+import '../../enum/enums.dart';
 
 class Calc {
   UserData user;
@@ -13,6 +14,22 @@ class Calc {
       return (user.weight / pow(user.height / 100, 2));
     } else {
       return -1;
+    }
+  }
+
+  BMIWeightClass bmiWeightClass(double bmi) {
+    if (bmi > 0 && bmi <= 18.4) {
+      //'Underweight';
+      return BMIWeightClass.underweight;
+    } else if (bmi >= 18.5 && bmi <= 24.9) {
+      //'Normal';
+      return BMIWeightClass.normal;
+    } else if (bmi >= 25 && bmi <= 29.9) {
+      //'Overweight';
+      return BMIWeightClass.overweight;
+    } else {
+      //'Obese';
+      return BMIWeightClass.obese;
     }
   }
 

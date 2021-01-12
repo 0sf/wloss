@@ -2,7 +2,7 @@ class MealDetail {
   final int id;
   final String name;
   final int portion;
-  final double calories;
+  final int calories;
   final String foodURL;
   final String state;
 
