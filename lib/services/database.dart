@@ -15,6 +15,13 @@ class DatabaseService {
   // final CollectionReference mealCollection =
   //     Firestore.instance.collection('user').document().collection('meal');
 
+  // Added as a test
+  Future updateWeight({double weight}) async {
+    return await userCollection.document(uid).setData({
+      "weight": weight,
+    }, merge: true);
+  }
+
   Future updateUserData({
     String firstName,
     String lastName,

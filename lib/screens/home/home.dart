@@ -20,28 +20,28 @@ class _HomeState extends State<Home> {
   final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
       FlutterLocalNotificationsPlugin();
 
-  @override
-  void initState() {
-    super.initState();
-    var initializationSettingsAndroid = AndroidInitializationSettings('wloss');
-    var initSetttings =
-        InitializationSettings(android: initializationSettingsAndroid);
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   var initializationSettingsAndroid = AndroidInitializationSettings('wloss');
+  //   var initSetttings =
+  //       InitializationSettings(android: initializationSettingsAndroid);
 
-    flutterLocalNotificationsPlugin.initialize(initSetttings,
-        onSelectNotification: onSelectNotification);
-  }
+  //   flutterLocalNotificationsPlugin.initialize(initSetttings,
+  //       onSelectNotification: onSelectNotification);
+  // }
 
-  Future onSelectNotification(String payload) {
-    Navigator.of(context).push(MaterialPageRoute(builder: (_) {
-      return NewScreen(
-        payload: payload,
-      );
-    }));
-  }
+  // Future onSelectNotification(String payload) {
+  //   Navigator.of(context).push(MaterialPageRoute(builder: (_) {
+  //     return NewScreen(
+  //       payload: payload,
+  //     );
+  //   }));
+  // }
 
-  void _showNotification() {
-    print("pressed");
-  }
+  // void _showNotification() {
+  //   print("pressed");
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -56,9 +56,9 @@ class _HomeState extends State<Home> {
         backgroundColor: Colors.brown.shade50,
         appBar: AppBar(
           actions: <Widget>[
-            IconButton(
-                icon: Icon(Icons.notifications),
-                onPressed: () => _showNotification())
+            // IconButton(
+            //     icon: Icon(Icons.notifications),
+            //     onPressed: () => _showNotification())
           ],
           title: Text('WLoss'),
           backgroundColor: Theme.of(context).primaryColor,
@@ -76,30 +76,30 @@ class _HomeState extends State<Home> {
     );
   }
 
-  showNotification() async {
-    var android = new AndroidNotificationDetails(
-        'id', 'channel ', 'description',
-        priority: Priority.high, importance: Importance.max);
-    var platform = new NotificationDetails(android: android);
-    await flutterLocalNotificationsPlugin.show(
-        0, 'Wloss', 'Flutter Local Notification Demo', platform,
-        payload: 'Welcome to the Local Notification demo ');
-  }
-}
+//   showNotification() async {
+//     var android = new AndroidNotificationDetails(
+//         'id', 'channel ', 'description',
+//         priority: Priority.high, importance: Importance.max);
+//     var platform = new NotificationDetails(android: android);
+//     await flutterLocalNotificationsPlugin.show(
+//         0, 'Wloss', 'Flutter Local Notification Demo', platform,
+//         payload: 'Welcome to the Local Notification demo ');
+//   }
+// }
 
-class NewScreen extends StatelessWidget {
-  final String payload;
+// class NewScreen extends StatelessWidget {
+//   final String payload;
 
-  NewScreen({
-    @required this.payload,
-  });
+//   NewScreen({
+//     @required this.payload,
+//   });
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(payload),
-      ),
-    );
-  }
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(
+//         title: Text(payload),
+//       ),
+//     );
+//   }
 }

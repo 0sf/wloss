@@ -24,12 +24,12 @@ class _NewMealItemState extends State<NewMealItem> {
   final _amountController = TextEditingController();
 
   void _submitData(String uid) async {
-    if (_amountController.text.isEmpty) {
+    if (_amountController.text.isEmpty && amount == 0.0) {
       return;
     }
 
     final enteredTitle = widget.meal.name;
-    final enteredAmount = double.parse(_amountController.text);
+    final enteredAmount = amount; //double.parse(_amountController.text);
     final perGram = widget.meal.portion;
     final perCalorie = widget.meal.calories;
     final foodURL = widget.meal.foodURL;
@@ -70,23 +70,14 @@ class _NewMealItemState extends State<NewMealItem> {
   }
 
   showPickerArray(BuildContext context) {
-    double valueLable = 0;
     Picker(
-        footer: Text("$valueLable"),
         adapter: PickerDataAdapter<String>(
           pickerdata: JsonDecoder().convert(PickerData),
           isArray: true,
         ),
-        hideHeader: false,
-        onSelect: (Picker picker, int i, List value) {
-          setState(() {
-            // print(picker.getSelectedValues());
-            valueLable = double.parse(picker.getSelectedValues()[0]);
-            // print(valueLable);
-          });
-        },
+        hideHeader: true,
         selecteds: [0, 0, 0],
-        title: Text("Please Select"),
+        title: Text("Select your Portion Size"),
         selectedTextStyle: TextStyle(color: Colors.blue),
         cancel: FlatButton(
             onPressed: () {
@@ -94,9 +85,12 @@ class _NewMealItemState extends State<NewMealItem> {
             },
             child: Icon(Icons.cancel)),
         onConfirm: (Picker picker, List value) {
-          print(value.toString());
-          print(picker.getSelectedValues());
-          print(convertedInput(picker.getSelectedValues()));
+          // print(value.toString());
+          // print(picker.getSelectedValues());
+          // print(convertedInput(picker.getSelectedValues()));
+          setState(() {
+            amount = convertedInput(picker.getSelectedValues());
+          });
         }).showDialog(context);
   }
 
@@ -120,13 +114,16 @@ class _NewMealItemState extends State<NewMealItem> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
                     RaisedButton(
-                      child: Text('Picker Show (Array)'),
+                      child: Text('Select Portion Size'),
                       onPressed: () {
                         showPickerArray(context);
                       },
                     ),
+                    SizedBox(
+                      height: 20,
+                    ),
                     Text(
-                      widget.meal.name,
+                      widget.meal.name + " | " + amount.toString() + "g",
                       style: TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
@@ -135,12 +132,12 @@ class _NewMealItemState extends State<NewMealItem> {
                     SizedBox(
                       height: 20,
                     ),
-                    TextField(
-                      decoration: InputDecoration(labelText: 'Amount / g'),
-                      controller: _amountController,
-                      keyboardType: TextInputType.number,
-                      onSubmitted: (_) => _submitData(user.uid),
-                    ),
+                    // TextField(
+                    //   decoration: InputDecoration(labelText: 'Amount / g'),
+                    //   controller: _amountController,
+                    //   keyboardType: TextInputType.number,
+                    //   onSubmitted: (_) => _submitData(user.uid),
+                    // ),
                     SizedBox(
                       height: 20,
                     ),

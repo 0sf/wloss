@@ -17,6 +17,15 @@ class Calc {
     }
   }
 
+  double goalWeight() {
+    return 21.7 * pow((user.height / 100), 2);
+  }
+
+  double schedule() {
+    var gw = goalWeight();
+    return (user.weight - gw) / 0.45;
+  }
+
   BMIWeightClass bmiWeightClass(double bmi) {
     if (bmi > 0 && bmi <= 18.4) {
       //'Underweight';
@@ -58,9 +67,16 @@ class Calc {
   }
 
   double dailyCalorieCount() {
+    BMIWeightClass bmiw = bmiWeightClass(bmi());
     if (bmr() == -1) {
       return -1;
+    } else if (bmiw == BMIWeightClass.obese ||
+        bmiw == BMIWeightClass.overweight) {
+      return (bmr() * user.activityFactor) - 500;
+    } else if (bmiw == BMIWeightClass.underweight) {
+      return (bmr() * user.activityFactor) + 500;
+    } else {
+      return bmr() * user.activityFactor;
     }
-    return bmr() * user.activityFactor;
   }
 }

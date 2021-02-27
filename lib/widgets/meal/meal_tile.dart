@@ -53,7 +53,8 @@ class _MealTileState extends State<MealTile> {
                   formatter.format(widget.meal.calorieConsumed).toString() +
                   " KCal"),
               Text("Amount: " +
-                  formatter.format(widget.meal.portion).toString()),
+                  formatter.format(widget.meal.portion).toString() +
+                  "g"),
             ],
           ),
         ),

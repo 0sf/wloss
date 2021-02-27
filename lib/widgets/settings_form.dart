@@ -16,6 +16,7 @@ class _SettingsFormState extends State<SettingsForm> {
   String lastName;
   String gender;
   DateTime dob;
+  int age;
   double _currentHeight;
   double _currentWeight;
   double _currentActivityFactor;
@@ -29,101 +30,174 @@ class _SettingsFormState extends State<SettingsForm> {
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             UserData userData = snapshot.data;
-            return Form(
-              key: _formKey,
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Column(
-                  children: <Widget>[
-                    TextFormField(
-                      initialValue: userData.firstName.toString(),
-                      decoration: InputDecoration(
-                        labelText: 'First Name',
-                        enabledBorder: new UnderlineInputBorder(
-                          borderSide: BorderSide(color: Colors.grey, width: 1),
-                        ),
-                      ),
-                      validator: (val) =>
-                          val.isEmpty ? 'Please enter your first name' : null,
-                      onChanged: (val) => setState(() => firstName = val),
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    TextFormField(
-                      initialValue: userData.height.toString(),
-                      decoration: InputDecoration(
-                        labelText: 'Height (cm)',
-                        enabledBorder: new UnderlineInputBorder(
-                          borderSide: BorderSide(color: Colors.grey, width: 1),
-                        ),
-                      ),
-                      validator: (val) =>
-                          val.isEmpty ? 'Please enter height' : null,
-                      onChanged: (val) =>
-                          setState(() => _currentHeight = double.parse(val)),
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    TextFormField(
-                      decoration: InputDecoration(
-                        labelText: 'Weight (kg)',
-                        enabledBorder: new UnderlineInputBorder(
-                          borderSide: BorderSide(color: Colors.grey, width: 1),
-                        ),
-                      ),
-                      initialValue: userData.weight.toString(),
-                      validator: (val) =>
-                          val.isEmpty ? 'Please enter weight' : null,
-                      onChanged: (val) =>
-                          setState(() => _currentWeight = double.parse(val)),
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    TextFormField(
-                      decoration: InputDecoration(
-                        labelText: 'Activity Factor',
-                        enabledBorder: new UnderlineInputBorder(
-                          borderSide: BorderSide(color: Colors.grey, width: 1),
-                        ),
-                      ),
-                      initialValue: userData.activityFactor.toString(),
-                      validator: (val) =>
-                          val.isEmpty ? 'Please enter activityfactor' : null,
-                      onChanged: (val) => setState(
-                          () => _currentActivityFactor = double.parse(val)),
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    RaisedButton(
-                      color: Colors.red.shade600,
-                      child: Text(
-                        'Update',
-                        style: TextStyle(color: Colors.white),
-                      ),
-                      onPressed: () async {
-                        if (_formKey.currentState.validate()) {
-                          await DatabaseService(uid: user.uid).updateUserData(
-                            lastName: userData.lastName,
-                            firstName: userData.firstName,
-                            dob: userData.dob,
-                            gender: userData.gender,
-                            favoriteExcercise: userData.favoriteExcercise,
-                            age: userData.age,
-                            height: _currentHeight ?? userData.height,
-                            weight: _currentWeight ?? userData.weight,
-                            activityFactor: _currentActivityFactor ??
-                                userData.activityFactor,
-                          );
 
-                          Navigator.pop(context);
-                        }
-                      },
-                    ),
-                  ],
+            String iniGender = userData.gender;
+
+            return SingleChildScrollView(
+              child: Form(
+                key: _formKey,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                    children: <Widget>[
+                      TextFormField(
+                        initialValue: userData.firstName.toString(),
+                        decoration: InputDecoration(
+                          labelText: 'First Name',
+                          enabledBorder: new UnderlineInputBorder(
+                            borderSide:
+                                BorderSide(color: Colors.grey, width: 1),
+                          ),
+                        ),
+                        validator: (val) =>
+                            val.isEmpty ? 'Please enter your first name' : null,
+                        onChanged: (val) => setState(() => firstName = val),
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      TextFormField(
+                        initialValue: userData.lastName.toString(),
+                        decoration: InputDecoration(
+                          labelText: 'Last Name',
+                          enabledBorder: new UnderlineInputBorder(
+                            borderSide:
+                                BorderSide(color: Colors.grey, width: 1),
+                          ),
+                        ),
+                        validator: (val) =>
+                            val.isEmpty ? 'Please enter your last name' : null,
+                        onChanged: (val) => setState(() => lastName = val),
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      TextFormField(
+                        keyboardType: TextInputType.number,
+                        initialValue: userData.age.toString(),
+                        decoration: InputDecoration(
+                          labelText: 'Age',
+                          enabledBorder: new UnderlineInputBorder(
+                            borderSide:
+                                BorderSide(color: Colors.grey, width: 1),
+                          ),
+                        ),
+                        validator: (val) =>
+                            val.isEmpty ? 'Please enter your age' : null,
+                        onChanged: (val) =>
+                            setState(() => age = int.parse(val)),
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      TextFormField(
+                        keyboardType: TextInputType.number,
+                        initialValue: userData.height.toString(),
+                        decoration: InputDecoration(
+                          labelText: 'Height (cm)',
+                          enabledBorder: new UnderlineInputBorder(
+                            borderSide:
+                                BorderSide(color: Colors.grey, width: 1),
+                          ),
+                        ),
+                        validator: (val) =>
+                            val.isEmpty ? 'Please enter height' : null,
+                        onChanged: (val) =>
+                            setState(() => _currentHeight = double.parse(val)),
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      TextFormField(
+                        decoration: InputDecoration(
+                          labelText: 'Weight (kg)',
+                          enabledBorder: new UnderlineInputBorder(
+                            borderSide:
+                                BorderSide(color: Colors.grey, width: 1),
+                          ),
+                        ),
+                        keyboardType: TextInputType.number,
+                        initialValue: userData.weight.toString(),
+                        validator: (val) =>
+                            val.isEmpty ? 'Please enter weight' : null,
+                        onChanged: (val) =>
+                            setState(() => _currentWeight = double.parse(val)),
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      TextFormField(
+                        decoration: InputDecoration(
+                          labelText: 'Activity Factor',
+                          enabledBorder: new UnderlineInputBorder(
+                            borderSide:
+                                BorderSide(color: Colors.grey, width: 1),
+                          ),
+                        ),
+                        keyboardType: TextInputType.number,
+                        initialValue: userData.activityFactor.toString(),
+                        validator: (val) =>
+                            val.isEmpty ? 'Please enter activityfactor' : null,
+                        onChanged: (val) => setState(
+                            () => _currentActivityFactor = double.parse(val)),
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          Text('Gender'),
+                          new DropdownButton<String>(
+                            value: iniGender,
+                            hint: Text('Gender'),
+                            items:
+                                <String>['Male', 'Female'].map((String value) {
+                              return DropdownMenuItem<String>(
+                                value: value,
+                                child: Text(value),
+                              );
+                            }).toList(),
+                            onChanged: (value) {
+                              setState(() {
+                                gender = value;
+                                iniGender = value;
+                                print(iniGender);
+                              });
+                            },
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      RaisedButton(
+                        color: Colors.red.shade600,
+                        child: Text(
+                          'Update',
+                          style: TextStyle(color: Colors.white),
+                        ),
+                        onPressed: () async {
+                          if (_formKey.currentState.validate()) {
+                            await DatabaseService(uid: user.uid).updateUserData(
+                              lastName: userData.lastName,
+                              firstName: userData.firstName,
+                              dob: userData.dob,
+                              gender: gender,
+                              favoriteExcercise: userData.favoriteExcercise,
+                              age: userData.age,
+                              height: _currentHeight ?? userData.height,
+                              weight: _currentWeight ?? userData.weight,
+                              activityFactor: _currentActivityFactor ??
+                                  userData.activityFactor,
+                            );
+
+                            Navigator.pop(context);
+                          }
+                        },
+                      ),
+                    ],
+                  ),
                 ),
               ),
             );
