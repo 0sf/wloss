@@ -56,8 +56,9 @@ class _RegisterState extends State<Register> {
   double height;
   double weight;
   double activityFactor;
-  List<String> favoriteExcercise = List();
+  List<String> favoriteExcercise = [];
 
+  // ignore: missing_return
   String labVal(double val) {
     for (int i = 0; i < datas.length; i++) {
       if (datas[i].value == val) {
@@ -81,7 +82,7 @@ class _RegisterState extends State<Register> {
               },
             ),
             actions: <Widget>[
-              FlatButton(
+              TextButton(
                 child: Text("Select"),
                 onPressed: () => Navigator.of(context).pop(),
               )
@@ -116,7 +117,7 @@ class _RegisterState extends State<Register> {
               title: Text("SignUp | WLoss"),
               elevation: 0.0,
               actions: <Widget>[
-                FlatButton.icon(
+                TextButton.icon(
                   icon: Icon(Icons.person),
                   label: Text('Sign In'),
                   onPressed: () {
@@ -207,8 +208,9 @@ class _RegisterState extends State<Register> {
                                     ? 'Select Your Date of Birth'
                                     : 'Date of Birth: ${DateFormat.yMd().format(_dob)}'),
                               ),
-                              FlatButton(
-                                textColor: Theme.of(context).primaryColor,
+                              TextButton(
+                                style: TextButton.styleFrom(
+                                    primary: Theme.of(context).primaryColor),
                                 onPressed: _presentDatePicker,
                                 child: Text(
                                   'Choose Date',
@@ -287,8 +289,11 @@ class _RegisterState extends State<Register> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: <Widget>[
-                            FlatButton(
-                              textColor: Theme.of(context).primaryColor,
+                            TextButton(
+                              style: TextButton.styleFrom(
+                                primary: Theme.of(context)
+                                    .primaryColor, // foreground
+                              ),
                               child: Text(
                                 "Excercises",
                                 style: TextStyle(
@@ -328,8 +333,11 @@ class _RegisterState extends State<Register> {
                         SizedBox(
                           height: 20,
                         ),
-                        RaisedButton(
-                            color: Colors.pink.shade400,
+                        ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              primary: Colors.pink.shade400, // background
+                              onPrimary: Colors.white, // foreground
+                            ),
                             child: Text(
                               'Register',
                               style: TextStyle(

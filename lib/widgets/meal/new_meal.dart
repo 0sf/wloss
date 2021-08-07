@@ -56,6 +56,7 @@ class _NewMealItemState extends State<NewMealItem> {
 
   double convertedInput(List value) {
     double amount = double.parse(value[0]);
+
     double fraction = 1;
     if (value[1] == "--") {
       fraction = 1;
@@ -79,7 +80,7 @@ class _NewMealItemState extends State<NewMealItem> {
         selecteds: [0, 0, 0],
         title: Text("Select your Portion Size"),
         selectedTextStyle: TextStyle(color: Colors.blue),
-        cancel: FlatButton(
+        cancel: TextButton(
             onPressed: () {
               Navigator.pop(context);
             },
@@ -113,7 +114,7 @@ class _NewMealItemState extends State<NewMealItem> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
-                    RaisedButton(
+                    ElevatedButton(
                       child: Text('Select Portion Size'),
                       onPressed: () {
                         showPickerArray(context);
@@ -141,9 +142,14 @@ class _NewMealItemState extends State<NewMealItem> {
                     SizedBox(
                       height: 20,
                     ),
-                    RaisedButton(
-                      color: Theme.of(context).primaryColor,
-                      textColor: Theme.of(context).textTheme.button.color,
+                    ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        primary: Theme.of(context).primaryColor, // background
+                        textStyle: TextStyle(
+                          color: Theme.of(context).textTheme.button.color,
+                        ),
+                        onPrimary: Colors.white, // foreground
+                      ),
                       onPressed: () => _submitData(user.uid),
                       child: Text('Add Meal Item'),
                     )

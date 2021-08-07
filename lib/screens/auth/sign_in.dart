@@ -30,7 +30,7 @@ class _SignInState extends State<SignIn> {
         : Scaffold(
             appBar: AppBar(
               actions: <Widget>[
-                FlatButton.icon(
+                TextButton.icon(
                     icon: Icon(Icons.person),
                     label: Text('Register'),
                     onPressed: () {
@@ -87,8 +87,11 @@ class _SignInState extends State<SignIn> {
                         SizedBox(
                           height: 20,
                         ),
-                        RaisedButton(
-                            color: Colors.pink.shade400,
+                        ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              primary: Colors.pink.shade400, // background
+                              onPrimary: Colors.white, // foreground
+                            ),
                             child: Text(
                               'Sign In',
                               style: TextStyle(

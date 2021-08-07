@@ -1,12 +1,3 @@
-// enum Exercise {
-//   Running,
-//   Jogging,
-//   Walking,
-//   Swimming,
-//   Yoga,
-//   Aerobics,
-// }
-
 class User {
   final String uid;
   User({this.uid});

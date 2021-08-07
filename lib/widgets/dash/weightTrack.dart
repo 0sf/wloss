@@ -15,25 +15,29 @@ class _WeightTrackerState extends State<WeightTracker> {
   @override
   Widget build(BuildContext context) {
     Calc c = Calc(widget.userData);
+
     final BMIWeightClass bmiWeightClass = c.bmiWeightClass(c.bmi());
     var goalweight = c.goalWeight();
     var shedule = c.schedule();
 
     if (bmiWeightClass == BMIWeightClass.underweight) {
       return Card(
-        child: Text("Underweight" "Goal Weight: " +
+        child: Text("Goal Weight: " +
             goalweight.toStringAsFixed(2) +
-            "Schedule: " +
-            shedule.toStringAsFixed(2)),
+            " Kg\n"
+                "Schedule: " +
+            shedule.toStringAsFixed(2) +
+            " weeks"),
       );
     } else if (bmiWeightClass == BMIWeightClass.overweight ||
         bmiWeightClass == BMIWeightClass.obese) {
       return Card(
-        child: Text("Overweight, " +
-            "Goal Weight: " +
+        child: Text("Goal Weight: " +
             goalweight.toStringAsFixed(2) +
+            " Kg\n" +
             " Schedule: " +
-            shedule.toStringAsFixed(2)),
+            shedule.toStringAsFixed(2) +
+            " weeks"),
       );
     } else {
       return Container();

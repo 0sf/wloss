@@ -24,6 +24,17 @@ class _NotificationSettingsState extends State<NotificationSettings> {
     await widget.flutterLocalNotificationsPlugin.cancelAll();
   }
 
+  showSchdNotifications() async {
+    final List<ActiveNotification> activeNotifications = await widget
+        .flutterLocalNotificationsPlugin
+        .resolvePlatformSpecificImplementation<
+            AndroidFlutterLocalNotificationsPlugin>()
+        ?.getActiveNotifications();
+
+    print(activeNotifications.map((e) =>
+        print(e.id.toString() + e.body.toString() + e.title.toString())));
+  }
+
   showAllNotifcations() async {
     var notify = await widget.flutterLocalNotificationsPlugin
         .pendingNotificationRequests();
@@ -140,11 +151,12 @@ class _NotificationSettingsState extends State<NotificationSettings> {
               //   },
               //   secondary: const Icon(Icons.notifications_none_outlined),
               // ),
-              RaisedButton(
+              ElevatedButton(
                 onPressed: () {
                   zonedSchedule();
-                  Scaffold.of(context).showSnackBar(
-                    SnackBar(
+
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
                       content:
                           Text('Notifications enabled from tomorrow onwards!'),
                     ),
@@ -154,11 +166,11 @@ class _NotificationSettingsState extends State<NotificationSettings> {
                   'Schedule',
                 ),
               ),
-              RaisedButton(
+              ElevatedButton(
                 onPressed: () {
                   cancelAllNotifications();
-                  Scaffold.of(context).showSnackBar(
-                    SnackBar(
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
                       content: Text('Notifications Disabled!'),
                     ),
                   );
@@ -167,8 +179,11 @@ class _NotificationSettingsState extends State<NotificationSettings> {
                   'Cancel All',
                 ),
               ),
-              RaisedButton(
-                onPressed: showAllNotifcations,
+              ElevatedButton(
+                onPressed: () {
+                  showAllNotifcations();
+                  showSchdNotifications();
+                },
                 child: new Text(
                   'Get List',
                 ),

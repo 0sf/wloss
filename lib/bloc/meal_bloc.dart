@@ -21,7 +21,7 @@ class SearchBloc {
 
   Future<Null> _fetchMeal() async {
     final url1 = "https://wloss-app.firebaseio.com/meals.json";
-    final url2 = "https://meals.free.beeceptor.com/meals";
+    // final url2 = "https://meals.free.beeceptor.com/meals";
     final response = await http.get(url1);
     if (response.statusCode == 200) {
       _meals = parseMeal(response.body);

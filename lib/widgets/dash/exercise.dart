@@ -27,7 +27,7 @@ class ShowExcercise extends StatelessWidget {
                 itemBuilder: (BuildContext ctx, int index) {
                   return Container(
                     width: 100,
-                    child: FlatButton(
+                    child: TextButton(
                       onPressed: () {
                         showDialog(
                             context: context,
