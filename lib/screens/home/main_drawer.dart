@@ -129,7 +129,6 @@ class _MainDrawerState extends State<MainDrawer> {
                     width: double.infinity,
                     padding: EdgeInsets.all(20),
                     alignment: Alignment.centerLeft,
-                    color: Theme.of(context).accentColor,
                     child: Text(
                       'WLoss',
                       style: TextStyle(

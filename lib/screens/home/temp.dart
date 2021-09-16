@@ -55,11 +55,14 @@ class _TempState extends State<Temp> {
                           bmi: c.bmi(),
                           bmr: c.bmr(),
                         ),
-                        CGraph(pct: pct, dif: dif),
-                        ShowExcercise(dif, userData.favoriteExcercise),
+                        SizedBox(
+                          height: 20,
+                        ),
                         WeightTracker(
                           userData: userData,
-                        )
+                        ),
+                        CGraph(pct: pct, dif: dif),
+                        ShowExcercise(dif, userData.favoriteExcercise),
                       ],
                     ),
                   );

@@ -22,9 +22,8 @@ class MyApp extends StatelessWidget {
         title: "WLoss",
         theme: ThemeData(
             primarySwatch: Colors.purple,
-            accentColor: Colors.deepOrange,
             fontFamily: 'Lato',
-            textTheme: TextTheme(
+            textTheme: const TextTheme(
                 headline1: TextStyle(
               fontSize: 26,
               fontWeight: FontWeight.bold,

@@ -55,14 +55,20 @@ class _NewMealItemState extends State<NewMealItem> {
   }
 
   double convertedInput(List value) {
-    double amount = double.parse(value[0]);
+    // value = [1, 0.1, cup]
 
+    double amount = 1;
     double fraction = 1;
-    if (value[1] == "--") {
-      fraction = 1;
+
+    if (value[0] == "--" && value[1] == "--") {
+      return 0;
+    } else if (value[0] == "--") {
+      amount = 1;
+      fraction = double.parse(value[1]);
     } else {
-      fraction = double.parse(value[1][0]) / double.parse(value[1][2]);
+      fraction = double.parse(value[1]);
     }
+
     var val = value[2].toString();
     var index = Mes.keys.toList().indexOf(val);
     double unit = Mes.values.toList()[index];
@@ -87,7 +93,7 @@ class _NewMealItemState extends State<NewMealItem> {
             child: Icon(Icons.cancel)),
         onConfirm: (Picker picker, List value) {
           // print(value.toString());
-          // print(picker.getSelectedValues());
+          print(picker.getSelectedValues());
           // print(convertedInput(picker.getSelectedValues()));
           setState(() {
             amount = convertedInput(picker.getSelectedValues());
