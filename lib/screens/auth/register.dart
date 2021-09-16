@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -136,6 +137,21 @@ class _RegisterState extends State<Register> {
                   child: SingleChildScrollView(
                     child: Column(
                       children: <Widget>[
+                        RichText(
+                          text: TextSpan(
+                              style: TextStyle(
+                                  color: Colors.black54, fontSize: 16),
+                              children: <TextSpan>[
+                                TextSpan(text: 'Already have an account? '),
+                                TextSpan(
+                                    text: 'Login',
+                                    recognizer: new TapGestureRecognizer()
+                                      ..onTap = () => widget.toggleView(),
+                                    style: TextStyle(
+                                        color: Colors.blue[200],
+                                        fontWeight: FontWeight.bold)),
+                              ]),
+                        ),
                         SizedBox(
                           height: 20.0,
                         ),

@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
             primarySwatch: Colors.purple,
             fontFamily: 'Lato',
-            textTheme: const TextTheme(
+            textTheme: TextTheme(
                 headline1: TextStyle(
               fontSize: 26,
               fontWeight: FontWeight.bold,

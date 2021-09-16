@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 import '../../widgets/error/loading.dart';
@@ -132,6 +133,8 @@ class _SignInState extends State<SignIn> {
                                 TextSpan(text: 'Don\'t have an account yet? '),
                                 TextSpan(
                                     text: 'Register',
+                                    recognizer: new TapGestureRecognizer()
+                                      ..onTap = () => widget.toggleView(),
                                     style: TextStyle(
                                         color: Colors.blue[200],
                                         fontWeight: FontWeight.bold)),
