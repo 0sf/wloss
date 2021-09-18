@@ -87,7 +87,7 @@ class DatabaseService {
         uid: uid,
         firstName: snapshot.data['firstName'],
         lastName: snapshot.data['lastName'],
-        gender: snapshot.data['gender'],
+        gender: snapshot.data['gender'] ?? "male",
         age: snapshot.data['age'],
         dob: DateTime.parse(snapshot.data['dob'].toDate().toString()),
         height: snapshot.data['height'],

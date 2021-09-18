@@ -35,6 +35,26 @@ class _MealDashboardState extends State<MealDashboard> {
     });
   }
 
+  // Column(
+  //           children: <Widget>[
+  //             Container(
+  //               child: Column(
+  //                 children: <Widget>[
+  //                   Padding(
+  //                     padding: const EdgeInsets.all(8.0),
+  //                     child: Text(
+  //                       "Date: " + DateFormat('dd-MM-yyyy').format(cDate),
+  //                       style: TextStyle(
+  //                         fontSize: 20,
+  //                         fontWeight: FontWeight.bold,
+  //                       ),
+  //                     ),
+  //                   ),
+  //                 ],
+  //               ),
+  //             ),
+  //             Container(child: MealList(cDate)),
+
   @override
   Widget build(BuildContext context) {
     final user = Provider.of<User>(context);
@@ -50,25 +70,26 @@ class _MealDashboardState extends State<MealDashboard> {
             ],
             elevation: 0.0,
           ),
-          body: Column(
+          body: Stack(
             children: <Widget>[
-              Container(
-                child: Column(
-                  children: <Widget>[
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text(
-                        "Date: " + DateFormat('dd-MM-yyyy').format(cDate),
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
+              MealList(cDate),
+              Align(
+                alignment: Alignment.topCenter,
+                child: Container(
+                  margin: EdgeInsets.only(top: 20),
+                  alignment: Alignment.center,
+                  height: 30,
+                  width: 300,
+                  color: Colors.blue,
+                  child: Text(
+                    "Date: " + DateFormat('dd-MM-yyyy').format(cDate),
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
                     ),
-                  ],
+                  ),
                 ),
               ),
-              MealList(cDate),
             ],
           ),
           floatingActionButtonLocation:

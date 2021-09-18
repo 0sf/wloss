@@ -25,8 +25,8 @@ class _WeightTrackerState extends State<WeightTracker> {
         // mainAxisAlignment: MainAxisAlignment.spaceAround,
         // crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text("Goal Weightsss: " + goalweight.toStringAsFixed(2) + " Kg\n"),
-          Text("Schedule: " + shedule.toStringAsFixed(2) + " weeks"),
+          Text("Goal Weightsss: " + goalweight.toStringAsFixed(1) + " Kg\n"),
+          Text("Schedule: " + shedule.toStringAsFixed(0) + " weeks"),
         ],
       );
     } else if (bmiWeightClass == BMIWeightClass.overweight ||
@@ -37,11 +37,11 @@ class _WeightTrackerState extends State<WeightTracker> {
           Padding(
             padding: const EdgeInsets.all(15.0),
             child:
-                Text("Goal Weight\n" + goalweight.toStringAsFixed(2) + " Kg"),
+                Text("Goal Weight\n" + goalweight.toStringAsFixed(1) + " Kg"),
           ),
           Padding(
             padding: const EdgeInsets.all(15.0),
-            child: Text("Schedule\n" + shedule.toStringAsFixed(2) + " weeks"),
+            child: Text("Schedule\n" + shedule.toStringAsFixed(0) + " weeks"),
           ),
         ],
       );

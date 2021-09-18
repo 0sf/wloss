@@ -116,6 +116,7 @@ class FoodSearch extends SearchDelegate<MealDetail> {
         }
         final results = snapshot.data
             .where((element) => element.name.toLowerCase().contains(query));
+        results.map((e) => print(e.foodURL)).toString();
         return ListView(
           children: results
               .map<ListTile>((a) => ListTile(
@@ -130,8 +131,7 @@ class FoodSearch extends SearchDelegate<MealDetail> {
                     child: CachedNetworkImage(
                       imageUrl: a.foodURL,
                       placeholder: (_, __) => Icon(Icons.fastfood),
-                      fadeInDuration: Duration(microseconds: 0),
-                      fadeOutDuration: Duration(milliseconds: 0),
+                      errorWidget: (context, url, error) => Icon(Icons.error),
                     ),
                   ),
                   // child: (a.foodURL == null)

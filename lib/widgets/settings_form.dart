@@ -30,8 +30,7 @@ class _SettingsFormState extends State<SettingsForm> {
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             UserData userData = snapshot.data;
-
-            String iniGender = userData.gender;
+            String _iniGender = userData.gender;
 
             return SingleChildScrollView(
               child: Form(
@@ -149,7 +148,7 @@ class _SettingsFormState extends State<SettingsForm> {
                         children: <Widget>[
                           Text('Gender'),
                           new DropdownButton<String>(
-                            value: iniGender,
+                            value: _iniGender,
                             hint: Text('Gender'),
                             items:
                                 <String>['Male', 'Female'].map((String value) {
@@ -158,11 +157,10 @@ class _SettingsFormState extends State<SettingsForm> {
                                 child: Text(value),
                               );
                             }).toList(),
-                            onChanged: (value) {
+                            onChanged: (String value) {
                               setState(() {
+                                _iniGender = value;
                                 gender = value;
-                                iniGender = value;
-                                print(iniGender);
                               });
                             },
                           ),
@@ -186,7 +184,7 @@ class _SettingsFormState extends State<SettingsForm> {
                               lastName: userData.lastName,
                               firstName: userData.firstName,
                               dob: userData.dob,
-                              gender: gender,
+                              gender: gender ?? "Male",
                               favoriteExcercise: userData.favoriteExcercise,
                               age: userData.age,
                               height: _currentHeight ?? userData.height,

@@ -27,6 +27,18 @@ class _MealListState extends State<MealList> {
     return false;
   }
 
+  void _addToList(List<Meal> meals, DateTime date) {
+    var i = 0;
+    for (var meal in meals) {
+      if (date.day == meal.foodId.day &&
+          date.month == meal.foodId.month &&
+          date.year == meal.foodId.year) {
+        mealList[i] = meal;
+        i++;
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final user = Provider.of<User>(context, listen: false);
@@ -43,6 +55,18 @@ class _MealListState extends State<MealList> {
     //         meal: meals[index],
     //         deleteFn: _deleteMeal,
     //       );
+    //     });
+
+    // ListView.builder(
+    //     itemCount: meals.length,
+    //     shrinkWrap: true,
+    //     itemBuilder: (context, index) {
+    //       return isDate(widget.date, meals[index])
+    //           ? MealTile(
+    //               meal: meals[index],
+    //               deleteFn: _deleteMeal,
+    //             )
+    //           : Text('');
     //     });
 
     return StreamBuilder<List<Meal>>(

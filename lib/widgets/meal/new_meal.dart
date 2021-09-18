@@ -62,10 +62,14 @@ class _NewMealItemState extends State<NewMealItem> {
 
     if (value[0] == "--" && value[1] == "--") {
       return 0;
-    } else if (value[0] == "--") {
+    } else if (value[0] == "--" && value[1] != "--") {
       amount = 1;
       fraction = double.parse(value[1]);
+    } else if (value[0] != "--" && value[1] == "--") {
+      fraction = 1;
+      amount = double.parse(value[0]);
     } else {
+      amount = double.parse(value[0]);
       fraction = double.parse(value[1]);
     }
 
