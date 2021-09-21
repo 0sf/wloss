@@ -138,57 +138,58 @@ class _NotificationSettingsState extends State<NotificationSettings> {
       ),
       body: Builder(
         builder: (context) => Container(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              // SwitchListTile(
-              //   title: const Text('Notification'),
-              //   value: _notificationState,
-              //   onChanged: (bool value) {
-              //     setState(() {
-              //       _notificationState = value;
-              //     });
-              //   },
-              //   secondary: const Icon(Icons.notifications_none_outlined),
-              // ),
-              ElevatedButton(
-                onPressed: () {
-                  zonedSchedule();
+          child: Center(
+            child: Column(
+              children: [
+                // SwitchListTile(
+                //   title: const Text('Notification'),
+                //   value: _notificationState,
+                //   onChanged: (bool value) {
+                //     setState(() {
+                //       _notificationState = value;
+                //     });
+                //   },
+                //   secondary: const Icon(Icons.notifications_none_outlined),
+                // ),
+                ElevatedButton(
+                  onPressed: () {
+                    zonedSchedule();
 
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(
-                      content:
-                          Text('Notifications enabled from tomorrow onwards!'),
-                    ),
-                  );
-                },
-                child: new Text(
-                  'Schedule',
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text(
+                            'Notifications enabled from tomorrow onwards!'),
+                      ),
+                    );
+                  },
+                  child: new Text(
+                    'Schedule',
+                  ),
                 ),
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  cancelAllNotifications();
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(
-                      content: Text('Notifications Disabled!'),
-                    ),
-                  );
-                },
-                child: new Text(
-                  'Cancel All',
+                ElevatedButton(
+                  onPressed: () {
+                    cancelAllNotifications();
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text('Notifications Disabled!'),
+                      ),
+                    );
+                  },
+                  child: new Text(
+                    'Cancel All',
+                  ),
                 ),
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  showAllNotifcations();
-                  showSchdNotifications();
-                },
-                child: new Text(
-                  'Get List',
+                ElevatedButton(
+                  onPressed: () {
+                    showAllNotifcations();
+                    showSchdNotifications();
+                  },
+                  child: new Text(
+                    'Get List',
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

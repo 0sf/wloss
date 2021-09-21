@@ -40,7 +40,7 @@ class _SearchAddState extends State<SearchAdd> {
               child: const Text('Manual Add', style: TextStyle(fontSize: 20)),
             ),
           ),
-          Container(child: MealList(DateTime.now())),
+          Expanded(child: Container(child: MealList(DateTime.now()))),
         ],
       ),
     );
@@ -127,7 +127,7 @@ class FoodSearch extends SearchDelegate<MealDetail> {
         }
         final results = snapshot.data
             .where((element) => element.name.toLowerCase().contains(query));
-        results.map((e) => print(e.foodURL)).toString();
+
         return ListView(
           children: results
               .map<ListTile>((a) => ListTile(
@@ -145,12 +145,6 @@ class FoodSearch extends SearchDelegate<MealDetail> {
                       errorWidget: (context, url, error) => Icon(Icons.error),
                     ),
                   ),
-                  // child: (a.foodURL == null)
-                  //     ? Icon(Icons.fastfood)
-                  //     : Image.network(
-                  //         a.foodURL,
-                  //         fit: BoxFit.cover,
-                  //       )), //Icon(Icons.fastfood),
                   onTap: () {
                     _startAddNewMealItem(context, a);
                   }))

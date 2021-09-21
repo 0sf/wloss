@@ -51,6 +51,13 @@ class _NewMealItemState extends State<NewMealItem> {
       perCalorie,
       consumedCalorie,
     );
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        backgroundColor: Colors.green,
+        duration: Duration(seconds: 1),
+        content: Text('Meal Added! '),
+      ),
+    );
     Navigator.of(context).pop();
   }
 

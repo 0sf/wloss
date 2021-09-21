@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:wloss/services/database.dart';
+
+import '../../services/database.dart';
+import '../../model/key_value.dart';
 import '../model/user.dart';
 
 class SettingsForm extends StatefulWidget {
@@ -11,6 +13,18 @@ class SettingsForm extends StatefulWidget {
 class _SettingsFormState extends State<SettingsForm> {
   final _formKey = GlobalKey<FormState>();
 
+  // Activity Factor
+  List<KeyValueModel> datas = [
+    KeyValueModel(key: "Sedentary", value: 1.200),
+    KeyValueModel(key: "Lightly Active", value: 1.375),
+    KeyValueModel(key: "Moderately Active", value: 1.550),
+    KeyValueModel(key: "Very Active", value: 1.725),
+    KeyValueModel(key: "Extra Active", value: 1.900),
+  ];
+
+  // Activty
+  String selectedValue = "Activity factor";
+
   // Data fields
   String firstName;
   String lastName;
@@ -20,6 +34,14 @@ class _SettingsFormState extends State<SettingsForm> {
   double _currentHeight;
   double _currentWeight;
   double _currentActivityFactor;
+
+  String labVal(double val) {
+    for (int i = 0; i < datas.length; i++) {
+      if (datas[i].value == val) {
+        return datas[i].key;
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -125,20 +147,28 @@ class _SettingsFormState extends State<SettingsForm> {
                       SizedBox(
                         height: 20,
                       ),
-                      TextFormField(
-                        decoration: InputDecoration(
-                          labelText: 'Activity Factor',
-                          enabledBorder: new UnderlineInputBorder(
-                            borderSide:
-                                BorderSide(color: Colors.grey, width: 1),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          Text('Activity Factor: '),
+                          new DropdownButton<String>(
+                            hint: Text(selectedValue),
+                            items: datas
+                                .map((data) => DropdownMenuItem<String>(
+                                      child: new Text(data.key),
+                                      value: data.value.toString(),
+                                    ))
+                                .toList(),
+                            onChanged: (val) {
+                              setState(() {
+                                _currentActivityFactor = double.parse(val);
+                                selectedValue = labVal(double.parse(val));
+                              });
+                            },
+                            //value: selectedValue,
+                            // hint: Text('Activity Factor'),
                           ),
-                        ),
-                        keyboardType: TextInputType.number,
-                        initialValue: userData.activityFactor.toString(),
-                        validator: (val) =>
-                            val.isEmpty ? 'Please enter activityfactor' : null,
-                        onChanged: (val) => setState(
-                            () => _currentActivityFactor = double.parse(val)),
+                        ],
                       ),
                       SizedBox(
                         height: 20,
@@ -147,23 +177,26 @@ class _SettingsFormState extends State<SettingsForm> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
                           Text('Gender'),
-                          new DropdownButton<String>(
-                            value: _iniGender,
-                            hint: Text('Gender'),
-                            items:
-                                <String>['Male', 'Female'].map((String value) {
-                              return DropdownMenuItem<String>(
-                                value: value,
-                                child: Text(value),
-                              );
-                            }).toList(),
-                            onChanged: (String value) {
-                              setState(() {
-                                _iniGender = value;
-                                gender = value;
-                              });
-                            },
-                          ),
+                          StatefulBuilder(builder: (BuildContext context,
+                              StateSetter dropDownState) {
+                            return DropdownButton<String>(
+                              value: _iniGender,
+                              hint: Text('Gender'),
+                              items: <String>['Male', 'Female']
+                                  .map((String value) {
+                                return new DropdownMenuItem<String>(
+                                  value: value,
+                                  child: Text(value),
+                                );
+                              }).toList(),
+                              onChanged: (String value) {
+                                dropDownState(() {
+                                  _iniGender = value;
+                                  gender = value;
+                                });
+                              },
+                            );
+                          }),
                         ],
                       ),
                       SizedBox(
@@ -180,7 +213,7 @@ class _SettingsFormState extends State<SettingsForm> {
                         ),
                         onPressed: () async {
                           if (_formKey.currentState.validate()) {
-                            print(firstName);
+                            print(age);
                             await DatabaseService(uid: user.uid)
                                 .updateUserData(
                                   lastName: lastName ?? userData.lastName,
@@ -188,7 +221,7 @@ class _SettingsFormState extends State<SettingsForm> {
                                   dob: dob ?? userData.dob,
                                   gender: gender ?? "Male",
                                   favoriteExcercise: userData.favoriteExcercise,
-                                  age: userData.age,
+                                  age: age ?? userData.age,
                                   height: _currentHeight ?? userData.height,
                                   weight: _currentWeight ?? userData.weight,
                                   activityFactor: _currentActivityFactor ??

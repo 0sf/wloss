@@ -23,7 +23,7 @@ class Calc {
 
   double schedule() {
     var gw = goalWeight();
-    return ((user.weight - gw) / 0.45).roundToDouble();
+    return ((user.weight - gw) / 0.45).abs().roundToDouble();
   }
 
   BMIWeightClass bmiWeightClass(double bmi) {

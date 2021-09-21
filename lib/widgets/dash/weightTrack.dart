@@ -21,12 +21,24 @@ class _WeightTrackerState extends State<WeightTracker> {
     var shedule = c.schedule();
 
     if (bmiWeightClass == BMIWeightClass.underweight) {
-      return Column(
-        // mainAxisAlignment: MainAxisAlignment.spaceAround,
-        // crossAxisAlignment: CrossAxisAlignment.start,
+      //return Column(
+      //   children: [
+      //     Text("Goal Weightsss: " + goalweight.toStringAsFixed(1) + " Kg\n"),
+      //     Text("Schedule: " + shedule.toStringAsFixed(0) + " weeks"),
+      //   ],
+      // );
+      return Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text("Goal Weightsss: " + goalweight.toStringAsFixed(1) + " Kg\n"),
-          Text("Schedule: " + shedule.toStringAsFixed(0) + " weeks"),
+          Padding(
+            padding: const EdgeInsets.all(15.0),
+            child:
+                Text("Goal Weight\n" + goalweight.toStringAsFixed(1) + " Kg"),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(15.0),
+            child: Text("Schedule\n" + shedule.toStringAsFixed(0) + " weeks"),
+          ),
         ],
       );
     } else if (bmiWeightClass == BMIWeightClass.overweight ||

@@ -40,6 +40,13 @@ class _MealListState extends State<MealList> {
 
     void _deleteMeal(String docId) {
       DatabaseService(uid: user.uid).deleteMeal(docId);
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          backgroundColor: Colors.red,
+          duration: Duration(milliseconds: 800),
+          content: Text('Deleted!'),
+        ),
+      );
     }
 
     return StreamBuilder<List<Meal>>(

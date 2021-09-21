@@ -31,19 +31,23 @@ class _MealTileState extends State<MealTile> {
         ),
         child: ListTile(
           leading: CachedNetworkImage(
+            errorWidget: (context, url, error) => Icon(Icons.fastfood),
             imageUrl: widget.meal.foodURL,
             placeholder: (context, url) => new Icon(Icons.fastfood),
           ),
-          // CircleAvatar(
-          //   radius: 25,
-          //   child: (widget.meal.foodURL == null)
-          //       ? Icon(Icons.restaurant_menu)
-          //       : Image.network(widget.meal.foodURL),
-          // ),
-          trailing: IconButton(
-            icon: Icon(Icons.delete),
-            color: Theme.of(context).errorColor,
-            onPressed: () => widget.deleteFn(widget.meal.documentID),
+          trailing: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              IconButton(
+                icon: Icon(Icons.edit),
+                onPressed: () => print('Edit!'),
+              ),
+              IconButton(
+                icon: Icon(Icons.delete),
+                color: Theme.of(context).errorColor,
+                onPressed: () => widget.deleteFn(widget.meal.documentID),
+              ),
+            ],
           ),
           title: Text(widget.meal.foodName),
           subtitle: Column(

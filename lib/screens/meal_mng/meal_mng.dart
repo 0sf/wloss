@@ -30,30 +30,9 @@ class _MealDashboardState extends State<MealDashboard> {
       }
       setState(() {
         cDate = pickedDate;
-        //print(cDate.toString());
       });
     });
   }
-
-  // Column(
-  //           children: <Widget>[
-  //             Container(
-  //               child: Column(
-  //                 children: <Widget>[
-  //                   Padding(
-  //                     padding: const EdgeInsets.all(8.0),
-  //                     child: Text(
-  //                       "Date: " + DateFormat('dd-MM-yyyy').format(cDate),
-  //                       style: TextStyle(
-  //                         fontSize: 20,
-  //                         fontWeight: FontWeight.bold,
-  //                       ),
-  //                     ),
-  //                   ),
-  //                 ],
-  //               ),
-  //             ),
-  //             Container(child: MealList(cDate)),
 
   @override
   Widget build(BuildContext context) {
@@ -70,9 +49,8 @@ class _MealDashboardState extends State<MealDashboard> {
             ],
             elevation: 0.0,
           ),
-          body: Stack(
+          body: Column(
             children: <Widget>[
-              MealList(cDate),
               Align(
                 alignment: Alignment.topCenter,
                 child: Container(
@@ -90,6 +68,7 @@ class _MealDashboardState extends State<MealDashboard> {
                   ),
                 ),
               ),
+              Expanded(child: Container(child: MealList(cDate))),
             ],
           ),
           floatingActionButtonLocation:
@@ -99,8 +78,7 @@ class _MealDashboardState extends State<MealDashboard> {
               onPressed: () {
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context) => SearchAdd()));
-              } //_startAddNewMealItem(context),
-              )),
+              })),
     );
   }
 }

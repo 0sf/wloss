@@ -98,14 +98,14 @@ class _BMRIState extends State<BMRI> {
                       fontSize: 18,
                     )),
                 TextSpan(
-                    text: formatter.format(widget.bmi).toString(),
+                    text: formatter.format(widget.bmi).toString() + " ",
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       color: bmiColorValue,
                       fontSize: 32,
                     )),
                 TextSpan(
-                    text: "( " + bmiStatus + " ) (?)",
+                    text: "(" + bmiStatus + ") (?)",
                     style: TextStyle(
                       fontSize: 18,
                       color: Colors.black38,
