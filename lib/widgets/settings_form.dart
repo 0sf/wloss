@@ -180,18 +180,25 @@ class _SettingsFormState extends State<SettingsForm> {
                         ),
                         onPressed: () async {
                           if (_formKey.currentState.validate()) {
-                            await DatabaseService(uid: user.uid).updateUserData(
-                              lastName: userData.lastName,
-                              firstName: userData.firstName,
-                              dob: userData.dob,
-                              gender: gender ?? "Male",
-                              favoriteExcercise: userData.favoriteExcercise,
-                              age: userData.age,
-                              height: _currentHeight ?? userData.height,
-                              weight: _currentWeight ?? userData.weight,
-                              activityFactor: _currentActivityFactor ??
-                                  userData.activityFactor,
-                            );
+                            print(firstName);
+                            await DatabaseService(uid: user.uid)
+                                .updateUserData(
+                                  lastName: lastName ?? userData.lastName,
+                                  firstName: firstName ?? userData.firstName,
+                                  dob: dob ?? userData.dob,
+                                  gender: gender ?? "Male",
+                                  favoriteExcercise: userData.favoriteExcercise,
+                                  age: userData.age,
+                                  height: _currentHeight ?? userData.height,
+                                  weight: _currentWeight ?? userData.weight,
+                                  activityFactor: _currentActivityFactor ??
+                                      userData.activityFactor,
+                                )
+                                .onError((error, stackTrace) => print(
+                                    "Settings Faild:" +
+                                        error.toString() +
+                                        " Stack: " +
+                                        stackTrace.toString()));
 
                             Navigator.pop(context);
                           }

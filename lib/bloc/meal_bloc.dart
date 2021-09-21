@@ -2,8 +2,8 @@ import 'dart:async';
 import 'dart:collection';
 import 'dart:convert';
 import 'package:rxdart/rxdart.dart';
-import 'package:dio/dio.dart';
 import 'package:http/http.dart' as http;
+// import 'package:dio/dio.dart';
 
 import '../model/meal_detail.dart';
 
@@ -16,7 +16,10 @@ class SearchBloc {
     _fetchMeal().then((_) {
       _mealSubject.add(UnmodifiableListView(_meals));
     }).catchError((Object o, StackTrace s) {
-      print(">>>>>" + o.toString());
+      print("Network Error!\n Object: " +
+          o.toString() +
+          " Stack: " +
+          s.toString());
     });
 
     // _fetchMeal().then((_) {
@@ -28,19 +31,13 @@ class SearchBloc {
 
   Future<Null> _fetchMeal() async {
     // http.Client client --> http.Client()
-
     //var url1 = Uri.parse('https://wloss-app.firebaseio.com/meals.json');
     final url1 = "https://wloss-app.firebaseio.com/meals.json";
     // final url2 = "https://meals.free.beeceptor.com/meals";
 
     //final response = await http.get(url1);
-
     //http.Response response =
     //    await http.get('https://wloss-app.firebaseio.com/meals.json');
-
-    final response = await http.get(url1).catchError((Object o, StackTrace s) {
-      print(">>>>" + o.toString());
-    });
 
     // var dio = Dio();
     // Response response =
@@ -55,6 +52,11 @@ class SearchBloc {
     // HttpClientResponse response = await request.close();
     // String reply = await response.transform(utf8.decoder).join();
 
+    final response = await http.get(url1).catchError((Object o, StackTrace s) {
+      print(
+          "HTTP Error!\n Object: " + o.toString() + " Stack: " + s.toString());
+    });
+
     if (response.statusCode == 200) {
       _meals = parseMeal(response.body);
     } else {
@@ -64,10 +66,6 @@ class SearchBloc {
 
   List<MealDetail> parseMeal(String response) {
     final parsed = json.decode(response).cast<Map<String, dynamic>>();
-    print(parsed
-        .map<MealDetail>((json) => MealDetail.fromJson(json))
-        .toList()
-        .toString());
     return parsed.map<MealDetail>((json) => MealDetail.fromJson(json)).toList();
   }
 }

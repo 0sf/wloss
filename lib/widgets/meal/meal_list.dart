@@ -15,26 +15,21 @@ class MealList extends StatefulWidget {
 }
 
 class _MealListState extends State<MealList> {
-  List<Meal> mealList = [];
-
   bool isDate(DateTime date, Meal meals) {
     if (date.day == meals.foodId.day &&
         date.month == meals.foodId.month &&
         date.year == meals.foodId.year) {
       return true;
     }
-
     return false;
   }
 
-  void _addToList(List<Meal> meals, DateTime date) {
-    var i = 0;
+  void _addToList(List<Meal> meals, List<Meal> mealList, DateTime date) {
     for (var meal in meals) {
       if (date.day == meal.foodId.day &&
           date.month == meal.foodId.month &&
           date.year == meal.foodId.year) {
-        mealList[i] = meal;
-        i++;
+        mealList.add(meal);
       }
     }
   }
@@ -42,56 +37,43 @@ class _MealListState extends State<MealList> {
   @override
   Widget build(BuildContext context) {
     final user = Provider.of<User>(context, listen: false);
-    // final meals = Provider.of<List<Meal>>(context) ?? [];
 
     void _deleteMeal(String docId) {
       DatabaseService(uid: user.uid).deleteMeal(docId);
     }
-
-    // return ListView.builder(
-    //     itemCount: meals.length,
-    //     itemBuilder: (context, index) {
-    //       return MealTile(
-    //         meal: meals[index],
-    //         deleteFn: _deleteMeal,
-    //       );
-    //     });
-
-    // ListView.builder(
-    //     itemCount: meals.length,
-    //     shrinkWrap: true,
-    //     itemBuilder: (context, index) {
-    //       return isDate(widget.date, meals[index])
-    //           ? MealTile(
-    //               meal: meals[index],
-    //               deleteFn: _deleteMeal,
-    //             )
-    //           : Text('');
-    //     });
 
     return StreamBuilder<List<Meal>>(
         stream: DatabaseService(uid: user.uid).meals,
         builder: (context, snapshot) {
           List<Meal> meals = snapshot.data;
           if (snapshot.hasData) {
-            //final meals = Provider.of<List<Meal>>(context) ?? [];
-            return ListView.builder(
-                itemCount: meals.length,
-                shrinkWrap: true,
-                itemBuilder: (context, index) {
-                  return isDate(widget.date, meals[index])
-                      ? MealTile(
-                          meal: meals[index],
-                          deleteFn: _deleteMeal,
-                        )
-                      : Text('');
-                });
+            var mealList = <Meal>[];
+            _addToList(meals, mealList, widget.date);
+            if (mealList.isEmpty) {
+              print("Empty");
+              return Center(child: Text('No meals for that date.'));
+            } else if (mealList.isNotEmpty) {
+              return Container(
+                child: ListView.builder(
+                    itemCount: mealList.length,
+                    shrinkWrap: true,
+                    itemBuilder: (context, index) {
+                      final item = mealList[index];
+                      return MealTile(
+                        meal: item,
+                        deleteFn: _deleteMeal,
+                      );
+                    }),
+              );
+            } else {
+              return Container();
+            }
           } else if (snapshot.hasError) {
             return Center(
               child: Text(snapshot.error.toString()),
             );
           } else {
-            return Text('No meals');
+            return Text('Stream builder ERORR!');
           }
         });
   }

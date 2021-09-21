@@ -31,7 +31,18 @@ class _SearchAddState extends State<SearchAdd> {
               })
         ],
       ),
-      body: MealList(DateTime.now()),
+      body: Column(
+        children: [
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: ElevatedButton(
+              onPressed: () {},
+              child: const Text('Manual Add', style: TextStyle(fontSize: 20)),
+            ),
+          ),
+          Container(child: MealList(DateTime.now())),
+        ],
+      ),
     );
   }
 }
