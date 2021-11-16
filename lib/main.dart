@@ -25,13 +25,18 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: "WLoss",
         theme: ThemeData(
-            primarySwatch: Colors.purple,
-            fontFamily: 'Lato',
-            textTheme: TextTheme(
-                headline1: TextStyle(
-              fontSize: 26,
-              fontWeight: FontWeight.bold,
-            ))),
+          primarySwatch: Colors.green,
+          fontFamily: 'Lato',
+          textTheme: TextTheme(
+              headline1: TextStyle(
+                fontSize: 26,
+                fontWeight: FontWeight.bold,
+              ),
+              headline2: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              )),
+        ),
         debugShowCheckedModeBanner: false,
         home: Wrapper(),
         routes: {},

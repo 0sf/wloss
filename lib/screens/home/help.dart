@@ -11,6 +11,9 @@ class _HelpState extends State<Help> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text('Help and Support'),
+      ),
       body: Text("Help!"),
     );
   }

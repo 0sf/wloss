@@ -10,6 +10,10 @@ class FeedBack extends StatefulWidget {
 class _FeedBackState extends State<FeedBack> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Feedback'),
+      ),
+    );
   }
 }

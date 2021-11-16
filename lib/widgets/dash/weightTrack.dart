@@ -20,6 +20,7 @@ class _WeightTrackerState extends State<WeightTracker> {
     final BMIWeightClass bmiWeightClass = c.bmiWeightClass(c.bmi());
     var goalweight = c.goalWeight();
     var shedule = c.schedule();
+    var bmi = c.bmi();
 
     if (bmiWeightClass == BMIWeightClass.underweight) {
       return Display(goalWeight: goalweight, shedule: shedule);
@@ -30,7 +31,13 @@ class _WeightTrackerState extends State<WeightTracker> {
         shedule: shedule,
       );
     } else if (bmiWeightClass == BMIWeightClass.normal) {
-      return Container();
+      if (bmi == 21.5) {
+        return Container();
+      }
+      return Display(
+        goalWeight: goalweight,
+        shedule: shedule,
+      );
     } else {
       return Container();
     }
@@ -48,11 +55,17 @@ class Display extends StatelessWidget {
       children: [
         Padding(
           padding: const EdgeInsets.all(15.0),
-          child: Text("Goal Weight\n" + goalWeight.toStringAsFixed(1) + " Kg"),
+          child: Text(
+            "Goal Weight\n" + goalWeight.toStringAsFixed(1) + " Kg",
+            style: Theme.of(context).textTheme.headline2,
+          ),
         ),
         Padding(
           padding: const EdgeInsets.all(15.0),
-          child: Text("Schedule\n" + shedule.toStringAsFixed(0) + " weeks"),
+          child: Text(
+            "Schedule\n" + shedule.toStringAsFixed(0) + " weeks",
+            style: Theme.of(context).textTheme.headline2,
+          ),
         ),
       ],
     );

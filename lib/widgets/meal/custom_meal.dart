@@ -1,5 +1,6 @@
 // @dart=2.9
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 import '../../model/user.dart';
@@ -14,15 +15,27 @@ class CustomMeal extends StatefulWidget {
 class _CustomMealState extends State<CustomMeal> {
   bool loading = false;
 
+  TimeOfDay selectedTime = TimeOfDay.now();
+  DateTime foodID = DateTime.now();
   double amount = 0.0;
   double portion = 0.0;
   int calories = 0;
   String title = "";
 
-  final _amountController = TextEditingController();
   final _nameController = TextEditingController();
+  final _amountController = TextEditingController();
+  final _calorieController = TextEditingController();
+  final _calorieGramController = TextEditingController();
 
   void _submitData(String uid) async {
+    print(">>>>>" +
+        "title: " +
+        title +
+        "portion: " +
+        amount.toString() +
+        "calories: " +
+        calories.toString());
+
     if (_amountController.text.isEmpty && amount == 0.0) {
       return;
     }
@@ -43,8 +56,9 @@ class _CustomMealState extends State<CustomMeal> {
     }
 
     loading = true;
+
     await DatabaseService(uid: uid).updateMealData(
-      DateTime.now(),
+      foodID,
       enteredTitle,
       foodURL,
       enteredAmount,
@@ -59,6 +73,55 @@ class _CustomMealState extends State<CustomMeal> {
       ),
     );
     Navigator.of(context).pop();
+  }
+
+  void _presentDatePicker() {
+    showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(1920),
+      lastDate: DateTime.now(),
+    ).then((pickedDate) {
+      if (pickedDate == null) {
+        return;
+      }
+      setState(() {
+        print("Before: " + foodID.toString());
+
+        foodID = DateTime(
+            pickedDate.year,
+            pickedDate.month,
+            pickedDate.day,
+            foodID.hour,
+            foodID.minute,
+            foodID.second,
+            foodID.millisecond,
+            foodID.microsecond);
+        print("After: " + foodID.toString());
+      });
+    });
+  }
+
+  _setTime(BuildContext context) async {
+    final TimeOfDay timeOfDay = await showTimePicker(
+      context: context,
+      initialTime: selectedTime,
+      initialEntryMode: TimePickerEntryMode.dial,
+    );
+    // Goes here.
+    setState(() {
+      print("Before: " + foodID.toString());
+      foodID = DateTime(
+          foodID.year,
+          foodID.month,
+          foodID.day,
+          timeOfDay.hour,
+          timeOfDay.minute,
+          foodID.second + 1,
+          foodID.millisecond + 1,
+          foodID.microsecond + 1);
+      print("After: " + foodID.toString());
+    });
   }
 
   @override
@@ -80,10 +143,32 @@ class _CustomMealState extends State<CustomMeal> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text('Date'),
+                        TextButton(
+                            onPressed: _presentDatePicker,
+                            child: Text(DateFormat('d/M/y').format(foodID)))
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text('Time'),
+                        TextButton(
+                          onPressed: () {
+                            _setTime(context);
+                          },
+                          child: Text(DateFormat('kk:mm:a').format(foodID)),
+                        )
+                      ],
+                    ),
                     TextField(
                       decoration: InputDecoration(labelText: 'Food Item: '),
                       controller: _nameController,
                       keyboardType: TextInputType.name,
+                      onChanged: (value) => title = value,
                       onSubmitted: (_) => _submitData(user.uid),
                     ),
                     SizedBox(
@@ -92,6 +177,28 @@ class _CustomMealState extends State<CustomMeal> {
                     TextField(
                       decoration: InputDecoration(labelText: 'Amount / g'),
                       controller: _amountController,
+                      keyboardType: TextInputType.number,
+                      onChanged: (value) => amount = double.parse(value),
+                      onSubmitted: (_) => _submitData(user.uid),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    TextField(
+                      decoration: InputDecoration(labelText: 'Calorie / kcal'),
+                      controller: _calorieController,
+                      onChanged: (value) => calories = int.parse(value),
+                      keyboardType: TextInputType.number,
+                      onSubmitted: (_) => _submitData(user.uid),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    TextField(
+                      decoration:
+                          InputDecoration(labelText: 'Calorie Portion / g'),
+                      controller: _calorieGramController,
+                      onChanged: (value) => portion = double.parse(value),
                       keyboardType: TextInputType.number,
                       onSubmitted: (_) => _submitData(user.uid),
                     ),

@@ -59,7 +59,7 @@ class _MealDashboardState extends State<MealDashboard> {
                   alignment: Alignment.center,
                   height: 30,
                   width: 300,
-                  color: Colors.blue,
+                  color: Theme.of(context).colorScheme.secondary,
                   child: Text(
                     "Date: " + DateFormat('dd-MM-yyyy').format(cDate),
                     style: TextStyle(
