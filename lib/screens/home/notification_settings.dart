@@ -1,7 +1,10 @@
+// @dart=2.9
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:timezone/data/latest.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
+import 'package:intl/intl.dart';
+
 import 'package:wloss/model/time_zone.dart';
 import '../../data/notification_detail.dart';
 
@@ -20,6 +23,39 @@ class _NotificationSettingsState extends State<NotificationSettings> {
 
   //bool _notificationState = false;
 
+  TimeOfDay selectedTime = TimeOfDay.now();
+
+  _setTime(BuildContext context, int type) async {
+    final TimeOfDay timeOfDay = await showTimePicker(
+      context: context,
+      initialTime: selectedTime,
+      initialEntryMode: TimePickerEntryMode.dial,
+    );
+
+    if (timeOfDay != null && timeOfDay != selectedTime) {
+      if (type == 0) {
+        {
+          setState(() {
+            dayAndTime[0] = DateTime(DateTime.now().year, DateTime.now().month,
+                DateTime.now().day, timeOfDay.hour, timeOfDay.minute, 0);
+          });
+        }
+      } else if (type == 1) {
+        setState(() {
+          dayAndTime[1] = DateTime(DateTime.now().year, DateTime.now().month,
+              DateTime.now().day, timeOfDay.hour, timeOfDay.minute, 0);
+        });
+      } else if (type == 2) {
+        setState(() {
+          dayAndTime[2] = DateTime(DateTime.now().year, DateTime.now().month,
+              DateTime.now().day, timeOfDay.hour, timeOfDay.minute, 0);
+        });
+      } else {
+        print("Error!");
+      }
+    }
+  }
+
   cancelAllNotifications() async {
     await widget.flutterLocalNotificationsPlugin.cancelAll();
   }
@@ -36,10 +72,24 @@ class _NotificationSettingsState extends State<NotificationSettings> {
   }
 
   showAllNotifcations() async {
-    var notify = await widget.flutterLocalNotificationsPlugin
-        .pendingNotificationRequests();
-    notify.map(
-        (e) => print(e.id.toString() + e.body.toString() + e.title.toString()));
+    // var notify = await widget.flutterLocalNotificationsPlugin
+    //     .pendingNotificationRequests();
+    // notify.map(
+    //     (e) => print(e.id.toString() + e.body.toString() + e.title.toString()));
+
+    const AndroidNotificationDetails androidPlatformChannelSpecifics =
+        AndroidNotificationDetails(
+            '0', 'wloss_once', 'Notifications displayed once');
+
+    const NotificationDetails platformChannelSpecifics = NotificationDetails(
+      android: androidPlatformChannelSpecifics,
+      iOS: null,
+      macOS: null,
+    );
+
+    await widget.flutterLocalNotificationsPlugin.show(
+        0, 'plain title', 'plain body', platformChannelSpecifics,
+        payload: 'item x');
   }
 
   // tz.TZDateTime schduleDate = new tz.TZDateTime(location, year);
@@ -141,6 +191,54 @@ class _NotificationSettingsState extends State<NotificationSettings> {
           child: Center(
             child: Column(
               children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Text('Breakfast'),
+                    Row(
+                      children: [
+                        Text(DateFormat('kk:mm:a').format(dayAndTime[0])),
+                        IconButton(
+                            onPressed: () {
+                              _setTime(context, 0);
+                            },
+                            icon: const Icon(Icons.timer)),
+                      ],
+                    )
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Text('Lunch'),
+                    Row(
+                      children: [
+                        Text(DateFormat('kk:mm:a').format(dayAndTime[1])),
+                        IconButton(
+                            onPressed: () {
+                              _setTime(context, 1);
+                            },
+                            icon: const Icon(Icons.timer)),
+                      ],
+                    )
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Text('Dinner'),
+                    Row(
+                      children: [
+                        Text(DateFormat('kk:mm:a').format(dayAndTime[2])),
+                        IconButton(
+                            onPressed: () {
+                              _setTime(context, 2);
+                            },
+                            icon: const Icon(Icons.timer)),
+                      ],
+                    )
+                  ],
+                ),
                 // SwitchListTile(
                 //   title: const Text('Notification'),
                 //   value: _notificationState,

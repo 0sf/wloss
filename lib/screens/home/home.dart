@@ -1,3 +1,4 @@
+// @dart=2.9
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
@@ -8,41 +9,34 @@ import './main_drawer.dart';
 import '../../screens/home/temp.dart';
 import '../../model/meal.dart';
 import '../../services/database.dart';
+import './help.dart';
 
 class Home extends StatefulWidget {
   static const routeName = '/home';
+  final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+      FlutterLocalNotificationsPlugin();
+
+  Future<void> init() async {
+    final AndroidInitializationSettings initializationSettingsAndroid =
+        AndroidInitializationSettings('wloss');
+
+    final InitializationSettings initializationSettings =
+        InitializationSettings(
+            android: initializationSettingsAndroid, iOS: null, macOS: null);
+
+    await flutterLocalNotificationsPlugin.initialize(initializationSettings,
+        onSelectNotification: selectNotification);
+  }
+
+  Future selectNotification(String payload) async {
+    //Handle notification tapped logic here
+  }
 
   @override
   _HomeState createState() => _HomeState();
 }
 
 class _HomeState extends State<Home> {
-  final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
-      FlutterLocalNotificationsPlugin();
-
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   var initializationSettingsAndroid = AndroidInitializationSettings('wloss');
-  //   var initSetttings =
-  //       InitializationSettings(android: initializationSettingsAndroid);
-
-  //   flutterLocalNotificationsPlugin.initialize(initSetttings,
-  //       onSelectNotification: onSelectNotification);
-  // }
-
-  // Future onSelectNotification(String payload) {
-  //   Navigator.of(context).push(MaterialPageRoute(builder: (_) {
-  //     return NewScreen(
-  //       payload: payload,
-  //     );
-  //   }));
-  // }
-
-  // void _showNotification() {
-  //   print("pressed");
-  // }
-
   @override
   Widget build(BuildContext context) {
     final user = Provider.of<User>(context, listen: false);
@@ -51,16 +45,20 @@ class _HomeState extends State<Home> {
       value: DatabaseService(uid: user.uid).meals,
       child: Scaffold(
         drawer: MainDrawer(
-          flutterLocalNotificationsPlugin: flutterLocalNotificationsPlugin,
+          flutterLocalNotificationsPlugin:
+              widget.flutterLocalNotificationsPlugin,
         ),
         backgroundColor: Colors.brown.shade50,
         appBar: AppBar(
-          actions: <Widget>[
-            // IconButton(
-            //     icon: Icon(Icons.notifications),
-            //     onPressed: () => _showNotification())
-          ],
           title: Text('WLoss'),
+          actions: [
+            IconButton(
+                onPressed: () {
+                  Navigator.push(
+                      context, MaterialPageRoute(builder: (context) => Help()));
+                },
+                icon: Icon(Icons.help))
+          ],
           backgroundColor: Theme.of(context).primaryColor,
           elevation: 0.0,
         ),

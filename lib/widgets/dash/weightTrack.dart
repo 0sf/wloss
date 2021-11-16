@@ -1,3 +1,4 @@
+// @dart=2.9
 import 'package:flutter/material.dart';
 
 import 'package:wloss/model/user.dart';
@@ -21,44 +22,39 @@ class _WeightTrackerState extends State<WeightTracker> {
     var shedule = c.schedule();
 
     if (bmiWeightClass == BMIWeightClass.underweight) {
-      //return Column(
-      //   children: [
-      //     Text("Goal Weightsss: " + goalweight.toStringAsFixed(1) + " Kg\n"),
-      //     Text("Schedule: " + shedule.toStringAsFixed(0) + " weeks"),
-      //   ],
-      // );
-      return Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(15.0),
-            child:
-                Text("Goal Weight\n" + goalweight.toStringAsFixed(1) + " Kg"),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(15.0),
-            child: Text("Schedule\n" + shedule.toStringAsFixed(0) + " weeks"),
-          ),
-        ],
-      );
+      return Display(goalWeight: goalweight, shedule: shedule);
     } else if (bmiWeightClass == BMIWeightClass.overweight ||
         bmiWeightClass == BMIWeightClass.obese) {
-      return Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(15.0),
-            child:
-                Text("Goal Weight\n" + goalweight.toStringAsFixed(1) + " Kg"),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(15.0),
-            child: Text("Schedule\n" + shedule.toStringAsFixed(0) + " weeks"),
-          ),
-        ],
+      return Display(
+        goalWeight: goalweight,
+        shedule: shedule,
       );
+    } else if (bmiWeightClass == BMIWeightClass.normal) {
+      return Container();
     } else {
       return Container();
     }
+  }
+}
+
+class Display extends StatelessWidget {
+  final double goalWeight, shedule;
+  const Display({this.goalWeight, this.shedule});
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Padding(
+          padding: const EdgeInsets.all(15.0),
+          child: Text("Goal Weight\n" + goalWeight.toStringAsFixed(1) + " Kg"),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(15.0),
+          child: Text("Schedule\n" + shedule.toStringAsFixed(0) + " weeks"),
+        ),
+      ],
+    );
   }
 }

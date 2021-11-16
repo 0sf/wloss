@@ -1,3 +1,4 @@
+// @dart=2.9
 class WeightDetail {
   final String wid;
   final double weight;

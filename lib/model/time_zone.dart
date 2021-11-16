@@ -1,3 +1,4 @@
+// @dart=2.9
 import 'package:timezone/data/latest.dart';
 import 'package:timezone/timezone.dart' as t;
 import 'package:flutter_native_timezone/flutter_native_timezone.dart';

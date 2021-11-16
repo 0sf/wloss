@@ -1,3 +1,4 @@
+// @dart=2.9
 import 'dart:math';
 
 import '../../model/user.dart';
@@ -17,10 +18,12 @@ class Calc {
     }
   }
 
+  // Get goal weight
   double goalWeight() {
     return 21.7 * pow((user.height / 100), 2);
   }
 
+  // Get week schedule
   double schedule() {
     var gw = goalWeight();
     return ((user.weight - gw) / 0.45).abs().roundToDouble();
@@ -66,6 +69,7 @@ class Calc {
     }
   }
 
+  // Getting daily calorie count
   double dailyCalorieCount() {
     BMIWeightClass bmiw = bmiWeightClass(bmi());
     if (bmr() == -1) {

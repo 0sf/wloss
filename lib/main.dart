@@ -1,11 +1,15 @@
+// @dart=2.9
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:wloss/screens/home/home.dart';
 
 import './services/auth.dart';
 import './screens/wrapper.dart';
 import './model/user.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Home().init();
   runApp(MyApp());
 }
 

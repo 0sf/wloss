@@ -1,9 +1,11 @@
+// @dart=2.9
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:provider/provider.dart';
 
 import '../../screens/home/settings_page.dart';
 import '../../screens/home/notification_settings.dart';
+import '../../screens/home/feedback.dart';
 import '../../services/database.dart';
 import '../../model/user.dart';
 import '../../services/auth.dart';
@@ -39,18 +41,11 @@ class _MainDrawerState extends State<MainDrawer> {
   void _showSettingsPanel() {
     Navigator.push(
         context, MaterialPageRoute(builder: (context) => SettingsPage()));
+  }
 
-    // showModalBottomSheet(
-    //     context: context,
-    //     builder: (context) {
-    //       return Container(
-    //         padding: EdgeInsets.symmetric(
-    //           vertical: 20.0,
-    //           horizontal: 60.0,
-    //         ),
-    //         child: SettingsForm(),
-    //       );
-    //     });
+  void _showFeedback() {
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => FeedBack()));
   }
 
   void _showNotificationSettings() {
@@ -158,6 +153,11 @@ class _MainDrawerState extends State<MainDrawer> {
                     'Notifications',
                     Icons.notifications,
                     _showNotificationSettings,
+                  ),
+                  buildListTile(
+                    'Feedback',
+                    Icons.feedback,
+                    _showFeedback,
                   ),
                   buildListTile(
                     'Logout',

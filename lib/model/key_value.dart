@@ -5,7 +5,7 @@
 //   'Very Active': 1.725,
 //   'Extra Active': 1.900,
 // };
-
+// @dart=2.9
 class KeyValueModel {
   String key;
   double value;

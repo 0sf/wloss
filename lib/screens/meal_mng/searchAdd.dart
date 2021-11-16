@@ -1,9 +1,11 @@
+// @dart=2.9
 import 'dart:collection';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 import 'package:wloss/bloc/meal_bloc.dart';
 import 'package:wloss/model/meal_detail.dart';
+import 'package:wloss/widgets/meal/custom_meal.dart';
 import 'package:wloss/widgets/meal/meal_list.dart';
 import 'package:wloss/widgets/meal/new_meal.dart';
 
@@ -13,6 +15,18 @@ class SearchAdd extends StatefulWidget {
 }
 
 class _SearchAddState extends State<SearchAdd> {
+  void _customMealAdd(BuildContext ctx) {
+    showModalBottomSheet(
+      context: ctx,
+      builder: (_) {
+        return GestureDetector(
+          child: CustomMeal(),
+          behavior: HitTestBehavior.opaque,
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final shbloc = SearchBloc();
@@ -36,7 +50,9 @@ class _SearchAddState extends State<SearchAdd> {
           Align(
             alignment: Alignment.bottomCenter,
             child: ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                _customMealAdd(context);
+              },
               child: const Text('Manual Add', style: TextStyle(fontSize: 20)),
             ),
           ),
