@@ -49,11 +49,18 @@ class _SearchAddState extends State<SearchAdd> {
         children: [
           Align(
             alignment: Alignment.bottomCenter,
-            child: ElevatedButton(
-              onPressed: () {
-                _customMealAdd(context);
-              },
-              child: const Text('Manual Add', style: TextStyle(fontSize: 20)),
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: SizedBox(
+                width: double.infinity,
+                child: ElevatedButton(
+                  onPressed: () {
+                    _customMealAdd(context);
+                  },
+                  child:
+                      const Text('Manual Add', style: TextStyle(fontSize: 20)),
+                ),
+              ),
             ),
           ),
           Expanded(child: Container(child: MealList(DateTime.now()))),

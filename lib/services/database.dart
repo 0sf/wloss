@@ -13,6 +13,12 @@ class DatabaseService {
   final CollectionReference userCollection =
       Firestore.instance.collection('user');
 
+  final CollectionReference newMealCollection =
+      Firestore.instance.collection('newMeal');
+
+  final CollectionReference feedbackCollection =
+      Firestore.instance.collection('feedback');
+
   // final CollectionReference mealCollection =
   //     Firestore.instance.collection('user').document().collection('meal');
 
@@ -67,6 +73,40 @@ class DatabaseService {
       "caloriePortion": caloriePortion,
       "calorieConsumed": calorieConsumed,
       "foodURL": foodURL
+    });
+  }
+
+// Update NewMeal data
+  Future updateNewMealData(
+    DateTime date,
+    String foodTitle,
+    int caloriePortion,
+    double calorieConsumed,
+  ) async {
+    return await newMealCollection.document(uid).setData({
+      "calorie_portion": caloriePortion,
+      "calorie": calorieConsumed,
+      "food_name": foodTitle,
+      "date": date,
+      "uid": uid,
+    });
+  }
+
+  // Update Feedback
+  Future sendFeedback(
+    DateTime date,
+    String name,
+    String feedback,
+  ) async {
+    return await feedbackCollection
+        .document(uid)
+        .collection('feedback')
+        .document()
+        .setData({
+      "feedback": feedback,
+      "name": name,
+      "date": date,
+      "uid": uid,
     });
   }
 

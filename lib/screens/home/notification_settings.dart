@@ -132,12 +132,16 @@ class _NotificationSettingsState extends State<NotificationSettings> {
     final location = await timeZone.getLocation(timeZoneName);
 
     const AndroidNotificationDetails androidPlatformChannelSpecifics =
-        AndroidNotificationDetails('repeating channel id',
-            'repeating channel name', 'repeating description');
-    const iOSPlatformChannelSpecifics = IOSNotificationDetails();
+        AndroidNotificationDetails(
+      'wloss',
+      'WLoss',
+      'Meal time reminder',
+      importance: Importance.max,
+      priority: Priority.high,
+    );
+
     const NotificationDetails platformChannelSpecifics = NotificationDetails(
-        android: androidPlatformChannelSpecifics,
-        iOS: iOSPlatformChannelSpecifics);
+        android: androidPlatformChannelSpecifics, iOS: null, macOS: null);
 
     var id = 0;
     for (var i = 1; i < 8; i++) {
@@ -150,17 +154,17 @@ class _NotificationSettingsState extends State<NotificationSettings> {
             dayAndTime[j].minute,
             dayAndTime[j].second);
 
-        print(dateTime.year.toString() +
-            " " +
-            dateTime.month.toString() +
-            " " +
-            dateTime.day.toString() +
-            " " +
-            dateTime.hour.toString() +
-            " " +
-            dateTime.minute.toString() +
-            " " +
-            dateTime.second.toString());
+        // print(dateTime.year.toString() +
+        //     " " +
+        //     dateTime.month.toString() +
+        //     " " +
+        //     dateTime.day.toString() +
+        //     " " +
+        //     dateTime.hour.toString() +
+        //     " " +
+        //     dateTime.minute.toString() +
+        //     " " +
+        //     dateTime.second.toString());
 
         final scheduledDate = tz.TZDateTime.from(dateTime, location);
 
@@ -174,8 +178,9 @@ class _NotificationSettingsState extends State<NotificationSettings> {
           uiLocalNotificationDateInterpretation:
               UILocalNotificationDateInterpretation.absoluteTime,
           matchDateTimeComponents: DateTimeComponents.time,
+          payload: "x",
         );
-        id++;
+        //id++;
       }
     }
   }
@@ -190,7 +195,6 @@ class _NotificationSettingsState extends State<NotificationSettings> {
         builder: (context) => Container(
           child: Center(
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -252,47 +256,50 @@ class _NotificationSettingsState extends State<NotificationSettings> {
                 //   },
                 //   secondary: const Icon(Icons.notifications_none_outlined),
                 // ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    ElevatedButton(
-                      onPressed: () {
-                        zonedSchedule();
+                Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      ElevatedButton(
+                        onPressed: () {
+                          zonedSchedule();
 
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                            content: Text(
-                                'Notifications enabled from tomorrow onwards!'),
-                          ),
-                        );
-                      },
-                      child: new Text(
-                        'Schedule',
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              content: Text(
+                                  'Notifications enabled from tomorrow onwards!'),
+                            ),
+                          );
+                        },
+                        child: new Text(
+                          'Schedule',
+                        ),
                       ),
-                    ),
-                    ElevatedButton(
-                      onPressed: () {
-                        cancelAllNotifications();
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                            content: Text('Notifications Disabled!'),
-                          ),
-                        );
-                      },
-                      child: new Text(
-                        'Cancel All',
+                      ElevatedButton(
+                        onPressed: () {
+                          cancelAllNotifications();
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              content: Text('Notifications Disabled!'),
+                            ),
+                          );
+                        },
+                        child: new Text(
+                          'Cancel All',
+                        ),
                       ),
-                    ),
-                    ElevatedButton(
-                      onPressed: () {
-                        showAllNotifcations();
-                        showSchdNotifications();
-                      },
-                      child: new Text(
-                        'Get List',
-                      ),
-                    ),
-                  ],
+                      // ElevatedButton(
+                      //   onPressed: () {
+                      //     showAllNotifcations();
+                      //     showSchdNotifications();
+                      //   },
+                      //   child: new Text(
+                      //     'Get List',
+                      //   ),
+                      // ),
+                    ],
+                  ),
                 ),
               ],
             ),

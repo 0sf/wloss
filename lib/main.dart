@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: "WLoss",
         theme: ThemeData(
-          primarySwatch: Colors.green,
+          primarySwatch: Colors.purple,
           fontFamily: 'Lato',
           textTheme: TextTheme(
               headline1: TextStyle(

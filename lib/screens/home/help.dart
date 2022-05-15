@@ -14,7 +14,7 @@ class _HelpState extends State<Help> {
       appBar: AppBar(
         title: Text('Help and Support'),
       ),
-      body: Text("Help!"),
+      body: Text("?"),
     );
   }
 }

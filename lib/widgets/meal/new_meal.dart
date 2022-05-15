@@ -24,8 +24,13 @@ class _NewMealItemState extends State<NewMealItem> {
 
   final _amountController = TextEditingController();
 
-  void _submitData(String uid) async {
+  void _submitData(String uid, BuildContext context) async {
     if (_amountController.text.isEmpty && amount == 0.0) {
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+        backgroundColor: Colors.red,
+        duration: Duration(seconds: 1),
+        content: Text('Please fill all fields.'),
+      ));
       return;
     }
 
@@ -40,6 +45,11 @@ class _NewMealItemState extends State<NewMealItem> {
         enteredAmount <= 0 ||
         perGram <= 0 ||
         perCalorie <= 0) {
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+        backgroundColor: Colors.red,
+        duration: Duration(seconds: 1),
+        content: Text('Please fill all fields.'),
+      ));
       return;
     }
 
@@ -132,21 +142,26 @@ class _NewMealItemState extends State<NewMealItem> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
-                    ElevatedButton(
-                      child: Text('Select Portion Size'),
-                      onPressed: () {
-                        showPickerArray(context);
-                      },
-                    ),
                     SizedBox(
                       height: 20,
                     ),
-                    Text(
-                      widget.meal.name + " | " + amount.toString() + "g",
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                      ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          widget.meal.name + " | " + amount.toString() + "g",
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        OutlinedButton(
+                          child: Text('Set'),
+                          onPressed: () {
+                            showPickerArray(context);
+                          },
+                        ),
+                      ],
                     ),
                     SizedBox(
                       height: 20,
@@ -168,7 +183,7 @@ class _NewMealItemState extends State<NewMealItem> {
                         ),
                         onPrimary: Colors.white, // foreground
                       ),
-                      onPressed: () => _submitData(user.uid),
+                      onPressed: () => _submitData(user.uid, context),
                       child: Text('Add Meal Item'),
                     )
                   ],

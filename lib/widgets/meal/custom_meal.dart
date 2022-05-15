@@ -27,7 +27,7 @@ class _CustomMealState extends State<CustomMeal> {
   final _calorieController = TextEditingController();
   final _calorieGramController = TextEditingController();
 
-  void _submitData(String uid) async {
+  void _submitData(String uid, BuildContext context) async {
     print(">>>>>" +
         "title: " +
         title +
@@ -37,6 +37,12 @@ class _CustomMealState extends State<CustomMeal> {
         calories.toString());
 
     if (_amountController.text.isEmpty && amount == 0.0) {
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+        behavior: SnackBarBehavior.floating,
+        backgroundColor: Colors.red,
+        duration: Duration(seconds: 1),
+        content: Text('Please fill all fields.'),
+      ));
       return;
     }
 
@@ -52,6 +58,12 @@ class _CustomMealState extends State<CustomMeal> {
         enteredAmount <= 0 ||
         perGram <= 0 ||
         perCalorie <= 0) {
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+        behavior: SnackBarBehavior.floating,
+        backgroundColor: Colors.red,
+        duration: Duration(seconds: 1),
+        content: Text('Please fill all fields.'),
+      ));
       return;
     }
 
@@ -65,6 +77,14 @@ class _CustomMealState extends State<CustomMeal> {
       perCalorie,
       consumedCalorie,
     );
+
+    await DatabaseService(uid: uid).updateNewMealData(
+      foodID,
+      enteredTitle,
+      perCalorie,
+      consumedCalorie,
+    );
+
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(
         backgroundColor: Colors.green,
@@ -87,7 +107,6 @@ class _CustomMealState extends State<CustomMeal> {
       }
       setState(() {
         print("Before: " + foodID.toString());
-
         foodID = DateTime(
             pickedDate.year,
             pickedDate.month,
@@ -169,7 +188,7 @@ class _CustomMealState extends State<CustomMeal> {
                       controller: _nameController,
                       keyboardType: TextInputType.name,
                       onChanged: (value) => title = value,
-                      onSubmitted: (_) => _submitData(user.uid),
+                      onSubmitted: (_) => _submitData(user.uid, context),
                     ),
                     SizedBox(
                       height: 20,
@@ -179,7 +198,7 @@ class _CustomMealState extends State<CustomMeal> {
                       controller: _amountController,
                       keyboardType: TextInputType.number,
                       onChanged: (value) => amount = double.parse(value),
-                      onSubmitted: (_) => _submitData(user.uid),
+                      onSubmitted: (_) => _submitData(user.uid, context),
                     ),
                     SizedBox(
                       height: 20,
@@ -189,7 +208,7 @@ class _CustomMealState extends State<CustomMeal> {
                       controller: _calorieController,
                       onChanged: (value) => calories = int.parse(value),
                       keyboardType: TextInputType.number,
-                      onSubmitted: (_) => _submitData(user.uid),
+                      onSubmitted: (_) => _submitData(user.uid, context),
                     ),
                     SizedBox(
                       height: 20,
@@ -200,7 +219,7 @@ class _CustomMealState extends State<CustomMeal> {
                       controller: _calorieGramController,
                       onChanged: (value) => portion = double.parse(value),
                       keyboardType: TextInputType.number,
-                      onSubmitted: (_) => _submitData(user.uid),
+                      onSubmitted: (_) => _submitData(user.uid, context),
                     ),
                     SizedBox(
                       height: 20,
@@ -213,7 +232,7 @@ class _CustomMealState extends State<CustomMeal> {
                         ),
                         onPrimary: Colors.white, // foreground
                       ),
-                      onPressed: () => _submitData(user.uid),
+                      onPressed: () => _submitData(user.uid, context),
                       child: Text('Add Meal Item'),
                     )
                   ],
